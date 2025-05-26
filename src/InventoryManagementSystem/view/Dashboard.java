@@ -1,3 +1,5 @@
+package InventoryManagementSystem.view;
+
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
@@ -66,7 +68,7 @@ public class Dashboard extends JFrame {
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
-            new Dashboard().setVisible(true);
+           
         });
     }
 }
