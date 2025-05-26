@@ -180,7 +180,9 @@ public class AdminPanel extends javax.swing.JFrame {
 
     private void CreateAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CreateAccountActionPerformed
         // TODO add your handling code here:
-        new Dashboard().setVisible(true);
+                        new Dashboard().setVisible(true);
+
+        
     }//GEN-LAST:event_CreateAccountActionPerformed
 
     /**
