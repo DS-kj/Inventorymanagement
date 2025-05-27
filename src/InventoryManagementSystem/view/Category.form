@@ -140,13 +140,21 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Component id="Dashboard" min="-2" pref="137" max="-2" attributes="0"/>
-              <Component id="Category" alignment="1" min="-2" pref="137" max="-2" attributes="0"/>
-              <Component id="Product" alignment="0" min="-2" pref="137" max="-2" attributes="0"/>
-              <Component id="Customer" alignment="0" min="-2" pref="137" max="-2" attributes="0"/>
-              <Component id="Order" alignment="0" min="-2" pref="137" max="-2" attributes="0"/>
+              <Group type="102" alignment="1" attributes="0">
+                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                  <Component id="Category" min="-2" pref="137" max="-2" attributes="0"/>
+              </Group>
               <Component id="Vieworder" alignment="0" max="32767" attributes="0"/>
               <Component id="Logout" alignment="0" max="32767" attributes="0"/>
+              <Component id="Dashboard" alignment="0" max="32767" attributes="0"/>
+              <Group type="102" attributes="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="Product" alignment="0" min="-2" pref="137" max="-2" attributes="0"/>
+                      <Component id="Customer" alignment="0" min="-2" pref="137" max="-2" attributes="0"/>
+                      <Component id="Order" alignment="0" min="-2" pref="137" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+              </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
