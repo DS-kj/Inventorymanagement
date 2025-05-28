@@ -131,7 +131,7 @@ public class AdminPanel extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(202, 221, 222));
         jLabel2.setText("ADMIN PANEL");
         jPanel1.add(jLabel2);
-        jLabel2.setBounds(17, 6, 125, 25);
+        jLabel2.setBounds(17, 6, 130, 25);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
