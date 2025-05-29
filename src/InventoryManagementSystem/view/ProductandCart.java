@@ -35,7 +35,7 @@ public class ProductandCart extends javax.swing.JFrame {
         CartListTable = new javax.swing.JTable();
         AddToCart = new javax.swing.JButton();
         Bill_Purchase = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        goBack = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -101,7 +101,7 @@ public class ProductandCart extends javax.swing.JFrame {
 
         Bill_Purchase.setText("Purchase");
 
-        jButton1.setText("Go Back to Customer selection");
+        goBack.setText("Go Back to Customer selection");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -120,7 +120,7 @@ public class ProductandCart extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addComponent(goBack)
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -136,7 +136,7 @@ public class ProductandCart extends javax.swing.JFrame {
                     .addComponent(AddToCart)
                     .addComponent(Bill_Purchase))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addComponent(goBack)
                 .addContainerGap())
         );
 
@@ -194,7 +194,7 @@ public class ProductandCart extends javax.swing.JFrame {
     private javax.swing.JButton Bill_Purchase;
     private javax.swing.JTable CartListTable;
     private javax.swing.JTable ProductsListTable;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton goBack;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
