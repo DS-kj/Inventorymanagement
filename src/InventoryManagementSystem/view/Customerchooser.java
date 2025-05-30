@@ -224,7 +224,7 @@ public class Customerchooser extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void customerselectorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_customerselectorActionPerformed
-//        new ProductandCart().setVisible(true);
+        new ProductandCart().setVisible(true);
     }//GEN-LAST:event_customerselectorActionPerformed
 
     /**
