@@ -1,10 +1,17 @@
 package InventoryManagementSystem.view;
 
+import Inventory.DAO.ProductDao;
+import Inventory.model.Product;
+
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
+import java.util.List;
 
 public class Dashboard extends JFrame {
+
+    private final JTable table;
+    private final DefaultTableModel tableModel;
 
     public Dashboard() {
         setTitle("Dashboard");
@@ -45,30 +52,46 @@ public class Dashboard extends JFrame {
 
         add(menuPanel, BorderLayout.WEST);
 
+        // Table setup
         String[] columnNames = {"ID", "Product Name", "Category", "Quantity", "Price (per)", "Rate"};
-        Object[][] data=new Object[20][6];
-        data[0][0]="1";
-        data[0][1]="Rijin";
-        data[0][2]="Food";
-        data[0][3]="2";
-        data[0][4]="80";
-        data[0][5]="160";
-        
-        JTable table = new JTable(new DefaultTableModel(data, columnNames) {
-    @Override
-    public boolean isCellEditable(int row, int column) {
-        return false;
-    }
-});
+        tableModel = new DefaultTableModel(columnNames, 0) {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
 
+        table = new JTable(tableModel);
         JScrollPane tableScroll = new JScrollPane(table);
-
         add(tableScroll, BorderLayout.CENTER);
+
+        loadProducts(); // Load data from DB into table
+    }
+
+    private void loadProducts() {
+        ProductDao productDao = new ProductDao();
+        List<Product> products = productDao.getAllProducts();
+
+        // Clear existing rows
+        tableModel.setRowCount(0);
+
+        // Add products to table
+        for (Product p : products) {
+            Object[] row = {
+                p.getId(),
+                p.getName(),
+                p.getCategory(),
+                p.getQuantity(),
+                p.getPrice(),
+                p.getRate()
+            };
+            tableModel.addRow(row);
+        }
     }
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
-           
+            new Dashboard().setVisible(true);
         });
     }
 }
