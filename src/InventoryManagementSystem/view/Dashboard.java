@@ -29,9 +29,13 @@ public class Dashboard extends JFrame {
         dashboardLabel.setFont(new Font("SansSerif", Font.BOLD, 16));
         topPanel.add(dashboardLabel, BorderLayout.WEST);
 
-        JTextField searchField = new JTextField("Search");
-        searchField.setPreferredSize(new Dimension(150, 25));
-        topPanel.add(searchField, BorderLayout.EAST);
+        JPanel searchPanel = new JPanel(new BorderLayout());
+        searchPanel.setPreferredSize(new Dimension(150, 25));
+
+        JTextField searchField = new JTextField();
+        searchPanel.add(searchField, BorderLayout.CENTER);
+
+        topPanel.add(searchPanel, BorderLayout.EAST);
 
         add(topPanel, BorderLayout.NORTH);
 
@@ -52,7 +56,6 @@ public class Dashboard extends JFrame {
 
         add(menuPanel, BorderLayout.WEST);
 
-        // Table setup
         String[] columnNames = {"ID", "Product Name", "Category", "Quantity", "Price (per)", "Rate"};
         tableModel = new DefaultTableModel(columnNames, 0) {
             @Override
@@ -65,17 +68,28 @@ public class Dashboard extends JFrame {
         JScrollPane tableScroll = new JScrollPane(table);
         add(tableScroll, BorderLayout.CENTER);
 
-        loadProducts(); // Load data from DB into table
+        loadProducts();
+
+        // Search as you type functionality remains
+        searchField.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyReleased(java.awt.event.KeyEvent e) {
+                String keyword = searchField.getText().trim();
+                if (keyword.isEmpty()) {
+                    loadProducts();
+                } else {
+                    loadProducts(keyword);
+                }
+            }
+        });
     }
 
     private void loadProducts() {
         ProductDao productDao = new ProductDao();
         List<Product> products = productDao.getAllProducts();
 
-        // Clear existing rows
         tableModel.setRowCount(0);
 
-        // Add products to table
         for (Product p : products) {
             Object[] row = {
                 p.getId(),
@@ -89,9 +103,22 @@ public class Dashboard extends JFrame {
         }
     }
 
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> {
-            new Dashboard().setVisible(true);
-        });
+    private void loadProducts(String keyword) {
+        ProductDao productDao = new ProductDao();
+        List<Product> products = productDao.searchProducts(keyword);
+
+        tableModel.setRowCount(0);
+
+        for (Product p : products) {
+            Object[] row = {
+                p.getId(),
+                p.getName(),
+                p.getCategory(),
+                p.getQuantity(),
+                p.getPrice(),
+                p.getRate()
+            };
+            tableModel.addRow(row);
+        }
     }
 }
