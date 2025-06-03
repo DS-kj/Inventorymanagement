@@ -1,6 +1,6 @@
-package Inventory.DAO;
+package InventoryManagementSystem.DAO;
 
-import Inventory.model.Product;
+import InventoryManagementSystem.model.Product;
 import InventoryManagementSystem.database.MySqlConnection;
 
 import java.sql.Connection;

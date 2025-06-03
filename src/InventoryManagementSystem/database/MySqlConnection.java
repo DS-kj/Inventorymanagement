@@ -6,8 +6,8 @@ public class MySqlConnection implements DbConnection {
 
     @Override
     public Connection openConnection() {
-        String username = "root";
-        String password = "NewPassword123!";
+        String username = "localhost";
+        String password = "1";
         String database = "inventory_db";
 
         try {
