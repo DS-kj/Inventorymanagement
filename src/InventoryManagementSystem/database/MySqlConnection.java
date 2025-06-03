@@ -6,14 +6,13 @@ public class MySqlConnection implements DbConnection {
 
     @Override
     public Connection openConnection() {
-        String username = "localhost";
-        String password = "1";
+        String username = "root";
+        String password = "1618014350569";
         String database = "inventory_db";
 
         try {
             Class.forName("com.mysql.jdbc.Driver");
 
-            // Fix: added missing slash before database name
             Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/" + database, username, password);
             
             if (conn != null && !conn.isClosed()) {
@@ -21,9 +20,8 @@ public class MySqlConnection implements DbConnection {
             }
 
             return conn;
-        } catch (Exception e) {
+        } catch (ClassNotFoundException | SQLException e) {
             System.out.println("Failed to connect to the database!");
-            e.printStackTrace();
             return null;
         }
     }
@@ -34,8 +32,7 @@ public class MySqlConnection implements DbConnection {
             if (conn != null && !conn.isClosed()) {
                 conn.close();
             }
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (SQLException e) {
         }
     }
 
