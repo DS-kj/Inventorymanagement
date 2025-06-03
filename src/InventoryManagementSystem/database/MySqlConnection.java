@@ -11,7 +11,7 @@ public class MySqlConnection implements DbConnection {
         String database = "inventory_db";
 
         try {
-            Class.forName("com.mysql.jdbc.Driver");
+            Class.forName("com.mysql.cj.jdbc.Driver");
 
             Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/" + database, username, password);
             
