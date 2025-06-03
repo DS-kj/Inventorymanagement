@@ -1,7 +1,7 @@
 package InventoryManagementSystem.view;
 
-import Inventory.DAO.ProductDao;
-import Inventory.model.Product;
+import InventoryManagementSystem.DAO.ProductDao;
+import InventoryManagementSystem.model.Product;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
