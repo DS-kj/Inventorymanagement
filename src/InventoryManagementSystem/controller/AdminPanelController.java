@@ -28,7 +28,7 @@ import javax.swing.JOptionPane;
  * @author ACER
  */
 public class AdminPanelController {
-    private AdminPanel view;
+    AdminPanel view = new AdminPanel();
 
     public AdminPanelController(AdminPanel view) {
         this.view = view;
@@ -44,6 +44,7 @@ public class AdminPanelController {
     
 
 class CreateAccountListener implements ActionListener {
+        @Override
         public void actionPerformed(ActionEvent e) {
             String phone = view.getPhoneNumberEntry().getText();
             String name = view.getUsernameAdminPanelEntry().getText();

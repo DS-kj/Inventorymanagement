@@ -2,21 +2,14 @@ package InventoryManagementSystem.model;
 
 public class AdminPanelModel {
     private String id;
-    private String phoneNumber;
-    private String name;
-    private String password;
+    private String PhoneNumberEntry;
+    private String UsernameAdminPanelEntry;
+    private String PasswordAdminPanelEntry;
 
-    public AdminPanelModel(String phoneNumber, String name, String password) {
-        this.phoneNumber = phoneNumber;
-        this.name = name;
-        this.password = password;
-    }
-
-    public AdminPanelModel(String id, String phoneNumber, String name, String password) {
-        this.id = id;
-        this.phoneNumber = phoneNumber;
-        this.name = name;
-        this.password = password;
+    public AdminPanelModel(String PhoneNumberEntry, String UsernameAdminPanelEntry, String PasswordAdminPanelEntry) {
+        this.PhoneNumberEntry = PhoneNumberEntry;
+        this.UsernameAdminPanelEntry = UsernameAdminPanelEntry;
+        this.PasswordAdminPanelEntry = PasswordAdminPanelEntry;
     }
 
     // Getters
@@ -24,16 +17,17 @@ public class AdminPanelModel {
         return id;
     }
 
-    public String getPhoneNumber() {
-        return phoneNumber;
+    public String getPhoneNumberEntry() {
+    return PhoneNumberEntry;
     }
 
-    public String getName() {
-        return name;
+    public String getUsernameAdminPanelEntry() {
+    return UsernameAdminPanelEntry;
     }
 
-    public String getPassword() {
-        return password;
+    public String getPasswordAdminPanelEntry() {
+    return PasswordAdminPanelEntry;
+
     }
 
     // Setters
@@ -41,15 +35,15 @@ public class AdminPanelModel {
         this.id = id;
     }
 
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
+    public void setPhoneNumebrEntry(String PhoneNumberEntry) {
+        this.PhoneNumberEntry = PhoneNumberEntry;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setUsernameAdminPanelEntry(String UsernameAdminPanelEntry) {
+        this.UsernameAdminPanelEntry = UsernameAdminPanelEntry;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setPasswordAdminPanelEntry(String PasswordAdminPanelEntry) {
+        this.PasswordAdminPanelEntry = PasswordAdminPanelEntry;
     }
 }
