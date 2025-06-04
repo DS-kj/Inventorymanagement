@@ -35,9 +35,9 @@ public class UserDataDao {
         try (Connection conn = mySql.openConnection();
              PreparedStatement stmt = conn.prepareStatement(query)) {
 
-            stmt.setString(1, user.getPhoneNumber());
-            stmt.setString(2, user.getName());
-            stmt.setString(3, user.getPassword());
+            stmt.setString(1, user.getPhoneNumberEntry());
+            stmt.setString(2, user.getUsernameAdminPanelEntry());
+            stmt.setString(3, user.getPasswordAdminPanelEntry());
 
             return stmt.executeUpdate() > 0;
         } catch (SQLException e) {
