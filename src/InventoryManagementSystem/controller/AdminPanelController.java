@@ -40,6 +40,7 @@ public class AdminPanelController {
     }
     public void close(){
         view.dispose();
+    }
     
 
 class CreateAccountListener implements ActionListener {
@@ -66,4 +67,4 @@ class CreateAccountListener implements ActionListener {
         }
     }   
 }
-}
+
