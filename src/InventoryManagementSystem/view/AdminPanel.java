@@ -80,7 +80,7 @@ public class AdminPanel extends javax.swing.JFrame {
         showandhide.setText("Show Password");
 
         Delete.setBackground(new java.awt.Color(255, 0, 0));
-        Delete.setText("DELETE");
+        Delete.setText("DELETE USER");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -110,9 +110,9 @@ public class AdminPanel extends javax.swing.JFrame {
                 .addComponent(showandhide, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(CreateAccount, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 150, Short.MAX_VALUE)
+                .addGap(141, 141, 141)
                 .addComponent(Delete)
-                .addContainerGap())
+                .addGap(15, 15, 15))
         );
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
