@@ -4,6 +4,9 @@
  */
 package InventoryManagementSystem.view;
 
+import java.awt.event.ActionListener;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author ACER
@@ -113,13 +116,13 @@ public class AdminPanel extends javax.swing.JFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
-                "S.No", "Name", "Contact", "Role"
+                "S.No", "Name", "Contact"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
@@ -131,7 +134,7 @@ public class AdminPanel extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(202, 221, 222));
         jLabel2.setText("ADMIN PANEL");
         jPanel1.add(jLabel2);
-        jLabel2.setBounds(17, 6, 126, 25);
+        jLabel2.setBounds(17, 6, 130, 25);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -180,7 +183,7 @@ public class AdminPanel extends javax.swing.JFrame {
 
     private void CreateAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CreateAccountActionPerformed
         // TODO add your handling code here:
-                        new Dashboard().setVisible(true);
+//                        new Dashboard().setVisible(true);
 
         
     }//GEN-LAST:event_CreateAccountActionPerformed
@@ -236,4 +239,31 @@ public class AdminPanel extends javax.swing.JFrame {
     private javax.swing.JCheckBox showandhide;
     // End of variables declaration//GEN-END:variables
 
+public javax.swing.JTextField getPhoneNumberEntry() {
+    return PhoneNumberEntry;
 }
+
+public javax.swing.JTextField getUsernameAdminPanelEntry() {
+    return UsernameAdminPanelEntry;
+}
+
+public javax.swing.JPasswordField getPasswordAdminPanelEntry() {
+    return PasswordAdminPanelEntry;
+}
+
+public void createAccount(ActionListener listener) {
+    CreateAccount.addActionListener(listener);
+}
+public void reloadUserTable() {
+    // Example: Add data manually
+    DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+    model.addRow(new Object[] {
+        model.getRowCount() + 1,  // S.No
+        UsernameAdminPanelEntry.getText(),
+        PhoneNumberEntry.getText()
+    });
+}
+
+}
+
+
