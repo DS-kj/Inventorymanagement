@@ -4,6 +4,7 @@
  */
 package InventoryManagementSystem.view;
 
+import InventoryManagementSystem.model.AdminPanelModel;
 import java.awt.event.ActionListener;
 import javax.swing.table.DefaultTableModel;
 
@@ -116,10 +117,7 @@ public class AdminPanel extends javax.swing.JFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+
             },
             new String [] {
                 "S.No", "Name", "Contact"
@@ -263,7 +261,16 @@ public void reloadUserTable() {
         PhoneNumberEntry.getText()
     });
 }
+public void setUserTableData(java.util.List<AdminPanelModel> users) {
+    DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+    model.setRowCount(0); // Clear existing rows
+    int serial = 1;
+    for (AdminPanelModel user : users) {
+        model.addRow(new Object[]{serial++, user.getUsernameAdminPanelEntry(), user.getPhoneNumberEntry()});
+    }
+}
 
 }
+
 
 

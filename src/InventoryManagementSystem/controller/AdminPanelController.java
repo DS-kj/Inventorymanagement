@@ -11,6 +11,7 @@ import InventoryManagementSystem.model.AdminPanelModel;
 import InventoryManagementSystem.view.AdminPanel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 import javax.swing.JOptionPane;
 
 //import InventoryManagementSystem.model.AdminPanelModel;
@@ -35,9 +36,17 @@ public class AdminPanelController {
         this.view.createAccount(new CreateAccountListener());
 
     }
-     public void open(){
-        view.setVisible(true);
-    }
+   public void open(){
+    refreshUserTable();
+    view.setVisible(true);
+}
+
+private void refreshUserTable() {
+    UserDataDao dao = new UserDataDao();
+    List<AdminPanelModel> users = dao.getAllUsers();
+    view.setUserTableData(users);
+}
+
     public void close(){
         view.dispose();
     }
@@ -48,7 +57,7 @@ class CreateAccountListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
             String phone = view.getPhoneNumberEntry().getText();
             String name = view.getUsernameAdminPanelEntry().getText();
-            String password = view.getPasswordAdminPanelEntry().getText(); // Optional: Convert to char[] if security is important
+            String password = view.getPasswordAdminPanelEntry().getText(); 
 
 
             if (phone.isEmpty() || name.isEmpty() || password.isEmpty()) {
