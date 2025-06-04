@@ -4,6 +4,8 @@ import InventoryManagementSystem.database.MySqlConnection;
 import InventoryManagementSystem.model.AdminPanelModel;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class UserDataDao {
     MySqlConnection mySql = new MySqlConnection();
@@ -11,6 +13,22 @@ public class UserDataDao {
     public UserDataDao() {
         createTableIfNotExists();
     }
+    public List<AdminPanelModel> getAllUsers() {
+    List<AdminPanelModel> users = new ArrayList<>();
+    String query = "SELECT name, phonenumber FROM users";
+    try (Connection conn = mySql.openConnection();
+         Statement stmt = conn.createStatement();
+         ResultSet rs = stmt.executeQuery(query)) {
+        while (rs.next()) {
+            String name = rs.getString("name");
+            String phone = rs.getString("phonenumber");
+            users.add(new AdminPanelModel(phone, name, "")); // Password is not needed for display
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+    return users;
+}
 
     private void createTableIfNotExists() {
         String createTableQuery = """
@@ -57,4 +75,5 @@ public class UserDataDao {
         }
     }
 }
-    
+
+

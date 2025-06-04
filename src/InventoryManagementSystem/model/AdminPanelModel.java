@@ -47,3 +47,4 @@ public class AdminPanelModel {
         this.PasswordAdminPanelEntry = PasswordAdminPanelEntry;
     }
 }
+
