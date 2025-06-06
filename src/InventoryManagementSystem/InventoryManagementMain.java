@@ -4,6 +4,7 @@
  */
 package InventoryManagementSystem;
 
+import InventoryManagementSystem.controller.AdminPanelController;
 import InventoryManagementSystem.view.AdminPanel;
 
 /**
@@ -17,7 +18,9 @@ public class InventoryManagementMain {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-         new AdminPanel().setVisible(true);
+         AdminPanel view= new AdminPanel();
+        AdminPanelController controller= new AdminPanelController(view);
+        controller.open();
     }
     
 }
