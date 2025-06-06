@@ -267,7 +267,7 @@ showandhide.addActionListener(listener);
 }
 public void togglePasswordField(boolean visible) {
 PasswordAdminPanelEntry.setEchoChar(visible ? (char) 0 : '*');
-showandhide.setText(visible ? "Hide" : "Show");
+//showandhide.setText(visible ? "Hide" : "Show");
 
 }
 

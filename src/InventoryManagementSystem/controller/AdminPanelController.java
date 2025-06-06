@@ -34,6 +34,7 @@ public class AdminPanelController {
     public AdminPanelController(AdminPanel view) {
         this.view = view;
         this.view.createAccount(new CreateAccountListener());
+        this.view.showandhide(new ShowPasswordToggleListener()); 
 
     }
    public void open(){
@@ -51,6 +52,15 @@ private void refreshUserTable() {
         view.dispose();
     }
     
+class ShowPasswordToggleListener implements ActionListener {
+    private boolean passwordVisible = false;
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        passwordVisible = !passwordVisible;
+        view.togglePasswordField(passwordVisible);
+    }
+}
 
 class CreateAccountListener implements ActionListener {
         @Override
