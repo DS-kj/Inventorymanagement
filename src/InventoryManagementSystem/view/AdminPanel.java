@@ -261,6 +261,16 @@ public javax.swing.JPasswordField getPasswordAdminPanelEntry() {
 public void createAccount(ActionListener listener) {
     CreateAccount.addActionListener(listener);
 }
+public void showandhide(ActionListener listener){
+showandhide.addActionListener(listener);
+
+}
+public void togglePasswordField(boolean visible) {
+PasswordAdminPanelEntry.setEchoChar(visible ? (char) 0 : '*');
+showandhide.setText(visible ? "Hide" : "Show");
+
+}
+
 public void reloadUserTable() {
     // Example: Add data manually
     DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
