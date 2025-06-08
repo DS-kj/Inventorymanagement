@@ -15,12 +15,12 @@ public class MySqlConnection implements DbConnection {
     public Connection openConnection() {
 
 String username= "root";
-       String password = "YourPassword";
-       String database = "Marks";
+       String password = "anshthapa";
+       String database = "ims";
        try{
-           Class.forName("com.mysql.jdbc.Driver");
+           Class.forName("com.mysql.cj.jdbc.Driver");
            Connection conn;
-           conn = DriverManager.getConnection("jdbc:mysql://localhost:3306"+ database, username,password);
+           conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/"+ database, username,password);
        return conn;}
        catch (Exception e){
            return null;    }
@@ -42,6 +42,10 @@ String username= "root";
 
     @Override
     public int executeUpdate(Connection conn, String query) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    public Connection getconnection() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     
