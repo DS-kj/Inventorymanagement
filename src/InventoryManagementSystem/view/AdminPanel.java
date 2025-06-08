@@ -270,6 +270,17 @@ PasswordAdminPanelEntry.setEchoChar(visible ? (char) 0 : '*');
 //showandhide.setText(visible ? "Hide" : "Show");
 
 }
+public javax.swing.JButton getDelete() {
+    return Delete;
+}
+public void addDeleteUserListener(ActionListener listener) {
+    Delete.addActionListener(listener);
+}
+public javax.swing.JTable getUserTable() {
+    return jTable1; // or whatever the variable name is
+}
+
+
 
 public void reloadUserTable() {
     // Example: Add data manually
