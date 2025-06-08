@@ -15,22 +15,15 @@ public class MySqlConnection implements DbConnection {
     public Connection openConnection() {
 
 String username= "root";
-       String password = "631116";
-       String database = "Inv";
+       String password = "anshthapa";
+       String database = "ims";
        try{
            Class.forName("com.mysql.cj.jdbc.Driver");
            Connection conn;
            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/"+ database, username,password);
-      if (conn != null && !conn.isClosed()) {
-                System.out.println("Database connected successfully.");
-            }
-
-            return conn;
-        } catch (Exception e) {
-            System.out.println("Failed to connect to the database!");
-            e.printStackTrace();
-            return null;
-        }
+       return conn;}
+       catch (Exception e){
+           return null;    }
     }
 
     @Override
@@ -39,8 +32,6 @@ String username= "root";
             if(conn!=null && !conn.isClosed()){
             conn.close();
             }}catch(Exception e){
-                e.printStackTrace();
-
             }
            }
 
@@ -51,6 +42,10 @@ String username= "root";
 
     @Override
     public int executeUpdate(Connection conn, String query) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    public Connection getconnection() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     
