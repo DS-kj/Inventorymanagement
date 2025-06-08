@@ -35,6 +35,7 @@ public class AdminPanelController {
         this.view = view;
         this.view.createAccount(new CreateAccountListener());
         this.view.showandhide(new ShowPasswordToggleListener()); 
+        this.view.addDeleteUserListener(new DeleteUserListener());
 
     }
    public void open(){
@@ -86,5 +87,33 @@ class CreateAccountListener implements ActionListener {
             }
         }
     }   
+class DeleteUserListener implements ActionListener {
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        int selectedRow = view.getUserTable().getSelectedRow();
+
+        if (selectedRow != -1) {
+            String phoneNumber = (String) view.getUserTable().getValueAt(selectedRow, 2); // column index for phone number
+
+            int confirm = JOptionPane.showConfirmDialog(view,
+                    "Are you sure you want to delete this user?",
+                    "Confirm Delete",
+                    JOptionPane.YES_NO_OPTION);
+
+            if (confirm == JOptionPane.YES_OPTION) {
+                UserDataDao dao = new UserDataDao();
+                if (dao.deleteUser(phoneNumber)) {
+                    refreshUserTable(); // Refresh table after deletion
+                    JOptionPane.showMessageDialog(view, "User deleted successfully.");
+                } else {
+                    JOptionPane.showMessageDialog(view, "Failed to delete user.");
+                }
+            }
+        } else {
+            JOptionPane.showMessageDialog(view, "Please select a user to delete.");
+        }
+    }
+}
+
 }
 
