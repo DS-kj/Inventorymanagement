@@ -5,6 +5,7 @@
 package InventoryManagementSystem.view;
 
 import InventoryManagementSystem.model.AdminPanelModel;
+import java.awt.Color;
 import java.awt.event.ActionListener;
 import javax.swing.table.DefaultTableModel;
 
@@ -19,6 +20,7 @@ public class AdminPanel extends javax.swing.JFrame {
      */
     public AdminPanel() {
         initComponents();
+        PasswordAdminPanelEntry.setEchoChar((char) 0);
     }
 
     /**
@@ -53,16 +55,43 @@ public class AdminPanel extends javax.swing.JFrame {
         jPanel3.setBackground(new java.awt.Color(23, 69, 97));
         jPanel3.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(0, 153, 153), null, null));
 
+        PhoneNumberEntry.setForeground(new java.awt.Color(204, 204, 204));
         PhoneNumberEntry.setText("Phone no.");
+        PhoneNumberEntry.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                PhoneNumberEntryFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                PhoneNumberEntryFocusLost(evt);
+            }
+        });
 
-        PasswordAdminPanelEntry.setText("jPasswordField1");
+        PasswordAdminPanelEntry.setForeground(new java.awt.Color(204, 204, 204));
+        PasswordAdminPanelEntry.setText("Password");
+        PasswordAdminPanelEntry.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                PasswordAdminPanelEntryFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                PasswordAdminPanelEntryFocusLost(evt);
+            }
+        });
         PasswordAdminPanelEntry.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 PasswordAdminPanelEntryActionPerformed(evt);
             }
         });
 
-        UsernameAdminPanelEntry.setText("userEntry");
+        UsernameAdminPanelEntry.setForeground(new java.awt.Color(204, 204, 204));
+        UsernameAdminPanelEntry.setText("Enter username");
+        UsernameAdminPanelEntry.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                UsernameAdminPanelEntryFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                UsernameAdminPanelEntryFocusLost(evt);
+            }
+        });
         UsernameAdminPanelEntry.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 UsernameAdminPanelEntryActionPerformed(evt);
@@ -195,6 +224,56 @@ public class AdminPanel extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_DeleteActionPerformed
 
+    private void PhoneNumberEntryFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_PhoneNumberEntryFocusGained
+        // TODO add your handling code here:
+          if (PhoneNumberEntry.getText().equals("Phone no.")) {
+            PhoneNumberEntry.setText("");
+            PhoneNumberEntry.setForeground(Color.BLACK);
+        }
+    }//GEN-LAST:event_PhoneNumberEntryFocusGained
+
+    private void PhoneNumberEntryFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_PhoneNumberEntryFocusLost
+        // TODO add your handling code here:
+          if (PhoneNumberEntry.getText().isEmpty()) {
+            PhoneNumberEntry.setText("Phone no.");
+            PhoneNumberEntry.setForeground(Color.GRAY);
+        }
+    }//GEN-LAST:event_PhoneNumberEntryFocusLost
+
+    private void UsernameAdminPanelEntryFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_UsernameAdminPanelEntryFocusGained
+        // TODO add your handling code here:
+         if (UsernameAdminPanelEntry.getText().equals("Enter username")) {
+            UsernameAdminPanelEntry.setText("");
+            UsernameAdminPanelEntry.setForeground(Color.BLACK);
+        }
+    }//GEN-LAST:event_UsernameAdminPanelEntryFocusGained
+
+    private void UsernameAdminPanelEntryFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_UsernameAdminPanelEntryFocusLost
+        // TODO add your handling code here:
+         if (UsernameAdminPanelEntry.getText().isEmpty()) {
+            UsernameAdminPanelEntry.setText("Enter username");
+            UsernameAdminPanelEntry.setForeground(Color.GRAY);
+        }
+    }//GEN-LAST:event_UsernameAdminPanelEntryFocusLost
+
+    private void PasswordAdminPanelEntryFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_PasswordAdminPanelEntryFocusGained
+        // TODO add your handling code here:
+        if (String.valueOf(PasswordAdminPanelEntry.getPassword()).equals("Password")) {
+            PasswordAdminPanelEntry.setText("");
+            PasswordAdminPanelEntry.setEchoChar('*'); 
+            PasswordAdminPanelEntry.setForeground(Color.BLACK);
+        }
+    }//GEN-LAST:event_PasswordAdminPanelEntryFocusGained
+
+    private void PasswordAdminPanelEntryFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_PasswordAdminPanelEntryFocusLost
+        // TODO add your handling code here:
+        if (String.valueOf(PasswordAdminPanelEntry.getPassword()).isEmpty()) {
+            PasswordAdminPanelEntry.setText("Password");
+            PasswordAdminPanelEntry.setEchoChar((char) 0); 
+            PasswordAdminPanelEntry.setForeground(Color.GRAY);
+        }
+    }//GEN-LAST:event_PasswordAdminPanelEntryFocusLost
+
     /**
      * @param args the command line arguments
      */
@@ -277,13 +356,13 @@ public void addDeleteUserListener(ActionListener listener) {
     Delete.addActionListener(listener);
 }
 public javax.swing.JTable getUserTable() {
-    return jTable1; // or whatever the variable name is
+    return jTable1;
 }
 
 
 
 public void reloadUserTable() {
-    // Example: Add data manually
+    
     DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
     model.addRow(new Object[] {
         model.getRowCount() + 1,  // S.No
