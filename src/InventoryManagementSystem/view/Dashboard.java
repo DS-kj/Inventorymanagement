@@ -1,6 +1,7 @@
 package InventoryManagementSystem.view;
 
 import InventoryManagementSystem.DAO.ProductDao;
+import InventoryManagementSystem.controller.DashboardController;
 import InventoryManagementSystem.model.Product;
 
 import javax.swing.*;
@@ -12,6 +13,8 @@ public class Dashboard extends JFrame {
 
     private final JTable table;
     private final DefaultTableModel tableModel;
+    private final JPanel menuPanel;  // changed from local to field
+    private final DashboardController controller;  // added controller field
 
     public Dashboard() {
         setTitle("Dashboard");
@@ -19,6 +22,8 @@ public class Dashboard extends JFrame {
         setSize(800, 400);
         setLocationRelativeTo(null);
         setLayout(new BorderLayout());
+
+        controller = new DashboardController();  // initialize controller
 
         JPanel topPanel = new JPanel(new BorderLayout());
         topPanel.setBackground(new Color(10, 50, 80));
@@ -39,7 +44,7 @@ public class Dashboard extends JFrame {
 
         add(topPanel, BorderLayout.NORTH);
 
-        JPanel menuPanel = new JPanel();
+        menuPanel = new JPanel();
         menuPanel.setBackground(new Color(0, 45, 70));
         menuPanel.setLayout(new GridLayout(7, 1, 5, 5));
         menuPanel.setPreferredSize(new Dimension(150, 0));
@@ -51,6 +56,8 @@ public class Dashboard extends JFrame {
 
         for (String btn : buttons) {
             JButton button = new JButton(btn);
+            // Add action listener calling controller
+            button.addActionListener(e -> controller.handleNavigation(button.getText()));
             menuPanel.add(button);
         }
 
