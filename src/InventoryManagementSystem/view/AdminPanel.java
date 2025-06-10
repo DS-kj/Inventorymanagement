@@ -4,6 +4,10 @@
  */
 package InventoryManagementSystem.view;
 
+import InventoryManagementSystem.model.AdminPanelModel;
+import java.awt.event.ActionListener;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author ACER
@@ -76,7 +80,12 @@ public class AdminPanel extends javax.swing.JFrame {
         showandhide.setText("Show Password");
 
         Delete.setBackground(new java.awt.Color(255, 0, 0));
-        Delete.setText("DELETE");
+        Delete.setText("DELETE USER");
+        Delete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                DeleteActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -106,20 +115,17 @@ public class AdminPanel extends javax.swing.JFrame {
                 .addComponent(showandhide, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(CreateAccount, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 150, Short.MAX_VALUE)
+                .addGap(150, 150, 150)
                 .addComponent(Delete)
                 .addContainerGap())
         );
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "S.No", "Name", "Contact", "Role"
+                "S.No", "Name", "Contact"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
@@ -131,7 +137,7 @@ public class AdminPanel extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(202, 221, 222));
         jLabel2.setText("ADMIN PANEL");
         jPanel1.add(jLabel2);
-        jLabel2.setBounds(17, 6, 126, 25);
+        jLabel2.setBounds(17, 6, 130, 25);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -180,10 +186,14 @@ public class AdminPanel extends javax.swing.JFrame {
 
     private void CreateAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CreateAccountActionPerformed
         // TODO add your handling code here:
-                        new Dashboard().setVisible(true);
+//                        new Dashboard().setVisible(true);
 
         
     }//GEN-LAST:event_CreateAccountActionPerformed
+
+    private void DeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_DeleteActionPerformed
 
     /**
      * @param args the command line arguments
@@ -236,4 +246,50 @@ public class AdminPanel extends javax.swing.JFrame {
     private javax.swing.JCheckBox showandhide;
     // End of variables declaration//GEN-END:variables
 
+public javax.swing.JTextField getPhoneNumberEntry() {
+    return PhoneNumberEntry;
 }
+
+public javax.swing.JTextField getUsernameAdminPanelEntry() {
+    return UsernameAdminPanelEntry;
+}
+
+public javax.swing.JPasswordField getPasswordAdminPanelEntry() {
+    return PasswordAdminPanelEntry;
+}
+
+public void createAccount(ActionListener listener) {
+    CreateAccount.addActionListener(listener);
+}
+public void showandhide(ActionListener listener){
+showandhide.addActionListener(listener);
+
+}
+public void togglePasswordField(boolean visible) {
+PasswordAdminPanelEntry.setEchoChar(visible ? (char) 0 : '*');
+//showandhide.setText(visible ? "Hide" : "Show");
+
+}
+
+public void reloadUserTable() {
+    // Example: Add data manually
+    DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+    model.addRow(new Object[] {
+        model.getRowCount() + 1,  // S.No
+        UsernameAdminPanelEntry.getText(),
+        PhoneNumberEntry.getText()
+    });
+}
+public void setUserTableData(java.util.List<AdminPanelModel> users) {
+    DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+    model.setRowCount(0); // Clear existing rows
+    int serial = 1;
+    for (AdminPanelModel user : users) {
+        model.addRow(new Object[]{serial++, user.getUsernameAdminPanelEntry(), user.getPhoneNumberEntry()});
+    }
+}
+
+}
+
+
+
