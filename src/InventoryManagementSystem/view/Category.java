@@ -371,5 +371,14 @@ public void setCategoryTableData(java.util.List<InventoryManagementSystem.model.
         model.addRow(new Object[]{category.getId(), category.getName()});
     }
 }
+public javax.swing.JButton getDeleteButton(){
+    return Deletebutton;
 }
-
+        
+public javax.swing.JTable getUserTable() {
+return jTable1;
+}
+public void addDeleteUserListener(ActionListener listener){
+    Deletebutton.addActionListener(listener);
+}
+}
