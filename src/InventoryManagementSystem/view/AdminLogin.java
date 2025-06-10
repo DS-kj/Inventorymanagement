@@ -4,6 +4,9 @@
  */
 package InventoryManagementSystem.view;
 
+import java.awt.event.ActionListener;
+import javax.swing.JPasswordField;
+
 /**
  *
  * @author LENOVO
@@ -178,4 +181,24 @@ public class AdminLogin extends javax.swing.JFrame {
     private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
+
+public String getEmailText() {
+    return jTextField1.getText(); 
+}
+public JPasswordField getPasswordField() {
+    return jPasswordField1; 
+}
+
+
+public String getPasswordText() {
+    return new String(jPasswordField1.getPassword()); 
+}
+
+public void addLoginButtonListener(ActionListener listener) {
+    jButton2.addActionListener(listener);
+}
+
+public void showPasswordButtonListener(ActionListener listener) {
+    jButton1.addActionListener(listener); 
+}
 }
