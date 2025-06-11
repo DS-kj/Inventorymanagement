@@ -3,7 +3,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package InventoryManagementSystem.view;
-
+//import InventoryManagementSystem.controller.ProductandCartController;
+//import InventoryManagementSystem.model.ProductandCartModel;
 /**
  *
  * @author ACER
@@ -34,9 +35,9 @@ public class ProductandCart extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         CartListTable = new javax.swing.JTable();
         AddToCart = new javax.swing.JButton();
-        Bill_Purchase = new javax.swing.JButton();
+        saveOrder = new javax.swing.JButton();
         goBack = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        Bill = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -100,12 +101,22 @@ public class ProductandCart extends javax.swing.JFrame {
 
         AddToCart.setText("Add");
 
-        Bill_Purchase.setText("Save Order");
+        saveOrder.setText("Save Order");
+        saveOrder.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saveOrderActionPerformed(evt);
+            }
+        });
 
         goBack.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         goBack.setText("←GO BACK");
 
-        jButton1.setText("BILL");
+        Bill.setText("BILL");
+        Bill.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BillActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -122,9 +133,9 @@ public class ProductandCart extends javax.swing.JFrame {
                         .addGap(36, 36, 36)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(Bill_Purchase)
+                                .addComponent(saveOrder)
                                 .addGap(18, 18, 18)
-                                .addComponent(jButton1))
+                                .addComponent(Bill))
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 382, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
@@ -145,8 +156,8 @@ public class ProductandCart extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(AddToCart)
-                    .addComponent(Bill_Purchase)
-                    .addComponent(jButton1))
+                    .addComponent(saveOrder)
+                    .addComponent(Bill))
                 .addContainerGap(58, Short.MAX_VALUE))
         );
 
@@ -163,6 +174,28 @@ public class ProductandCart extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void saveOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveOrderActionPerformed
+//     ProductandCartController controller = new ProductandCartController();
+
+
+//    int customerId = Integer.parseInt(customerIdTextField.getText());
+//    String productName = productNameTextField.getText();
+//    int quantity = Integer.parseInt(quantityTextField.getText());
+//    double price = Double.parseDouble(priceTextField.getText());
+//
+//    ProductandCartModel model = new ProductandCartModel();
+//    model.setCustomerId(customerId);
+//    model.setProductName(productName);
+//    model.setQuantity(quantity);
+//    model.setPrice(price);
+//
+//    controller.saveOrder(model);
+    }//GEN-LAST:event_saveOrderActionPerformed
+
+    private void BillActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BillActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BillActionPerformed
 
     /**
      * @param args the command line arguments
@@ -201,15 +234,15 @@ public class ProductandCart extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AddToCart;
-    private javax.swing.JButton Bill_Purchase;
+    private javax.swing.JButton Bill;
     private javax.swing.JTable CartListTable;
     private javax.swing.JTable ProductsListTable;
     private javax.swing.JButton goBack;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JButton saveOrder;
     // End of variables declaration//GEN-END:variables
 }
