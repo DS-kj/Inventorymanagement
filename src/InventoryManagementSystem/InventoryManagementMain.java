@@ -25,13 +25,13 @@ public class InventoryManagementMain {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-//        AdminPanel view = new AdminPanel();
-//        AdminPanelController controller= new AdminPanelController(view);
-//        controller.open();
-        
-        ProductandCart view = new ProductandCart();
-        ProductAndCartController controller= new ProductAndCartController(view);
+        AdminPanel view = new AdminPanel();
+        AdminPanelController controller= new AdminPanelController(view);
         controller.open();
+        
+//        ProductandCart view = new ProductandCart();
+//        ProductAndCartController controller= new ProductAndCartController(view);
+//        controller.open();
         
 //           Category view = new Category();
 //CategoryController controller = new CategoryController(view);
