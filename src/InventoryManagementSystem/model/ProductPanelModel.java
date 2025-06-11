@@ -7,7 +7,7 @@ public class ProductPanelModel {
     private int quantity;
     private double price;
 
-    // Constructor
+    
     public ProductPanelModel(String name, String category, int quantity, double price) {
         this.name = name;
         this.category = category;
@@ -19,8 +19,6 @@ public class ProductPanelModel {
         this(name, category, quantity, price);
         this.id = id;
     }
-
-    // Getters and Setters
     public int getId() { 
         return id; }
     public String getName() {
