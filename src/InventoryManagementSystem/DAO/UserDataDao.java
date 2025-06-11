@@ -75,6 +75,8 @@ public class UserDataDao {
         }
         
     }
+
+    
     public boolean deleteUser(String phoneNumber) {
     String sql = "DELETE FROM users WHERE phonenumber = ?";
     try (Connection conn = mySql.openConnection();
@@ -87,7 +89,22 @@ public class UserDataDao {
         return false;
     }
 }
+   public boolean updateUser(String oldPhoneNumber, String newPhoneNumber, String newName, String newPassword) {
+        String query = "UPDATE users SET phonenumber = ?, name = ?, password = ? WHERE phonenumber = ?";
+        try (Connection conn = mySql.openConnection();
+             PreparedStatement stmt = conn.prepareStatement(query)) {
 
+            stmt.setString(1, newPhoneNumber);
+            stmt.setString(2, newName);
+            stmt.setString(3, newPassword);
+            stmt.setString(4, oldPhoneNumber);
+
+            return stmt.executeUpdate() > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
 }
 
 
