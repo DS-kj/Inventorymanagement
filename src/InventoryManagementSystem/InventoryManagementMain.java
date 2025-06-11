@@ -4,14 +4,9 @@
  */
 package InventoryManagementSystem;
 
-import InventoryManagementSystem.Controller.AdminLoginController;
-import InventoryManagementSystem.DAO.CategoryDao;
-import InventoryManagementSystem.controller.AdminPanelController;
-import InventoryManagementSystem.controller.CategoryController;
-import InventoryManagementSystem.view.AdminLogin;
-import InventoryManagementSystem.view.AdminPanel;
-//import InventoryManagementSystem.view.AdminPanel;
-import InventoryManagementSystem.view.Category;
+import InventoryManagementSystem.controller.ProductPanelController;
+import InventoryManagementSystem.view.ProductPanel;
+
 
 
 /**
@@ -23,18 +18,17 @@ public class InventoryManagementMain {
     /**
      * @param args the command line arguments
      */
+  
     public static void main(String[] args) {
-        // TODO code application logic here
-//        AdminPanel view = new AdminPanel();
-//        AdminPanelController controller= new AdminPanelController(view);
-//        controller.open();
-        AdminLogin view = new AdminLogin();
-        AdminLoginController controller= new AdminLoginController(view);
+        ProductPanel view = new ProductPanel();
+        ProductPanelController controller = new ProductPanelController(view);
         controller.open();
-        
+    }
+}
+
 //           Category view = new Category();
 //CategoryController controller = new CategoryController(view);
 //controller.open();
-    }
     
-}
+    
+

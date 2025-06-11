@@ -17,6 +17,7 @@ public class MySqlConnection implements DbConnection {
 String username= "root";
        String password = "12345";
        String database = "inventory_db";
+       
        try{
            Class.forName("com.mysql.cj.jdbc.Driver");
            Connection conn;
@@ -33,6 +34,7 @@ String username= "root";
             conn.close();
             }}catch(Exception e){
             }
+ 
            }
 
     @Override
