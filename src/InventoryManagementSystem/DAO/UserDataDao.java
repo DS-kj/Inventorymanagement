@@ -73,7 +73,21 @@ public class UserDataDao {
             e.printStackTrace();
             return null;
         }
+        
     }
+    public boolean deleteUser(String phoneNumber) {
+    String sql = "DELETE FROM users WHERE phonenumber = ?";
+    try (Connection conn = mySql.openConnection();
+         PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+        stmt.setString(1, phoneNumber);
+        return stmt.executeUpdate() > 0;
+    } catch (SQLException e) {
+        e.printStackTrace();
+        return false;
+    }
+}
+
 }
 
 
