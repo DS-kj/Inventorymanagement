@@ -4,6 +4,8 @@
  */
 package InventoryManagementSystem.view;
 
+import java.awt.event.ActionListener;
+
 /**
  *
  * @author ACER
@@ -79,10 +81,7 @@ public class ProductandCart extends javax.swing.JFrame {
 
         CartListTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+
             },
             new String [] {
                 "Product Name", "Quantity", "Price"
@@ -212,4 +211,27 @@ public class ProductandCart extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     // End of variables declaration//GEN-END:variables
+
+public javax.swing.JTable getProductTable() {
+    return ProductsListTable;
+}
+
+public javax.swing.JTable getCartTable() {
+    return CartListTable;
+}
+
+public javax.swing.JButton getAddToCartButton() {
+    return AddToCart;
+}
+
+public javax.swing.JButton getSaveOrderButton() {
+    return Bill_Purchase;
+}
+
+
+public void addAddToCartListener(ActionListener listener) {
+    AddToCart.addActionListener(listener);
+}
+
+
 }
