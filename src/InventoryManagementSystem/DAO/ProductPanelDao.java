@@ -7,39 +7,67 @@ import java.util.List;
 
 public class ProductPanelDao {
 
+    // Reusable connection function
     private Connection getConnection() throws SQLException {
-        return DriverManager.getConnection("jdbc:mysql://localhost:3306/inventory", "root", "password");
+        String url = "jdbc:mysql://localhost:3306/inventory?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC";
+        String user = "root";
+        String pass = "12345";
+        return DriverManager.getConnection(url, user, pass);
     }
 
+    // Add product with validation
     public boolean addProduct(ProductPanelModel product) {
+        // Check for null or empty fields
+        if (product.getName() == null || product.getName().trim().isEmpty() ||
+            product.getCategory() == null || product.getCategory().trim().isEmpty()) {
+            System.err.println("❌ Product name or category cannot be empty.");
+            return false;
+        }
+
+        // Check for invalid quantity/price
+        if (product.getQuantity() < 0 || product.getPrice() < 0) {
+            System.err.println("❌ Quantity or price cannot be negative.");
+            return false;
+        }
+
         String sql = "INSERT INTO products (name, category, quantity, price) VALUES (?, ?, ?, ?)";
         try (Connection conn = getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
-            stmt.setString(1, product.getName());
-            stmt.setString(2, product.getCategory());
+            stmt.setString(1, product.getName().trim());
+            stmt.setString(2, product.getCategory().trim());
             stmt.setInt(3, product.getQuantity());
             stmt.setDouble(4, product.getPrice());
-            return stmt.executeUpdate() > 0;
+            int rows = stmt.executeUpdate();
+            System.out.println("✅ Product added. Rows affected: " + rows);
+            return rows > 0;
         } catch (SQLException e) {
+            System.err.println("❌ Error inserting product: " + e.getMessage());
             e.printStackTrace();
             return false;
         }
     }
 
+    // Delete product by ID
     public boolean deleteProduct(int id) {
         String sql = "DELETE FROM products WHERE id=?";
         try (Connection conn = getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setInt(1, id);
-            return stmt.executeUpdate() > 0;
+            int rows = stmt.executeUpdate();
+            System.out.println("🗑️ Product deleted. Rows affected: " + rows);
+            return rows > 0;
         } catch (SQLException e) {
+            System.err.println("❌ Error deleting product: " + e.getMessage());
             e.printStackTrace();
             return false;
         }
     }
 
+    // Retrieve all products
     public List<ProductPanelModel> getAllProducts() {
         List<ProductPanelModel> products = new ArrayList<>();
         String sql = "SELECT * FROM products";
-        try (Connection conn = getConnection(); Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery(sql)) {
+        try (Connection conn = getConnection();
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery(sql)) {
             while (rs.next()) {
                 products.add(new ProductPanelModel(
                     rs.getInt("id"),
@@ -50,6 +78,7 @@ public class ProductPanelDao {
                 ));
             }
         } catch (SQLException e) {
+            System.err.println("❌ Error retrieving products: " + e.getMessage());
             e.printStackTrace();
         }
         return products;
