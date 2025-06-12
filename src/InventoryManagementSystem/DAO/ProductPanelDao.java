@@ -52,7 +52,7 @@ public class ProductPanelDao {
         try (Connection conn = getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setInt(1, id);
             int rows = stmt.executeUpdate();
-            System.out.println("🗑️ Product deleted. Rows affected: " + rows);
+            System.out.println("️ Product deleted. Rows affected: " + rows);
             return rows > 0;
         } catch (SQLException e) {
             System.err.println("❌ Error deleting product: " + e.getMessage());
