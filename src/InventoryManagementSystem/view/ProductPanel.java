@@ -49,6 +49,12 @@ jButton13.addActionListener(e -> {
 jButton14.addActionListener(e -> {
     new ViewOrders().setVisible(true);
     this.dispose();
+
+});
+// Example logout button action
+ jButton1.addActionListener(e -> {
+    new AdminLogin().setVisible(true);  // Open login screen
+    this.dispose();                // Close current ProductPanel window
 });
 
 
