@@ -21,6 +21,37 @@ public class ProductPanel extends javax.swing.JFrame {
     public ProductPanel() {
         initComponents();
         setPlaceholders();
+        jButton9.addActionListener(e -> {
+    new Dashboard().setVisible(true);
+    this.dispose();
+});
+
+jButton10.addActionListener(e -> {
+    new Category().setVisible(true);
+    this.dispose();
+});
+
+jButton11.addActionListener(e -> {
+    new ProductandCart().setVisible(true);
+    this.dispose();
+});
+
+jButton12.addActionListener(e -> {
+    new Customerchooser().setVisible(true);
+    this.dispose();
+});
+
+jButton13.addActionListener(e -> {
+    new OrderList().setVisible(true);
+    this.dispose();
+});
+
+jButton14.addActionListener(e -> {
+    new ViewOrders().setVisible(true);
+    this.dispose();
+});
+
+
     }
 
     /**
