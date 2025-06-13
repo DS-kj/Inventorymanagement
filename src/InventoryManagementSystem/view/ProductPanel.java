@@ -20,6 +20,7 @@ public class ProductPanel extends javax.swing.JFrame {
      */
     public ProductPanel() {
         initComponents();
+        setPlaceholders();
     }
 
     /**
@@ -343,4 +344,34 @@ public int getSelectedRow() {
 public int getProductIdAt(int row) {
     return (int) jTable1.getValueAt(row, 0);
 }
+private void setPlaceholders() {
+    addPlaceholderStyle(jTextField1, "Category");
+    addPlaceholderStyle(jTextField2, "Product Name");
+    addPlaceholderStyle(jTextField3, "Price(per)");
+    addPlaceholderStyle(jTextField4, "Quantity");
+}
+
+private void addPlaceholderStyle(javax.swing.JTextField textField, String placeholder) {
+    textField.setText(placeholder);
+    textField.setForeground(java.awt.Color.GRAY);
+
+    textField.addFocusListener(new java.awt.event.FocusAdapter() {
+        @Override
+        public void focusGained(java.awt.event.FocusEvent e) {
+            if (textField.getText().equals(placeholder)) {
+                textField.setText("");
+                textField.setForeground(java.awt.Color.BLACK);
+            }
+        }
+
+        @Override
+        public void focusLost(java.awt.event.FocusEvent e) {
+            if (textField.getText().isEmpty()) {
+                textField.setText(placeholder);
+                textField.setForeground(java.awt.Color.GRAY);
+            }
+        }
+    });
+}
+
 }
