@@ -228,13 +228,20 @@ public javax.swing.JButton getSaveOrderButton() {
     return Save_Order_Button;
 }
 
-
+public javax.swing.JButton getBackButton() {
+    return goBack;
+}
 public void addAddToCartListener(ActionListener listener) {
     AddToCart.addActionListener(listener);
 }
 public void addSaveOrderListener(ActionListener listener) {
     Save_Order_Button.addActionListener(listener);
 }
+
+public void addBackButtonListener(ActionListener listener) {
+    goBack.addActionListener(listener);
+}
+
 
 
 }
