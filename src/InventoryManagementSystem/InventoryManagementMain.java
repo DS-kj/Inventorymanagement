@@ -37,7 +37,7 @@ public class InventoryManagementMain {
 //        ProductandCart view = new ProductandCart();
 //        ProductAndCartController controller= new ProductAndCartController(view);
 //        controller.open();
-//        
+        
 //           Category view = new Category();
 //CategoryController controller = new CategoryController(view);
 //controller.open();

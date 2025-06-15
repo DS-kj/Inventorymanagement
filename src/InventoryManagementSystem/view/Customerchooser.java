@@ -4,6 +4,8 @@
  */
 package InventoryManagementSystem.view;
 
+import java.awt.event.ActionListener;
+
 
 
 /**
@@ -226,7 +228,7 @@ public class Customerchooser extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void selectButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectButtonActionPerformed
-        new ProductandCart().setVisible(true);
+//        new ProductandCart().setVisible(true);
     }//GEN-LAST:event_selectButtonActionPerformed
 
     /**
@@ -285,6 +287,9 @@ public javax.swing.JTable getCustomerTable() {
 }
 public javax.swing.JButton getSelectButton() {
     return selectButton;
+}
+public void addSelectCustomerListener(ActionListener listener) {
+    selectButton.addActionListener(listener);
 }
 
 }

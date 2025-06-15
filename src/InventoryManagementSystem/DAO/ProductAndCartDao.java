@@ -54,7 +54,7 @@ public class ProductAndCartDao {
     //     }
     // }
 
-    public boolean saveOrder(List<ProductAndCartModel> cartItems, int customerId) {
+ public boolean saveOrder(List<ProductAndCartModel> cartItems, int customerId) {
     String createOrdersTable = """
         CREATE TABLE IF NOT EXISTS orders (
             id INT AUTO_INCREMENT PRIMARY KEY,
@@ -74,8 +74,10 @@ public class ProductAndCartDao {
             FOREIGN KEY (product_id) REFERENCES products(id)
         )
     """;
+
     String insertOrderQuery = "INSERT INTO orders (customer_id) VALUES (?)";
     String insertOrderItemQuery = "INSERT INTO order_items (order_id, product_id, quantity, price) VALUES (?, ?, ?, ?)";
+    String updateQuantityQuery = "UPDATE products SET quantity = quantity - ? WHERE id = ?";
 
     try (Connection conn = connection.openConnection();
          Statement stmt = conn.createStatement()) {
@@ -85,33 +87,60 @@ public class ProductAndCartDao {
 
         conn.setAutoCommit(false);
 
+        // Insert order
         try (PreparedStatement orderStmt = conn.prepareStatement(insertOrderQuery, Statement.RETURN_GENERATED_KEYS)) {
             orderStmt.setInt(1, customerId);
             orderStmt.executeUpdate();
+
             try (ResultSet generatedKeys = orderStmt.getGeneratedKeys()) {
-                if (generatedKeys.next()) {
-                    int orderId = generatedKeys.getInt(1);
-                    try (PreparedStatement itemStmt = conn.prepareStatement(insertOrderItemQuery)) {
-                        for (ProductAndCartModel item : cartItems) {
-                            itemStmt.setInt(1, orderId);
-                            itemStmt.setInt(2, item.getId());
-                            itemStmt.setInt(3, item.getQuantity());
-                            itemStmt.setDouble(4, item.getPrice());
-                            itemStmt.addBatch();
-                        }
-                        itemStmt.executeBatch();
-                    }
-                    conn.commit();
-                    return true;
+                if (!generatedKeys.next()) {
+                    conn.rollback();
+                    return false;
                 }
+
+                int orderId = generatedKeys.getInt(1);
+
+                // Insert order items
+                try (PreparedStatement itemStmt = conn.prepareStatement(insertOrderItemQuery)) {
+                    for (ProductAndCartModel item : cartItems) {
+                        itemStmt.setInt(1, orderId);
+                        itemStmt.setInt(2, item.getId());
+                        itemStmt.setInt(3, item.getQuantity());
+                        itemStmt.setDouble(4, item.getPrice());
+                        itemStmt.addBatch();
+                    }
+                    itemStmt.executeBatch();
+                }
+
+                // Update product quantities
+                try (PreparedStatement updateStmt = conn.prepareStatement(updateQuantityQuery)) {
+                    for (ProductAndCartModel item : cartItems) {
+                        updateStmt.setInt(1, item.getQuantity());
+                        updateStmt.setInt(2, item.getId());
+                        updateStmt.addBatch();
+                    }
+                    updateStmt.executeBatch();
+                }
+
+                // Commit transaction
+                conn.commit();
+                return true;
             }
+        } catch (SQLException ex) {
+            conn.rollback();
+            ex.printStackTrace();
+            return false;
+        } finally {
+            conn.setAutoCommit(true);
         }
-        conn.rollback();
+
     } catch (SQLException e) {
         e.printStackTrace();
+        return false;
     }
-    return false;
 }
+
+
     
 
 }
