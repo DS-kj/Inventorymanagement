@@ -68,21 +68,39 @@ public class ProductAndCartController {
         }
     }
 
-    private class SaveOrderListener implements ActionListener {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            if (cartList.isEmpty()) {
-                JOptionPane.showMessageDialog(view, "Cart is empty");
-                return;
-            }
-            ProductAndCartDao dao = new ProductAndCartDao();
-            if (dao.saveOrder(cartList)) {
-                JOptionPane.showMessageDialog(view, "Order saved successfully");
-                cartList.clear();
-                ((DefaultTableModel) view.getCartTable().getModel()).setRowCount(0);
-            } else {
-                JOptionPane.showMessageDialog(view, "Failed to save order");
-            }
-        }
-    }
+    // private class SaveOrderListener implements ActionListener {
+    //     @Override
+    //     public void actionPerformed(ActionEvent e) {
+    //         if (cartList.isEmpty()) {
+    //             JOptionPane.showMessageDialog(view, "Cart is empty");
+    //             return;
+    //         }
+    //         ProductAndCartDao dao = new ProductAndCartDao();
+    //         if (dao.saveOrder(cartList)) {
+    //             JOptionPane.showMessageDialog(view, "Order saved successfully");
+    //             cartList.clear();
+    //             ((DefaultTableModel) view.getCartTable().getModel()).setRowCount(0);
+    //         } else {
+    //             JOptionPane.showMessageDialog(view, "Failed to save order");
+    //         }
+    //     }
+    // }
+//    private class SaveOrderListener implements ActionListener {
+//    @Override
+//    public void actionPerformed(ActionEvent e) {
+//        if (cartList.isEmpty()) {
+//            JOptionPane.showMessageDialog(view, "Cart is empty");
+//            return;
+//        }
+//        ProductAndCartDao dao = new ProductAndCartDao();
+//        if (dao.saveOrder(cartList, customerId)) { // Pass customerId here
+//            JOptionPane.showMessageDialog(view, "Order saved successfully");
+//            cartList.clear();
+//            ((DefaultTableModel) view.getCartTable().getModel()).setRowCount(0);
+//        } else {
+//            JOptionPane.showMessageDialog(view, "Failed to save order");
+//        }
+//    }
+//}
+
 }
