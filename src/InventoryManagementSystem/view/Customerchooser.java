@@ -4,14 +4,9 @@
  */
 package InventoryManagementSystem.view;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.awt.event.ActionListener;
 
-import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableModel;
+
 
 /**
  *
@@ -19,41 +14,13 @@ import javax.swing.table.DefaultTableModel;
  */
 public class Customerchooser extends javax.swing.JFrame {
 
-
+    /**
+     * Creates new form Customerchooser
+     */
     public Customerchooser() {
         initComponents();
-        loadCustomers();  // load data right after initComponents
     }
 
-    private void loadCustomers() {
-        try {
-            try ( // Adjust your DB URL, username, password here
-                    Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/inventory_db", "root", "1618014350569")) {
-                String sql = "SELECT id, c_name, mobile_number, email FROM customers";
-                PreparedStatement pst = conn.prepareStatement(sql);
-                ResultSet rs = pst.executeQuery();
-                
-                DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-                model.setRowCount(0); // clear existing rows
-                
-                while (rs.next()) {
-                    Object[] row = {
-                        rs.getInt("id"),
-                        rs.getString("c_name"),
-                        rs.getString("mobile_number"),
-                        rs.getString("email")
-                    };
-                    model.addRow(row);
-                }
-                
-                rs.close();
-                pst.close();
-            }
-
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(this, "Failed to load customers: " + e.getMessage());
-        }
-    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -74,8 +41,8 @@ public class Customerchooser extends javax.swing.JFrame {
         jButton6 = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        customerselector = new javax.swing.JButton();
+        customerTable = new javax.swing.JTable();
+        selectButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -149,7 +116,7 @@ public class Customerchooser extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        customerTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -167,15 +134,15 @@ public class Customerchooser extends javax.swing.JFrame {
                 "Id", "Name", "Mobile Number", "Email"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
-        if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(0).setMaxWidth(23);
+        jScrollPane1.setViewportView(customerTable);
+        if (customerTable.getColumnModel().getColumnCount() > 0) {
+            customerTable.getColumnModel().getColumn(0).setMaxWidth(23);
         }
 
-        customerselector.setText("Select");
-        customerselector.addActionListener(new java.awt.event.ActionListener() {
+        selectButton.setText("Select");
+        selectButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                customerselectorActionPerformed(evt);
+                selectButtonActionPerformed(evt);
             }
         });
 
@@ -186,7 +153,7 @@ public class Customerchooser extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(28, 28, 28)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(customerselector)
+                    .addComponent(selectButton)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -204,7 +171,7 @@ public class Customerchooser extends javax.swing.JFrame {
                         .addGap(79, 79, 79)
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(customerselector)
+                .addComponent(selectButton)
                 .addContainerGap(55, Short.MAX_VALUE))
         );
 
@@ -260,9 +227,9 @@ public class Customerchooser extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton7ActionPerformed
 
-    private void customerselectorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_customerselectorActionPerformed
-        new ProductandCart().setVisible(true);
-    }//GEN-LAST:event_customerselectorActionPerformed
+    private void selectButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectButtonActionPerformed
+//        new ProductandCart().setVisible(true);
+    }//GEN-LAST:event_selectButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -300,7 +267,7 @@ public class Customerchooser extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton customerselector;
+    private javax.swing.JTable customerTable;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
@@ -313,6 +280,16 @@ public class Customerchooser extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JButton selectButton;
     // End of variables declaration//GEN-END:variables
+public javax.swing.JTable getCustomerTable() {
+    return customerTable;
+}
+public javax.swing.JButton getSelectButton() {
+    return selectButton;
+}
+public void addSelectCustomerListener(ActionListener listener) {
+    selectButton.addActionListener(listener);
+}
+
 }

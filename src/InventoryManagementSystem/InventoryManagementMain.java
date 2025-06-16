@@ -7,9 +7,13 @@ package InventoryManagementSystem;
 import InventoryManagementSystem.DAO.CategoryDao;
 import InventoryManagementSystem.controller.AdminPanelController;
 import InventoryManagementSystem.controller.CategoryController;
+import InventoryManagementSystem.controller.CustomerchooserController;
+import InventoryManagementSystem.controller.ProductAndCartController;
 import InventoryManagementSystem.view.AdminPanel;
 //import InventoryManagementSystem.view.AdminPanel;
 import InventoryManagementSystem.view.Category;
+import InventoryManagementSystem.view.Customerchooser;
+import InventoryManagementSystem.view.ProductandCart;
 
 
 /**
@@ -23,9 +27,15 @@ public class InventoryManagementMain {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        AdminPanel view = new AdminPanel();
-        AdminPanelController controller= new AdminPanelController(view);
-        controller.open();
+//        AdminPanel view = new AdminPanel();
+//        AdminPanelController controller= new AdminPanelController(view);
+//        controller.open();
+         Customerchooser view = new Customerchooser();
+         CustomerchooserController controller= new CustomerchooserController(view);
+         controller.open();
+//        ProductandCart view = new ProductandCart();
+//        ProductAndCartController controller= new ProductAndCartController(view);
+//        controller.open();
         
 //           Category view = new Category();
 //CategoryController controller = new CategoryController(view);
