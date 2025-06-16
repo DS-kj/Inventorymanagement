@@ -7,6 +7,7 @@ package InventoryManagementSystem.view;
 import InventoryManagementSystem.model.ProductPanelModel;
 import java.awt.event.ActionListener;
 import java.util.List;
+
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -407,8 +408,17 @@ private void addPlaceholderStyle(javax.swing.JTextField textField, String placeh
                 textField.setText(placeholder);
                 textField.setForeground(java.awt.Color.GRAY);
             }
+      
+
+
         }
     });
 }
+public void addDashboardButtonListener(ActionListener listener) {
+    jButton9.addActionListener(listener);
+}
 
 }
+
+
+

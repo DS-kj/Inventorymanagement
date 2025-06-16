@@ -1,11 +1,15 @@
 package InventoryManagementSystem.controller;
 
 import InventoryManagementSystem.DAO.ProductPanelDao;
+
 import InventoryManagementSystem.model.ProductPanelModel;
+
 import InventoryManagementSystem.view.ProductPanel;
-import java.awt.event.*;
 import java.util.List;
 import javax.swing.*;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
 
 public class ProductPanelController {
     private ProductPanel view;
@@ -14,6 +18,7 @@ public class ProductPanelController {
         this.view = view;
         this.view.addProductListener(new AddProductListener());
         this.view.addDeleteListener(new DeleteProductListener());
+        
     }
 
     public void open() {
@@ -71,6 +76,24 @@ public class ProductPanelController {
             } else {
                 JOptionPane.showMessageDialog(view, "Please select a product.");
             }
+        }}
+        
+        
+   
         }
-    }
-}
+    
+        
+    
+
+
+
+    
+    
+
+
+
+
+            
+        
+    
+
