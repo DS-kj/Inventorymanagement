@@ -32,8 +32,7 @@ public class InventoryManagementMain {
 //        controller.open();
          Customerchooser view = new Customerchooser();
          CustomerchooserController controller= new CustomerchooserController(view);
-        
-        controller.open();
+         controller.open();
 //        ProductandCart view = new ProductandCart();
 //        ProductAndCartController controller= new ProductAndCartController(view);
 //        controller.open();
