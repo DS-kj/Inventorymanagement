@@ -4,6 +4,11 @@
  */
 package InventoryManagementSystem.view;
 
+import InventoryManagementSystem.DAO.ViewOrdersDao;
+import InventoryManagementSystem.controller.ViewOrdersController;
+import InventoryManagementSystem.model.ViewOrdersModel;
+import java.util.*;
+import javax.swing.table.DefaultTableModel;
 /**
  *
  * @author ACER
@@ -11,11 +16,12 @@ package InventoryManagementSystem.view;
 public class ViewOrders extends javax.swing.JFrame {
 
     /**
-     * Creates new form ViewOrders
      */
     public ViewOrders() {
         initComponents();
+        ViewOrdersController controller = new ViewOrdersController(new ViewOrdersDao(), this);
     }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -244,4 +250,17 @@ public class ViewOrders extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
+public void setCustomerTableData(List<ViewOrdersModel> customers) {
+    DefaultTableModel model = (DefaultTableModel) Customertable.getModel();
+    model.setRowCount(0);
+
+    for (ViewOrdersModel c : customers) {
+        model.addRow(new Object[]{
+            c.getId(),
+            c.getName(),
+            c.getMobileNumber(),
+            c.getEmail()
+        });
+    }
+}
 }
