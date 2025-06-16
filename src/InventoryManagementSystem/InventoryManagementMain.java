@@ -5,11 +5,14 @@
 package InventoryManagementSystem;
 
 import InventoryManagementSystem.DAO.CategoryDao;
+import InventoryManagementSystem.DAO.ViewOrdersDao;
 import InventoryManagementSystem.controller.AdminPanelController;
 import InventoryManagementSystem.controller.CategoryController;
+import InventoryManagementSystem.controller.ViewOrdersController;
 import InventoryManagementSystem.view.AdminPanel;
 //import InventoryManagementSystem.view.AdminPanel;
 import InventoryManagementSystem.view.Category;
+import InventoryManagementSystem.view.ViewOrders;
 
 
 /**
@@ -27,9 +30,12 @@ public class InventoryManagementMain {
 //        AdminPanelController controller= new AdminPanelController(view);
 //        controller.open();
         
-           Category view = new Category();
-CategoryController controller = new CategoryController(view);
-controller.open();
+//           Category view = new Category();
+//CategoryController controller = new CategoryController(view);
+//controller.open();
+            ViewOrders view = new ViewOrders();
+ViewOrdersDao dao = new ViewOrdersDao();
+ViewOrdersController controller = new ViewOrdersController(dao, view);
+view.setVisible(true);
     }
-    
 }

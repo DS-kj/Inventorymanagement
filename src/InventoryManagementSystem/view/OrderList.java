@@ -4,6 +4,8 @@
  */
 package InventoryManagementSystem.view;
 
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author ACER
@@ -11,10 +13,10 @@ package InventoryManagementSystem.view;
 public class OrderList extends javax.swing.JFrame {
 
     /**
-     * Creates new form OrderList
      */
     public OrderList() {
         initComponents();
+        initializeTableModel();
     }
 
     /**
@@ -162,6 +164,7 @@ public class OrderList extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 new OrderList().setVisible(true);
             }
@@ -177,4 +180,25 @@ public class OrderList extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
+    private void initializeTableModel() {
+        Ordertable.setModel(new DefaultTableModel(
+            new Object [][] {},
+            new String [] {
+                "Order ID", "Order Date", "Total Paid"
+            }
+        ) {
+            Class[] types = new Class [] {
+                Integer.class, String.class, Long.class
+            };
+            
+            @Override
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+    }
+
+    public javax.swing.JTable getOrdertable() {
+        return Ordertable;
+    }
 }
