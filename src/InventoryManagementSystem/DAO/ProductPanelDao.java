@@ -20,13 +20,13 @@ public class ProductPanelDao {
         // Check for null or empty fields
         if (product.getName() == null || product.getName().trim().isEmpty() ||
             product.getCategory() == null || product.getCategory().trim().isEmpty()) {
-            System.err.println("❌ Product name or category cannot be empty.");
+            System.err.println(" Product name or category cannot be empty.");
             return false;
         }
 
         // Check for invalid quantity/price
         if (product.getQuantity() < 0 || product.getPrice() < 0) {
-            System.err.println("❌ Quantity or price cannot be negative.");
+            System.err.println(" Quantity or price cannot be negative.");
             return false;
         }
 
@@ -37,10 +37,10 @@ public class ProductPanelDao {
             stmt.setInt(3, product.getQuantity());
             stmt.setDouble(4, product.getPrice());
             int rows = stmt.executeUpdate();
-            System.out.println("✅ Product added. Rows affected: " + rows);
+            System.out.println(" Product added. Rows affected: " + rows);
             return rows > 0;
         } catch (SQLException e) {
-            System.err.println("❌ Error inserting product: " + e.getMessage());
+            System.err.println(" Error inserting product: " + e.getMessage());
             e.printStackTrace();
             return false;
         }
@@ -55,7 +55,7 @@ public class ProductPanelDao {
             System.out.println("️ Product deleted. Rows affected: " + rows);
             return rows > 0;
         } catch (SQLException e) {
-            System.err.println("❌ Error deleting product: " + e.getMessage());
+            System.err.println(" Error deleting product: " + e.getMessage());
             e.printStackTrace();
             return false;
         }
@@ -78,7 +78,7 @@ public class ProductPanelDao {
                 ));
             }
         } catch (SQLException e) {
-            System.err.println("❌ Error retrieving products: " + e.getMessage());
+            System.err.println(" Error retrieving products: " + e.getMessage());
             e.printStackTrace();
         }
         return products;
