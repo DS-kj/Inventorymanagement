@@ -4,19 +4,56 @@
  */
 package InventoryManagementSystem.view;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author ASUS
  */
 public class Customerchooser extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Customerchooser
-     */
+
     public Customerchooser() {
         initComponents();
+        loadCustomers();  // load data right after initComponents
     }
 
+    private void loadCustomers() {
+        try {
+            try ( // Adjust your DB URL, username, password here
+                    Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/inventory_db", "root", "1618014350569")) {
+                String sql = "SELECT id, c_name, mobile_number, email FROM customers";
+                PreparedStatement pst = conn.prepareStatement(sql);
+                ResultSet rs = pst.executeQuery();
+                
+                DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+                model.setRowCount(0); // clear existing rows
+                
+                while (rs.next()) {
+                    Object[] row = {
+                        rs.getInt("id"),
+                        rs.getString("c_name"),
+                        rs.getString("mobile_number"),
+                        rs.getString("email")
+                    };
+                    model.addRow(row);
+                }
+                
+                rs.close();
+                pst.close();
+            }
+
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(this, "Failed to load customers: " + e.getMessage());
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

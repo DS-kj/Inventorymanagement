@@ -3,6 +3,17 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package InventoryManagementSystem.view;
+
+import java.util.ArrayList;
+import java.util.List;
+import InventoryManagementSystem.model.CartItemModel;
+import InventoryManagementSystem.model.OrderModel;
+import InventoryManagementSystem.controller.OrderController;
+import InventoryManagementSystem.database.DbConnection;
+import InventoryManagementSystem.database.MySqlConnection;
+import java.sql.Connection;
+
+
 //import InventoryManagementSystem.controller.ProductandCartController;
 //import InventoryManagementSystem.model.ProductandCartModel;
 /**
@@ -176,22 +187,31 @@ public class ProductandCart extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void saveOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveOrderActionPerformed
-//     ProductandCartController controller = new ProductandCartController();
+int customerId = 1; // Replace with actual selected ID from CustomerChooser
+    List<CartItemModel> cartItems = new ArrayList<>();
 
+    for (int i = 0; i < CartListTable.getRowCount(); i++) {
+        Object name = CartListTable.getValueAt(i, 0);
+        Object quantity = CartListTable.getValueAt(i, 1);
+        Object price = CartListTable.getValueAt(i, 2);
 
-//    int customerId = Integer.parseInt(customerIdTextField.getText());
-//    String productName = productNameTextField.getText();
-//    int quantity = Integer.parseInt(quantityTextField.getText());
-//    double price = Double.parseDouble(priceTextField.getText());
-//
-//    ProductandCartModel model = new ProductandCartModel();
-//    model.setCustomerId(customerId);
-//    model.setProductName(productName);
-//    model.setQuantity(quantity);
-//    model.setPrice(price);
-//
-//    controller.saveOrder(model);
+        if (name != null && quantity != null && price != null) {
+            cartItems.add(new CartItemModel(
+                name.toString(),
+                Integer.parseInt(quantity.toString()),
+                Double.parseDouble(price.toString())
+            ));
+        }
     }//GEN-LAST:event_saveOrderActionPerformed
+     OrderModel model = new OrderModel();
+    model.setCustomerId(customerId);
+    model.setItems(cartItems);
+
+       DbConnection dbConnection = new MySqlConnection();
+    Connection conn = dbConnection.openConnection();
+    OrderController controller = new OrderController(conn);
+    controller.saveOrder(model);
+    }
 
     private void BillActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BillActionPerformed
         // TODO add your handling code here:
