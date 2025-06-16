@@ -4,6 +4,15 @@
  */
 package InventoryManagementSystem.view;
 
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
+import java.sql.Connection;
+
 /**
  *
  * @author ACER
@@ -14,9 +23,35 @@ public class ViewOrders extends javax.swing.JFrame {
      * Creates new form ViewOrders
      */
     public ViewOrders() {
-        initComponents();
-    }
+    initComponents();
+    loadCustomerData();  
+}private void loadCustomerData() {
+        try {
+            try ( 
+                    Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/inventory_db", "root", "1618014350569")) {
+                String sql = "SELECT id, c_name, mobile_number, email FROM customers";
+                PreparedStatement pst = conn.prepareStatement(sql);
+                ResultSet rs = pst.executeQuery();
+                
+ DefaultTableModel model = new DefaultTableModel(new String[]{"id", "c_name", "mobile_number", "email"}, 0);
+                while (rs.next()) {
+                    Object[] row = {
+                        rs.getInt("id"),
+                        rs.getString("c_name"),
+                        rs.getString("mobile_number"),
+                        rs.getString("email")
+                    };
+                    model.addRow(row);
+                }
+                
+                rs.close();
+                pst.close();
+            }
 
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(this, "Failed to load customers: " + e.getMessage());
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
