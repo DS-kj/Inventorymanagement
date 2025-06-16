@@ -16,6 +16,7 @@ import java.awt.Point;
 import java.awt.RenderingHints;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.Random;
 import javax.swing.BorderFactory;
 import javax.swing.SwingConstants;
@@ -201,7 +202,7 @@ public class HoverPanel extends javax.swing.JPanel {
             new Color(32, 95, 178), // end color
             true  // diagonal gradient, use false for vertical
         );
-        Dashboard = new HoverPanel();
+        DashboardPanel = new HoverPanel();
         jLabel1 = new javax.swing.JLabel();
         DashboardLabel = new javax.swing.JLabel();
         Product = new HoverPanel();
@@ -223,9 +224,9 @@ public class HoverPanel extends javax.swing.JPanel {
         jPanel1.setMinimumSize(new java.awt.Dimension(200, 200));
         jPanel1.setPreferredSize(new java.awt.Dimension(800, 400));
 
-        Dashboard.setBackground(new java.awt.Color(204, 204, 204));
-        Dashboard.setMaximumSize(new java.awt.Dimension(240, 220));
-        Dashboard.setPreferredSize(new java.awt.Dimension(240, 180));
+        DashboardPanel.setBackground(new java.awt.Color(204, 204, 204));
+        DashboardPanel.setMaximumSize(new java.awt.Dimension(240, 220));
+        DashboardPanel.setPreferredSize(new java.awt.Dimension(240, 180));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/InventoryManagementSystem/images/Dashboard_icon.png"))); // NOI18N
         jLabel1.setMinimumSize(new java.awt.Dimension(20, 20));
@@ -234,23 +235,23 @@ public class HoverPanel extends javax.swing.JPanel {
         DashboardLabel.setForeground(new java.awt.Color(255, 255, 255));
         DashboardLabel.setText("DASHBOARD");
 
-        javax.swing.GroupLayout DashboardLayout = new javax.swing.GroupLayout(Dashboard);
-        Dashboard.setLayout(DashboardLayout);
-        DashboardLayout.setHorizontalGroup(
-            DashboardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(DashboardLayout.createSequentialGroup()
+        javax.swing.GroupLayout DashboardPanelLayout = new javax.swing.GroupLayout(DashboardPanel);
+        DashboardPanel.setLayout(DashboardPanelLayout);
+        DashboardPanelLayout.setHorizontalGroup(
+            DashboardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(DashboardPanelLayout.createSequentialGroup()
                 .addContainerGap(63, Short.MAX_VALUE)
-                .addGroup(DashboardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, DashboardLayout.createSequentialGroup()
+                .addGroup(DashboardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, DashboardPanelLayout.createSequentialGroup()
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(72, 72, 72))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, DashboardLayout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, DashboardPanelLayout.createSequentialGroup()
                         .addComponent(DashboardLabel)
                         .addGap(40, 40, 40))))
         );
-        DashboardLayout.setVerticalGroup(
-            DashboardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(DashboardLayout.createSequentialGroup()
+        DashboardPanelLayout.setVerticalGroup(
+            DashboardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(DashboardPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -375,7 +376,7 @@ public class HoverPanel extends javax.swing.JPanel {
         HistoryLayout.setHorizontalGroup(
             HistoryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(HistoryLayout.createSequentialGroup()
-                .addGap(43, 43, 43)
+                .addContainerGap(43, Short.MAX_VALUE)
                 .addGroup(HistoryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel6)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, HistoryLayout.createSequentialGroup()
@@ -405,7 +406,7 @@ public class HoverPanel extends javax.swing.JPanel {
                         .addGap(18, 18, 18)
                         .addComponent(Order, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(Dashboard, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(DashboardPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(Category, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
@@ -417,10 +418,10 @@ public class HoverPanel extends javax.swing.JPanel {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(174, Short.MAX_VALUE)
+                .addGap(174, 174, 174)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(Product, javax.swing.GroupLayout.DEFAULT_SIZE, 143, Short.MAX_VALUE)
-                    .addComponent(Dashboard, javax.swing.GroupLayout.DEFAULT_SIZE, 143, Short.MAX_VALUE)
+                    .addComponent(DashboardPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 143, Short.MAX_VALUE)
                     .addComponent(Category, javax.swing.GroupLayout.DEFAULT_SIZE, 143, Short.MAX_VALUE))
                 .addGap(21, 21, 21)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -482,8 +483,8 @@ public class HoverPanel extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Category;
     private javax.swing.JPanel Customer;
-    private javax.swing.JPanel Dashboard;
     private javax.swing.JLabel DashboardLabel;
+    private javax.swing.JPanel DashboardPanel;
     private javax.swing.JPanel History;
     private javax.swing.JPanel Order;
     private javax.swing.JPanel Product;
@@ -496,4 +497,32 @@ public class HoverPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
+public void setDashboardMouseListener(MouseListener listener) {
+    DashboardPanel.addMouseListener(listener);
+}
+
+public void addProductListener(MouseListener listener) {
+    Product.addMouseListener(listener);
+}
+
+public void addCategoryListener(MouseListener listener) {
+    Category.addMouseListener(listener);
+}
+
+public void addCustomerListener(MouseListener listener) {
+    Customer.addMouseListener(listener);
+}
+
+public void addOrderListener(MouseListener listener) {
+    Order.addMouseListener(listener);
+}
+
+public void addHistoryListener(MouseListener listener) {
+    History.addMouseListener(listener);
+}
+public HoverPanel getDashboardPanel() {
+    return (HoverPanel) DashboardPanel;
+}
+
+
 }
