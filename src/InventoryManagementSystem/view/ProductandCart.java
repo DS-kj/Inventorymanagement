@@ -4,18 +4,8 @@
  */
 package InventoryManagementSystem.view;
 
-import java.util.ArrayList;
-import java.util.List;
-import InventoryManagementSystem.model.CartItemModel;
-import InventoryManagementSystem.model.OrderModel;
-import InventoryManagementSystem.controller.OrderController;
-import InventoryManagementSystem.database.DbConnection;
-import InventoryManagementSystem.database.MySqlConnection;
-import java.sql.Connection;
+import java.awt.event.ActionListener;
 
-
-//import InventoryManagementSystem.controller.ProductandCartController;
-//import InventoryManagementSystem.model.ProductandCartModel;
 /**
  *
  * @author ACER
@@ -46,9 +36,9 @@ public class ProductandCart extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         CartListTable = new javax.swing.JTable();
         AddToCart = new javax.swing.JButton();
-        saveOrder = new javax.swing.JButton();
+        Save_Order_Button = new javax.swing.JButton();
         goBack = new javax.swing.JButton();
-        Bill = new javax.swing.JButton();
+        Bill_Button = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -91,10 +81,7 @@ public class ProductandCart extends javax.swing.JFrame {
 
         CartListTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+
             },
             new String [] {
                 "Product Name", "Quantity", "Price"
@@ -112,22 +99,12 @@ public class ProductandCart extends javax.swing.JFrame {
 
         AddToCart.setText("Add");
 
-        saveOrder.setText("Save Order");
-        saveOrder.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                saveOrderActionPerformed(evt);
-            }
-        });
+        Save_Order_Button.setText("Save Order");
 
         goBack.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         goBack.setText("←GO BACK");
 
-        Bill.setText("BILL");
-        Bill.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BillActionPerformed(evt);
-            }
-        });
+        Bill_Button.setText("BILL");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -144,9 +121,9 @@ public class ProductandCart extends javax.swing.JFrame {
                         .addGap(36, 36, 36)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(saveOrder)
-                                .addGap(18, 18, 18)
-                                .addComponent(Bill))
+                                .addComponent(Save_Order_Button)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(Bill_Button))
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 382, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
@@ -167,8 +144,8 @@ public class ProductandCart extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(AddToCart)
-                    .addComponent(saveOrder)
-                    .addComponent(Bill))
+                    .addComponent(Bill_Button)
+                    .addComponent(Save_Order_Button))
                 .addContainerGap(58, Short.MAX_VALUE))
         );
 
@@ -185,37 +162,6 @@ public class ProductandCart extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void saveOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveOrderActionPerformed
-int customerId = 1; // Replace with actual selected ID from CustomerChooser
-    List<CartItemModel> cartItems = new ArrayList<>();
-
-    for (int i = 0; i < CartListTable.getRowCount(); i++) {
-        Object name = CartListTable.getValueAt(i, 0);
-        Object quantity = CartListTable.getValueAt(i, 1);
-        Object price = CartListTable.getValueAt(i, 2);
-
-        if (name != null && quantity != null && price != null) {
-            cartItems.add(new CartItemModel(
-                name.toString(),
-                Integer.parseInt(quantity.toString()),
-                Double.parseDouble(price.toString())
-            ));
-        }
-    }//GEN-LAST:event_saveOrderActionPerformed
-     OrderModel model = new OrderModel();
-    model.setCustomerId(customerId);
-    model.setItems(cartItems);
-
-       DbConnection dbConnection = new MySqlConnection();
-    Connection conn = dbConnection.openConnection();
-    OrderController controller = new OrderController(conn);
-    controller.saveOrder(model);
-    }
-
-    private void BillActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BillActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_BillActionPerformed
 
     /**
      * @param args the command line arguments
@@ -254,15 +200,48 @@ int customerId = 1; // Replace with actual selected ID from CustomerChooser
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AddToCart;
-    private javax.swing.JButton Bill;
+    private javax.swing.JButton Bill_Button;
     private javax.swing.JTable CartListTable;
     private javax.swing.JTable ProductsListTable;
+    private javax.swing.JButton Save_Order_Button;
     private javax.swing.JButton goBack;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JButton saveOrder;
     // End of variables declaration//GEN-END:variables
+
+public javax.swing.JTable getProductTable() {
+    return ProductsListTable;
+}
+
+public javax.swing.JTable getCartTable() {
+    return CartListTable;
+}
+
+public javax.swing.JButton getAddToCartButton() {
+    return AddToCart;
+}
+
+public javax.swing.JButton getSaveOrderButton() {
+    return Save_Order_Button;
+}
+
+public javax.swing.JButton getBackButton() {
+    return goBack;
+}
+public void addAddToCartListener(ActionListener listener) {
+    AddToCart.addActionListener(listener);
+}
+public void addSaveOrderListener(ActionListener listener) {
+    Save_Order_Button.addActionListener(listener);
+}
+
+public void addBackButtonListener(ActionListener listener) {
+    goBack.addActionListener(listener);
+}
+
+
+
 }
