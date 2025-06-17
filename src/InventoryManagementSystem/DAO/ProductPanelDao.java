@@ -1,5 +1,6 @@
 package InventoryManagementSystem.DAO;
 
+import InventoryManagementSystem.database.MySqlConnection;
 import InventoryManagementSystem.model.ProductPanelModel;
 import java.sql.*;
 import java.util.ArrayList;
@@ -83,4 +84,25 @@ public class ProductPanelDao {
         }
         return products;
     }
+    public String getSuggestedCategory(String productName) {
+    String sql = "SELECT c.name FROM category c " +
+                 "JOIN product p ON p.category_id = c.id " +
+                 "WHERE p.name LIKE ? LIMIT 1";
+
+    MySqlConnection db = new MySqlConnection(); // ✅ No getInstance
+    try (Connection conn = db.openConnection();
+         PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+        stmt.setString(1, "%" + productName + "%");
+        ResultSet rs = stmt.executeQuery();
+
+        if (rs.next()) {
+            return rs.getString("name");
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+    return "";
+}
+
 }
