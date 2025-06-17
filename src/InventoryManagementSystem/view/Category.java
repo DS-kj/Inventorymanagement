@@ -51,6 +51,7 @@ public class Category extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         AddButton = new javax.swing.JButton();
+        Editname = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -199,6 +200,10 @@ public class Category extends javax.swing.JFrame {
             }
         });
 
+        Editname.setBackground(new java.awt.Color(161, 22, 22));
+        Editname.setForeground(new java.awt.Color(255, 255, 255));
+        Editname.setText("Edit Name");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -220,7 +225,10 @@ public class Category extends javax.swing.JFrame {
                         .addComponent(Deletebutton, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(70, 70, 70)
-                        .addComponent(jLabel2)))
+                        .addComponent(jLabel2))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(49, 49, 49)
+                        .addComponent(Editname)))
                 .addGap(57, 57, 57))
         );
         jPanel2Layout.setVerticalGroup(
@@ -243,6 +251,8 @@ public class Category extends javax.swing.JFrame {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(AddButton, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(Deletebutton, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(Editname)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addGap(55, 55, 55))
         );
@@ -338,6 +348,7 @@ public class Category extends javax.swing.JFrame {
     private javax.swing.JButton Customer;
     private javax.swing.JButton Dashboard;
     private javax.swing.JButton Deletebutton;
+    private javax.swing.JButton Editname;
     private javax.swing.JTextField InsertField;
     private javax.swing.JButton Logout;
     private javax.swing.JButton Order;
@@ -380,5 +391,8 @@ return jTable1;
 }
 public void addDeleteUserListener(ActionListener listener){
     Deletebutton.addActionListener(listener);
+}
+public void addEditNameListener(ActionListener l) {
+    Editname.addActionListener(l);
 }
 }
