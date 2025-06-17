@@ -4,7 +4,6 @@
  */
 package InventoryManagementSystem.view;
 
-import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -16,7 +15,6 @@ public class OrderList extends javax.swing.JFrame {
      */
     public OrderList() {
         initComponents();
-        initializeTableModel();
     }
 
     /**
@@ -180,25 +178,7 @@ public class OrderList extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
-    private void initializeTableModel() {
-        Ordertable.setModel(new DefaultTableModel(
-            new Object [][] {},
-            new String [] {
-                "Order ID", "Order Date", "Total Paid"
-            }
-        ) {
-            Class[] types = new Class [] {
-                Integer.class, String.class, Long.class
-            };
-            
-            @Override
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-        });
-    }
-
-    public javax.swing.JTable getOrdertable() {
+    public javax.swing.JTable getOrderTable() {
         return Ordertable;
     }
 }

@@ -1,27 +1,61 @@
 package InventoryManagementSystem.controller;
-
-import InventoryManagementSystem.DAO.ViewOrdersDao;
-import InventoryManagementSystem.model.ViewOrdersModel;
-import InventoryManagementSystem.view.ViewOrders; // Your Swing UI class
+ 
+import InventoryManagementSystem.dao.CustomerDao;
+import InventoryManagementSystem.model.CustomerModel;
+import InventoryManagementSystem.view.OrderList;
+import InventoryManagementSystem.view.ViewOrders;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+ 
+import javax.swing.table.DefaultTableModel;
 import java.util.List;
-
+import javax.swing.JOptionPane;
+ 
 public class ViewOrdersController {
-    private ViewOrdersDao viewOrdersDao;
-    private ViewOrders viewOrders;
-
-    public ViewOrdersController(ViewOrdersDao dao, ViewOrders view) {
-        this.viewOrdersDao = dao;
-        this.viewOrders = view;
-        loadCustomerData();
+    private final ViewOrders view;
+    private final CustomerDao customerDao;
+ 
+    public ViewOrdersController(ViewOrders view) {
+        this.view = view;
+        this.customerDao = new CustomerDao();
+        loadCustomersToTable();
+        view.addSelectCustomerListener(new SelectCustomerListener());
+ 
     }
-
-    // Fetch data from DAO and pass to view
-    public void loadCustomerData() {
-    List<ViewOrdersModel> customers = viewOrdersDao.getAllCustomers();
-    viewOrders.setCustomerTableData(customers); // use instance, not class name
-}  
-
-    public void open() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+public void open(){
+    loadCustomersToTable();
+    view.setVisible(true);
+}
+     private void loadCustomersToTable() {
+        List<CustomerModel> customers = customerDao.getAllCustomers();
+        DefaultTableModel model = (DefaultTableModel) view.getCustomertable().getModel();
+        model.setRowCount(0);
+ 
+        for (CustomerModel customer : customers) {
+            model.addRow(new Object[] {
+                customer.getId(),
+                customer.getName(),
+                customer.getMobile(),
+                customer.getEmail()
+            });
+        }
     }
+     private class SelectCustomerListener implements ActionListener {
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        int selectedRow = view.getCustomertable().getSelectedRow();
+        if (selectedRow >= 0) {
+            int customerId = Integer.parseInt(view.getCustomertable().getValueAt(selectedRow, 0).toString());
+            OrderList orderListView = new OrderList();
+        OrderListController controller= new OrderListController(orderListView, customerId);
+        controller.open();
+                controller.loadOrders(customerId);
+ 
+        
+            view.dispose();
+        } else {
+            JOptionPane.showMessageDialog(view, "Please select a customer.");
+        }
+    }
+}
 }
