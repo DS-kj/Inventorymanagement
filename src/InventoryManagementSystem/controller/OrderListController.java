@@ -33,27 +33,4 @@ public class OrderListController {
             });
         }
     }
-    Select.addActionListener(new java.awt.event.ActionListener() {
-    public void actionPerformed(java.awt.event.ActionEvent evt) {
-        int selectedRow = Customertable.getSelectedRow();
-        if (selectedRow == -1) {
-            javax.swing.JOptionPane.showMessageDialog(null, "Please select a customer first.");
-            return;
-        }
-
-        int customerId = (int) Customertable.getValueAt(selectedRow, 0);
-        
-        // Get database connection
-        java.sql.Connection con = InventoryManagementSystem.database.MySqlConnection.openConnection();
-        
-        // Initialize order list window and controller
-        OrderList orderListUI = new OrderList();
-        OrderListController controller = new OrderListController(con, orderListUI);
-        
-        // Load and display orders
-        controller.loadOrdersByCustomerId(customerId);
-        orderListUI.setVisible(true);
-        dispose(); // Close current window
-    }
-});
 }

@@ -18,11 +18,11 @@ public class ViewOrdersModel {
     public String getName() { return name; }
     public String getMobileNumber() { return mobileNumber; }
     public String getEmail() { return email; }
-    public javax.swing.JTable getCustomertable() {
-    return Customertable;
-}
-
-    public javax.swing.JButton getSelectButton() {
-    return Select;
-}
+//    public javax.swing.JTable getCustomertable() {
+//    return Customertable;
+//}
+//
+//    public javax.swing.JButton getSelectButton() {
+//    return Select;
+//}
 }
