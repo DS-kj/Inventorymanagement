@@ -77,10 +77,12 @@ public class ProductPanelController {
                 JOptionPane.showMessageDialog(view, "Please select a product.");
             }
         }}
+          
+}
         
         
    
-        }
+        
     
         
     
