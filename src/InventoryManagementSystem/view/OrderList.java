@@ -4,18 +4,35 @@
  */
 package InventoryManagementSystem.view;
 
+            
+//import InventoryManagementSystem.controller.OrderListController;
+
 
 /**
  *
  * @author ACER
  */
 public class OrderList extends javax.swing.JFrame {
+    
+
+private int customerId;
+public OrderList(int customerId) {
+    initComponents();
+    this.customerId = customerId;
+//     OrderList orderListView = new OrderList();
+//        OrderListController controller= new OrderListController(orderListView, customerId);
+//        controller.loadOrders(customerId);
+        
+}
+
 
     /**
+     * Creates new form OrderList
      */
     public OrderList() {
         initComponents();
     }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -162,7 +179,6 @@ public class OrderList extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
-            @Override
             public void run() {
                 new OrderList().setVisible(true);
             }
@@ -178,7 +194,8 @@ public class OrderList extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
-    public javax.swing.JTable getOrderTable() {
-        return Ordertable;
-    }
+public javax.swing.JTable getOrderTable() {
+    return Ordertable;
+}
+
 }

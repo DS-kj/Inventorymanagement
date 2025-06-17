@@ -1,15 +1,15 @@
 package InventoryManagementSystem.DAO;
- 
+
 import InventoryManagementSystem.database.MySqlConnection;
 import InventoryManagementSystem.model.OrderModel;
- 
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
- 
+
 public class OrderDao {
     MySqlConnection db = new MySqlConnection();
- 
+
     public List<OrderModel> getOrdersByCustomerId(int customerId) {
         List<OrderModel> orders = new ArrayList<>();
         String query = """
@@ -20,13 +20,13 @@ public class OrderDao {
             WHERE o.customer_id = ?
             ORDER BY o.order_date DESC
         """;
- 
+
         try (Connection conn = db.openConnection();
              PreparedStatement ps = conn.prepareStatement(query)) {
- 
+
             ps.setInt(1, customerId);
             ResultSet rs = ps.executeQuery();
- 
+
             while (rs.next()) {
                 OrderModel order = new OrderModel(
                         rs.getInt("order_id"),
@@ -37,11 +37,11 @@ public class OrderDao {
                 );
                 orders.add(order);
             }
- 
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
- 
+
         return orders;
     }
 }
