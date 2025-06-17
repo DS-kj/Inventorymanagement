@@ -4,11 +4,27 @@
  */
 package InventoryManagementSystem.view;
 
+            
+//import InventoryManagementSystem.controller.OrderListController;
+
+
 /**
  *
  * @author ACER
  */
 public class OrderList extends javax.swing.JFrame {
+    
+
+private int customerId;
+public OrderList(int customerId) {
+    initComponents();
+    this.customerId = customerId;
+//     OrderList orderListView = new OrderList();
+//        OrderListController controller= new OrderListController(orderListView, customerId);
+//        controller.loadOrders(customerId);
+        
+}
+
 
     /**
      * Creates new form OrderList
@@ -16,6 +32,7 @@ public class OrderList extends javax.swing.JFrame {
     public OrderList() {
         initComponents();
     }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -65,13 +82,13 @@ public class OrderList extends javax.swing.JFrame {
 
         Ordertable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Order ID", "Date", "Total Paid"
+                "Order ID", "Product Name", "Quantity", "Total Paid", "Date"
             }
         ));
         jScrollPane1.setViewportView(Ordertable);
@@ -177,4 +194,8 @@ public class OrderList extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
+public javax.swing.JTable getOrderTable() {
+    return Ordertable;
+}
+
 }
