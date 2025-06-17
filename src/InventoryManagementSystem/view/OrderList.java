@@ -67,13 +67,13 @@ public class OrderList extends javax.swing.JFrame {
 
         Ordertable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Order ID", "Date", "Total Paid"
+                "Order ID", "Product Name", "Quantity", "Total Paid", "Date"
             }
         ));
         jScrollPane1.setViewportView(Ordertable);
