@@ -4,6 +4,8 @@
  */
 package InventoryManagementSystem.view;
 
+import java.awt.event.ActionListener;
+
             
 //import InventoryManagementSystem.controller.OrderListController;
 
@@ -197,5 +199,10 @@ public OrderList(int customerId) {
 public javax.swing.JTable getOrderTable() {
     return Ordertable;
 }
-
+public javax.swing.JButton getBackButton() {
+    return Backtocustomer;
+}
+public void addBackButtonListener(ActionListener listener) {
+    Backtocustomer.addActionListener(listener);
+}
 }
