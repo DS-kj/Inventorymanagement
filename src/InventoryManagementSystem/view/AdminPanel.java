@@ -5,6 +5,7 @@
 package InventoryManagementSystem.view;
 
 import InventoryManagementSystem.model.AdminPanelModel;
+import java.awt.Color;
 import java.awt.event.ActionListener;
 import javax.swing.table.DefaultTableModel;
 
@@ -19,6 +20,7 @@ public class AdminPanel extends javax.swing.JFrame {
      */
     public AdminPanel() {
         initComponents();
+        PasswordAdminPanelEntry.setEchoChar((char) 0);
     }
 
     /**
@@ -39,6 +41,7 @@ public class AdminPanel extends javax.swing.JFrame {
         CreateAccount = new javax.swing.JButton();
         showandhide = new javax.swing.JCheckBox();
         Delete = new javax.swing.JButton();
+        EditButton = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
@@ -53,16 +56,43 @@ public class AdminPanel extends javax.swing.JFrame {
         jPanel3.setBackground(new java.awt.Color(23, 69, 97));
         jPanel3.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(0, 153, 153), null, null));
 
+        PhoneNumberEntry.setForeground(new java.awt.Color(204, 204, 204));
         PhoneNumberEntry.setText("Phone no.");
+        PhoneNumberEntry.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                PhoneNumberEntryFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                PhoneNumberEntryFocusLost(evt);
+            }
+        });
 
-        PasswordAdminPanelEntry.setText("jPasswordField1");
+        PasswordAdminPanelEntry.setForeground(new java.awt.Color(204, 204, 204));
+        PasswordAdminPanelEntry.setText("Password");
+        PasswordAdminPanelEntry.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                PasswordAdminPanelEntryFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                PasswordAdminPanelEntryFocusLost(evt);
+            }
+        });
         PasswordAdminPanelEntry.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 PasswordAdminPanelEntryActionPerformed(evt);
             }
         });
 
-        UsernameAdminPanelEntry.setText("userEntry");
+        UsernameAdminPanelEntry.setForeground(new java.awt.Color(204, 204, 204));
+        UsernameAdminPanelEntry.setText("Enter username");
+        UsernameAdminPanelEntry.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                UsernameAdminPanelEntryFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                UsernameAdminPanelEntryFocusLost(evt);
+            }
+        });
         UsernameAdminPanelEntry.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 UsernameAdminPanelEntryActionPerformed(evt);
@@ -87,6 +117,9 @@ public class AdminPanel extends javax.swing.JFrame {
             }
         });
 
+        EditButton.setBackground(new java.awt.Color(153, 153, 153));
+        EditButton.setText("EDIT USER DETAILS");
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -99,13 +132,14 @@ public class AdminPanel extends javax.swing.JFrame {
                     .addComponent(PasswordAdminPanelEntry, javax.swing.GroupLayout.DEFAULT_SIZE, 136, Short.MAX_VALUE)
                     .addComponent(showandhide, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(CreateAccount, javax.swing.GroupLayout.DEFAULT_SIZE, 136, Short.MAX_VALUE)
-                    .addComponent(Delete, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(Delete, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(EditButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(29, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap(131, Short.MAX_VALUE)
+                .addContainerGap(149, Short.MAX_VALUE)
                 .addComponent(PhoneNumberEntry, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(UsernameAdminPanelEntry, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -115,7 +149,9 @@ public class AdminPanel extends javax.swing.JFrame {
                 .addComponent(showandhide, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(CreateAccount, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(150, 150, 150)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 138, Short.MAX_VALUE)
+                .addComponent(EditButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Delete)
                 .addContainerGap())
         );
@@ -157,7 +193,7 @@ public class AdminPanel extends javax.swing.JFrame {
                 .addGap(11, 11, 11)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 481, Short.MAX_VALUE)
                         .addGap(3, 3, 3))
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
@@ -194,6 +230,56 @@ public class AdminPanel extends javax.swing.JFrame {
     private void DeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_DeleteActionPerformed
+
+    private void PhoneNumberEntryFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_PhoneNumberEntryFocusGained
+        // TODO add your handling code here:
+          if (PhoneNumberEntry.getText().equals("Phone no.")) {
+            PhoneNumberEntry.setText("");
+            PhoneNumberEntry.setForeground(Color.BLACK);
+        }
+    }//GEN-LAST:event_PhoneNumberEntryFocusGained
+
+    private void PhoneNumberEntryFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_PhoneNumberEntryFocusLost
+        // TODO add your handling code here:
+          if (PhoneNumberEntry.getText().isEmpty()) {
+            PhoneNumberEntry.setText("Phone no.");
+            PhoneNumberEntry.setForeground(Color.GRAY);
+        }
+    }//GEN-LAST:event_PhoneNumberEntryFocusLost
+
+    private void UsernameAdminPanelEntryFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_UsernameAdminPanelEntryFocusGained
+        // TODO add your handling code here:
+         if (UsernameAdminPanelEntry.getText().equals("Enter username")) {
+            UsernameAdminPanelEntry.setText("");
+            UsernameAdminPanelEntry.setForeground(Color.BLACK);
+        }
+    }//GEN-LAST:event_UsernameAdminPanelEntryFocusGained
+
+    private void UsernameAdminPanelEntryFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_UsernameAdminPanelEntryFocusLost
+        // TODO add your handling code here:
+         if (UsernameAdminPanelEntry.getText().isEmpty()) {
+            UsernameAdminPanelEntry.setText("Enter username");
+            UsernameAdminPanelEntry.setForeground(Color.GRAY);
+        }
+    }//GEN-LAST:event_UsernameAdminPanelEntryFocusLost
+
+    private void PasswordAdminPanelEntryFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_PasswordAdminPanelEntryFocusGained
+        // TODO add your handling code here:
+        if (String.valueOf(PasswordAdminPanelEntry.getPassword()).equals("Password")) {
+            PasswordAdminPanelEntry.setText("");
+            PasswordAdminPanelEntry.setEchoChar('*'); 
+            PasswordAdminPanelEntry.setForeground(Color.BLACK);
+        }
+    }//GEN-LAST:event_PasswordAdminPanelEntryFocusGained
+
+    private void PasswordAdminPanelEntryFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_PasswordAdminPanelEntryFocusLost
+        // TODO add your handling code here:
+        if (String.valueOf(PasswordAdminPanelEntry.getPassword()).isEmpty()) {
+            PasswordAdminPanelEntry.setText("Password");
+            PasswordAdminPanelEntry.setEchoChar((char) 0); 
+            PasswordAdminPanelEntry.setForeground(Color.GRAY);
+        }
+    }//GEN-LAST:event_PasswordAdminPanelEntryFocusLost
 
     /**
      * @param args the command line arguments
@@ -233,6 +319,7 @@ public class AdminPanel extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton CreateAccount;
     private javax.swing.JButton Delete;
+    private javax.swing.JButton EditButton;
     private javax.swing.JPasswordField PasswordAdminPanelEntry;
     private javax.swing.JTextField PhoneNumberEntry;
     private javax.swing.JTextField UsernameAdminPanelEntry;
@@ -270,9 +357,23 @@ PasswordAdminPanelEntry.setEchoChar(visible ? (char) 0 : '*');
 //showandhide.setText(visible ? "Hide" : "Show");
 
 }
+public javax.swing.JButton getDelete() {
+    return Delete;
+}
+public void addDeleteUserListener(ActionListener listener) {
+    Delete.addActionListener(listener);
+}
+public javax.swing.JTable getUserTable() {
+    return jTable1;
+}
+public void addEditUserListener(ActionListener listener) {
+    EditButton.addActionListener(listener);
+}
+
+
 
 public void reloadUserTable() {
-    // Example: Add data manually
+    
     DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
     model.addRow(new Object[] {
         model.getRowCount() + 1,  // S.No
