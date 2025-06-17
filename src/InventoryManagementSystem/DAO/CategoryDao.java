@@ -67,4 +67,16 @@ public class CategoryDao {
        return false;
    }
 }
+    public boolean updateCategoryName(int id, String newName) {
+    String sql = "UPDATE category SET name = ? WHERE id = ?";
+    try (Connection conn = mySql.openConnection();
+         PreparedStatement stmt = conn.prepareStatement(sql)) {
+        stmt.setString(1, newName);
+        stmt.setInt(2, id);
+        return stmt.executeUpdate() > 0;
+    } catch (SQLException e) {
+        e.printStackTrace();
+        return false;
+    }
+}
 }
