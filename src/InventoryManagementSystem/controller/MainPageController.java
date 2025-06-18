@@ -1,6 +1,7 @@
 package InventoryManagementSystem.controller;
 
 import InventoryManagementSystem.view.Category;
+import InventoryManagementSystem.view.CustomerPanel;
 import InventoryManagementSystem.view.Customerchooser;
 import InventoryManagementSystem.view.Dashboard;
 import InventoryManagementSystem.view.MainPage;
@@ -29,7 +30,9 @@ public class MainPageController {
         this.view.addProductListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                new ProductPanel().setVisible(true);
+                 ProductPanel view = new ProductPanel();
+        ProductPanelController controller = new ProductPanelController(view);
+        controller.show();
                 System.out.println("Product clicked!");
             }
         });
@@ -50,6 +53,10 @@ controllerCategory.open();
             @Override
             public void mouseClicked(MouseEvent e) {
 //                new Customer().setVisible(true);
+   CustomerPanel viewCustomerP=new CustomerPanel();
+                 CustomerPanelController customerP=new CustomerPanelController(viewCustomerP);
+                 
+                 customerP.open();
                 System.out.println("Customer clicked!");
             }
         });
