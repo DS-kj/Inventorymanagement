@@ -1,6 +1,5 @@
 package InventoryManagementSystem.view;
 
-
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
@@ -13,7 +12,7 @@ public class Bill {
     public Bill(ProductandCart view, int orderId) {
         JTable cartTable = view.getCartTable();
         DefaultTableModel model = (DefaultTableModel) cartTable.getModel();
-        int rowCount = model.getRowCount();
+        final int rowCount = model.getRowCount();
 
         JDialog billDialog = new JDialog(view, "Bill", true);
         billDialog.setSize(600, 400);
@@ -27,49 +26,44 @@ public class Bill {
         topPanel.add(titleLabel, BorderLayout.NORTH);
 
         // Order info panel (OrderId, Date, Total Paid)
-        JPanel infoPanel = new JPanel();
-        infoPanel.setLayout(new GridLayout(3, 1));
-        
-        String currentDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
+        JPanel infoPanel = new JPanel(new GridLayout(3, 1));
+        final String currentDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
 
-        // Calculate total paid
-        double totalPaid = 0.0;
+        double totalPaidTemp = 0.0;
         for (int i = 0; i < rowCount; i++) {
             int qty = Integer.parseInt(model.getValueAt(i, 1).toString());
             double price = Double.parseDouble(model.getValueAt(i, 2).toString());
-            totalPaid += qty * price;
+            totalPaidTemp += qty * price;
         }
+        final double totalPaid = totalPaidTemp;
 
         infoPanel.add(new JLabel("Order ID: " + orderId));
         infoPanel.add(new JLabel("Date: " + currentDate));
         infoPanel.add(new JLabel("Total Paid: Rs. " + String.format("%.2f", totalPaid)));
 
         topPanel.add(infoPanel, BorderLayout.SOUTH);
-
         billDialog.add(topPanel, BorderLayout.NORTH);
 
         // Table for items
         String[] columns = {"Name", "Price", "Quantity", "Sub Total"};
-        Object[][] data = new Object[rowCount][4];
+        final Object[][] data = new Object[rowCount][4];
 
-       for (int i = 0; i < rowCount; i++) {
-    String name = model.getValueAt(i, 0).toString();
-    int qty = Integer.parseInt(model.getValueAt(i, 1).toString());
-    double totalPrice = Double.parseDouble(model.getValueAt(i, 2).toString());
-    double unitPrice = totalPrice / qty;
-    double subTotal = unitPrice * qty;
+        for (int i = 0; i < rowCount; i++) {
+            String name = model.getValueAt(i, 0).toString();
+            int qty = Integer.parseInt(model.getValueAt(i, 1).toString());
+            double totalPrice = Double.parseDouble(model.getValueAt(i, 2).toString());
+            double unitPrice = totalPrice / qty;
+            double subTotal = unitPrice * qty;
 
-    data[i][0] = name;
-    data[i][1] = String.format("%.2f", unitPrice); // Fixed: show price per item
-    data[i][2] = qty;
-    data[i][3] = String.format("%.2f", subTotal); // Same as totalPrice actually
-}
-
+            data[i][0] = name;
+            data[i][1] = String.format("%.2f", unitPrice);
+            data[i][2] = qty;
+            data[i][3] = String.format("%.2f", subTotal);
+        }
 
         JTable billTable = new JTable(data, columns);
         billTable.setEnabled(false);
         JScrollPane scrollPane = new JScrollPane(billTable);
-
         billDialog.add(scrollPane, BorderLayout.CENTER);
 
         // Bottom thank you label and download button
@@ -81,8 +75,8 @@ public class Bill {
         JButton downloadButton = new JButton("Download");
         bottomPanel.add(downloadButton, BorderLayout.EAST);
 
-        downloadButton.addActionListener(e -> {
-            try (FileWriter writer = new FileWriter("bill.txt")) {
+        downloadButton.addActionListener((var e) -> {
+            try (FileWriter writer = new FileWriter("C:\\Users\\ASUS\\Desktop\\Invent\\Inventorymanagement\\src\\InventoryManagementSystem\\bill.txt")) {
                 writer.write("Inventory Management System\n\n");
                 writer.write("Order ID: " + orderId + "\n");
                 writer.write("Date: " + currentDate + "\n");
@@ -99,9 +93,7 @@ public class Bill {
                     writer.write(String.format("%-20s %-10s %-10s %-10s\n", name, price, qty, subTotal));
                 }
 
-                writer.write("\nThank you, Please visit again!\n");
-                writer.close();
-
+                writer.write("\nThank you, Please visit again!\n---------------------------------\n");
                 JOptionPane.showMessageDialog(view, "Bill downloaded as bill.txt");
                 billDialog.dispose();
             } catch (IOException ex) {
