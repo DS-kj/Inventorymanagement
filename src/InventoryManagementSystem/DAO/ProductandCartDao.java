@@ -53,6 +53,20 @@ public class ProductAndCartDao {
     //         return false;
     //     }
     // }
+public int getLatestOrderId() {
+    int orderId = 0;
+    String query = "SELECT MAX(id) AS max_order_id FROM orders";
+    try (Connection conn = connection.openConnection();
+         Statement stmt = conn.createStatement();
+         ResultSet rs = stmt.executeQuery(query)) {
+        if (rs.next()) {
+            orderId = rs.getInt("max_order_id");
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+    return orderId;
+}
 
  public boolean saveOrder(List<ProductAndCartModel> cartItems, int customerId) {
     String createOrdersTable = """
