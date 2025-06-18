@@ -7,10 +7,14 @@ package InventoryManagementSystem;
 import InventoryManagementSystem.DAO.CategoryDao;
 import InventoryManagementSystem.controller.AdminPanelController;
 import InventoryManagementSystem.controller.CategoryController;
+import InventoryManagementSystem.controller.CustomerPanelController;
+import InventoryManagementSystem.controller.LoginController;
 import InventoryManagementSystem.controller.ProductAndCartController;
 import InventoryManagementSystem.view.AdminPanel;
 //import InventoryManagementSystem.view.AdminPanel;
 import InventoryManagementSystem.view.Category;
+import InventoryManagementSystem.view.CustomerPanel;
+import InventoryManagementSystem.view.LoginPanel;
 import InventoryManagementSystem.view.ProductandCart;
 
 
@@ -29,9 +33,14 @@ public class InventoryManagementMain {
 //        AdminPanelController controller= new AdminPanelController(view);
 //        controller.open();
         
-        ProductandCart view = new ProductandCart();
-        ProductAndCartController controller= new ProductAndCartController(view);
+//         CustomerPanel view = new CustomerPanel();
+//         CustomerPanelController controller = new CustomerPanelController(view);
+//         controller.open();
+      
+        LoginPanel view = new LoginPanel();
+        LoginController controller = new LoginController(view);
         controller.open();
+       
         
 //           Category view = new Category();
 //CategoryController controller = new CategoryController(view);
