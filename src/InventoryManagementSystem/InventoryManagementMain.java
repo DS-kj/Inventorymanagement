@@ -33,15 +33,15 @@ public class InventoryManagementMain {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-//        AdminPanel view = new AdminPanel();
-//        AdminPanelController controller= new AdminPanelController(view);
-//        controller.open();
+        AdminPanel view = new AdminPanel();
+        AdminPanelController controller= new AdminPanelController(view);
+        controller.open();
 //         Customerchooser view = new Customerchooser();
 //         CustomerchooserController controller= new CustomerchooserController(view);
 //         controller.open();
-         MainPage view=new MainPage();
-         MainPageController mainPageOpener= new MainPageController(view);
-         mainPageOpener.open();
+//         MainPage view=new MainPage();
+//         MainPageController mainPageOpener= new MainPageController(view);
+//         mainPageOpener.open();
 // ProductPanel view = new ProductPanel();
 //        ProductPanelController controller = new ProductPanelController(view);
 //        controller.show();
