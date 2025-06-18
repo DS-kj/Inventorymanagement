@@ -41,5 +41,5 @@ public class InventoryManagementMain {
 //CategoryController controller = new CategoryController(view);
 //controller.open();
     }
-    
+   
 }
