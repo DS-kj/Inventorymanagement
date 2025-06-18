@@ -10,12 +10,14 @@ import InventoryManagementSystem.controller.CategoryController;
 import InventoryManagementSystem.controller.CustomerchooserController;
 import InventoryManagementSystem.controller.MainPageController;
 import InventoryManagementSystem.controller.ProductAndCartController;
+import InventoryManagementSystem.controller.ProductPanelController;
 import InventoryManagementSystem.controller.ViewOrdersController;
 import InventoryManagementSystem.view.AdminPanel;
 //import InventoryManagementSystem.view.AdminPanel;
 import InventoryManagementSystem.view.Category;
 import InventoryManagementSystem.view.Customerchooser;
 import InventoryManagementSystem.view.MainPage;
+import InventoryManagementSystem.view.ProductPanel;
 import InventoryManagementSystem.view.ProductandCart;
 import InventoryManagementSystem.view.ViewOrders;
 
@@ -40,6 +42,9 @@ public class InventoryManagementMain {
          MainPage view=new MainPage();
          MainPageController mainPageOpener= new MainPageController(view);
          mainPageOpener.open();
+// ProductPanel view = new ProductPanel();
+//        ProductPanelController controller = new ProductPanelController(view);
+//        controller.show();
 //         ViewOrders view = new ViewOrders();
 //         ViewOrdersController controller= new ViewOrdersController(view);
 //         controller.open();
