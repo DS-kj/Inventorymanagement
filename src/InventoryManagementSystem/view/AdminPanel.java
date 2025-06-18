@@ -372,23 +372,23 @@ public void addEditUserListener(ActionListener listener) {
 
 
 
-public void reloadUserTable() {
-    
-    DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-    model.addRow(new Object[] {
-        model.getRowCount() + 1,  // S.No
-        UsernameAdminPanelEntry.getText(),
-        PhoneNumberEntry.getText()
-    });
-}
-public void setUserTableData(java.util.List<AdminPanelModel> users) {
-    DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-    model.setRowCount(0); // Clear existing rows
-    int serial = 1;
-    for (AdminPanelModel user : users) {
-        model.addRow(new Object[]{serial++, user.getUsernameAdminPanelEntry(), user.getPhoneNumberEntry()});
-    }
-}
+//public void reloadUserTable() {
+//    
+//    DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+//    model.addRow(new Object[] {
+//        model.getRowCount() + 1,  // S.No
+//        UsernameAdminPanelEntry.getText(),
+//        PhoneNumberEntry.getText()
+//    });
+//}
+//public void setUserTableData(java.util.List<AdminPanelModel> users) {
+//    DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+//    model.setRowCount(0); // Clear existing rows
+//    int serial = 1;
+//    for (AdminPanelModel user : users) {
+//        model.addRow(new Object[]{serial++, user.getUsernameAdminPanelEntry(), user.getPhoneNumberEntry()});
+//    }
+//}
 
 }
 
