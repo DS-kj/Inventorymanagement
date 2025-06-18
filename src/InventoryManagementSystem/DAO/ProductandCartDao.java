@@ -11,7 +11,8 @@ public class ProductAndCartDao {
 
     public List<ProductAndCartModel> getAllProducts() {
         List<ProductAndCartModel> products = new ArrayList<>();
-        String query = "SELECT * FROM products";
+        String query = "SELECT p.id, p.name, p.quantity, p.price, c.id AS category_id, c.name AS category_name " +
+                        "FROM products p JOIN category c ON p.category_id = c.id";
 
         try (Connection conn = connection.openConnection();
              Statement stmt = conn.createStatement();
@@ -20,7 +21,7 @@ public class ProductAndCartDao {
             while (rs.next()) {
                 int id = rs.getInt("id");
                 String name = rs.getString("name");
-                String category = rs.getString("category");
+                String category = rs.getString("category_name");
                 int quantity = rs.getInt("quantity");
                 double price = rs.getDouble("price");
 

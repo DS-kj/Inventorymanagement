@@ -16,7 +16,7 @@ public class MySqlConnection implements DbConnection {
 
 String username= "root";
        String password = "1618014350569";
-       String database = "Inventory_db";
+       String database = "InventoryManagementSystem";
        try{
            Class.forName("com.mysql.cj.jdbc.Driver");
            Connection conn;
@@ -35,12 +35,12 @@ String username= "root";
             }
            }
 
-    @Override
+    
     public ResultSet runQuery(Connection conn, String query) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
-    @Override
+    
     public int executeUpdate(Connection conn, String query) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
@@ -48,4 +48,5 @@ String username= "root";
     public Connection getconnection() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
+    
 }

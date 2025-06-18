@@ -3,6 +3,7 @@ package InventoryManagementSystem.view;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
+import java.awt.event.ActionEvent;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -60,7 +61,7 @@ public class Bill {
             data[i][2] = qty;
             data[i][3] = String.format("%.2f", subTotal);
         }
-
+      
         JTable billTable = new JTable(data, columns);
         billTable.setEnabled(false);
         JScrollPane scrollPane = new JScrollPane(billTable);
@@ -75,7 +76,8 @@ public class Bill {
         JButton downloadButton = new JButton("Download");
         bottomPanel.add(downloadButton, BorderLayout.EAST);
 
-        downloadButton.addActionListener((var e) -> {
+        downloadButton.addActionListener((ActionEvent e) -> {
+            //removes overlapping
             try (FileWriter writer = new FileWriter("C:\\Users\\ASUS\\Desktop\\Invent\\Inventorymanagement\\src\\InventoryManagementSystem\\bill.txt",true)) {
                 writer.write("Inventory Management System\n\n");
                 writer.write("Order ID: " + orderId + "\n");

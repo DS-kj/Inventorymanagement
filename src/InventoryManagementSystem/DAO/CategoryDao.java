@@ -56,4 +56,16 @@ public class CategoryDao {
         }
         return categories;
     }
+    public boolean deleteCategory(int ID) {
+   String sql = "DELETE FROM category WHERE ID = ?";
+   try (Connection conn = mySql.openConnection();
+        PreparedStatement stmt = conn.prepareStatement(sql)) {
+       stmt.setInt(1, ID);
+       return stmt.executeUpdate() > 0;
+   } catch (SQLException e) {
+       e.printStackTrace();
+       return false;
+   }
+   
+}
 }
