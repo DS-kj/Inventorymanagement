@@ -4,16 +4,8 @@
  */
 package InventoryManagementSystem;
 
-import InventoryManagementSystem.DAO.CategoryDao;
-import InventoryManagementSystem.controller.AdminPanelController;
-import InventoryManagementSystem.controller.CategoryController;
 import InventoryManagementSystem.controller.CustomerchooserController;
-import InventoryManagementSystem.controller.ProductAndCartController;
-import InventoryManagementSystem.view.AdminPanel;
-//import InventoryManagementSystem.view.AdminPanel;
-import InventoryManagementSystem.view.Category;
 import InventoryManagementSystem.view.Customerchooser;
-import InventoryManagementSystem.view.ProductandCart;
 
 
 /**
