@@ -13,11 +13,11 @@ import java.awt.event.ActionListener;
 public class ViewOrders extends javax.swing.JFrame {
 
     /**
-     * Creates new form ViewOrders
      */
     public ViewOrders() {
         initComponents();
     }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
