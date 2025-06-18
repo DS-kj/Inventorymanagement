@@ -7,10 +7,13 @@ package InventoryManagementSystem.view;
 import InventoryManagementSystem.model.ProductPanelModel;
 import java.awt.event.ActionListener;
 import java.util.List;
+import javax.swing.JTextField;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
+import java.math.BigDecimal; // Import BigDecimal
 
 import javax.swing.table.DefaultTableModel;
+import javax.swing.text.JTextComponent; // Used for generic text component handling if needed, but JTextField is specific enough here
 
 /**
  *
@@ -23,45 +26,52 @@ public class ProductPanel extends javax.swing.JFrame {
      */
     public ProductPanel() {
         initComponents();
-        setPlaceholders();
+        setPlaceholders(); // Your existing placeholder method
+
+        // Make the output fields read-only for product details display
+        categoryfield.setEditable(false);
+        jTextField3.setEditable(false); // Price(per)
+        jTextField4.setEditable(false); // Quantity
         
+        // Existing button listeners for navigation
         jButton9.addActionListener(e -> {
-    new Dashboard().setVisible(true);
-    this.dispose();
-});
+            new Dashboard().setVisible(true);
+            this.dispose();
+        });
 
-jButton10.addActionListener(e -> {
-    new Category().setVisible(true);
-    this.dispose();
-});
+        jButton10.addActionListener(e -> {
+            new Category().setVisible(true);
+            this.dispose();
+        });
 
-jButton11.addActionListener(e -> {
-    new ProductandCart().setVisible(true);
-    this.dispose();
-});
+        jButton11.addActionListener(e -> {
+            new ProductandCart().setVisible(true);
+            this.dispose();
+        });
 
-jButton12.addActionListener(e -> {
-    new Customerchooser().setVisible(true);
-    this.dispose();
-});
+        jButton12.addActionListener(e -> {
+            new Customerchooser().setVisible(true);
+            this.dispose();
+        });
 
-jButton13.addActionListener(e -> {
-    new OrderList().setVisible(true);
-    this.dispose();
-});
+        jButton13.addActionListener(e -> {
+            new OrderList().setVisible(true);
+            this.dispose();
+        });
 
-jButton14.addActionListener(e -> {
-    new ViewOrders().setVisible(true);
-    this.dispose();
+        jButton14.addActionListener(e -> {
+            new ViewOrders().setVisible(true);
+            this.dispose();
 
-});
-// Example logout button action
- jButton1.addActionListener(e -> {
-    new AdminLogin().setVisible(true);  // Open login screen
-    this.dispose();                // Close current ProductPanel window
-});
+        });
+        // Example logout button action
+        jButton1.addActionListener(e -> {
+            new AdminLogin().setVisible(true); // Open login screen
+            this.dispose();                       // Close current ProductPanel window
+        });
 
-
+        // The action listener for jTextField2 (Product Name) for search on Enter key
+        // will be registered by the controller, not here.
     }
 
     /**
@@ -89,7 +99,7 @@ jButton14.addActionListener(e -> {
         jButton14 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        categoryfield = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -190,7 +200,7 @@ jButton14.addActionListener(e -> {
             }
         });
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        categoryfield.setText("Category");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -202,7 +212,7 @@ jButton14.addActionListener(e -> {
                         .addGap(60, 60, 60)
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 542, Short.MAX_VALUE))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 530, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton2)
@@ -220,7 +230,7 @@ jButton14.addActionListener(e -> {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(categoryfield, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(45, 45, 45))))
         );
         jPanel1Layout.setVerticalGroup(
@@ -231,13 +241,13 @@ jButton14.addActionListener(e -> {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(18, 18, 18)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 572, Short.MAX_VALUE))
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 560, Short.MAX_VALUE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(207, 207, 207)
                                 .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(categoryfield, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(12, 12, 12)
                                 .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -257,11 +267,17 @@ jButton14.addActionListener(e -> {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
@@ -316,6 +332,7 @@ jButton14.addActionListener(e -> {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField categoryfield;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
@@ -325,7 +342,6 @@ jButton14.addActionListener(e -> {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
@@ -335,99 +351,140 @@ jButton14.addActionListener(e -> {
     private javax.swing.JTextField jTextField4;
     // End of variables declaration//GEN-END:variables
 
+    public void addProductListener(ActionListener listener) {
+        jButton8.addActionListener(listener); // Add button
+    }
 
-public void addProductListener(ActionListener listener) {
-    jButton8.addActionListener(listener); // Add button
-}
+    public void addDeleteListener(ActionListener listener) {
+        jButton2.addActionListener(listener); // Delete button
+    }
+    
+    // Method to add listener specifically for the product name text field (on Enter)
+    public void addProductNameSearchListener(ActionListener listener) {
+        jTextField2.addActionListener(listener);
+    }
 
-public void addDeleteListener(ActionListener listener) {
-    jButton2.addActionListener(listener); // Delete button
-}
+    public String getProductName() {
+        // Clear placeholder if it's there before returning the actual value
+        if (jTextField2.getForeground().equals(java.awt.Color.GRAY) && jTextField2.getText().equals("Product Name")) {
+            return "";
+        }
+        return jTextField2.getText();
+    }
 
-public String getProductName() {
-    return jTextField2.getText();
-}
+    // Corrected: getCategory() should return the text, not the JTextField object
+    public String getCategory() {
+        // Clear placeholder if it's there before returning the actual value
+        if (categoryfield.getForeground().equals(java.awt.Color.GRAY) && categoryfield.getText().equals("Category")) {
+            return "";
+        }
+        return categoryfield.getText();
+    }
 
-public String getCategory() {
-    return jTextField1.getText();
-}
+    public String getPrice() {
+        // Clear placeholder if it's there before returning the actual value
+        if (jTextField3.getForeground().equals(java.awt.Color.GRAY) && jTextField3.getText().equals("Price(per)")) {
+            return "";
+        }
+        return jTextField3.getText();
+    }
 
-public String getPrice() {
-    return jTextField3.getText();
-}
+    public String getQuantity() {
+        // Clear placeholder if it's there before returning the actual value
+        if (jTextField4.getForeground().equals(java.awt.Color.GRAY) && jTextField4.getText().equals("Quantity")) {
+            return "";
+        }
+        return jTextField4.getText();
+    }
 
-public String getQuantity() {
-    return jTextField4.getText();
-}
+    public void clearFields() {
+        // This method should clear all input/display fields and reset placeholders.
+        jTextField2.setText("Product Name");
+        jTextField2.setForeground(java.awt.Color.GRAY);
 
-public void clearFields() {
-    jTextField1.setText("");
-    jTextField2.setText("");
-    jTextField3.setText("");
-    jTextField4.setText("");
-}
+        categoryfield.setText("Category");
+        categoryfield.setForeground(java.awt.Color.GRAY);
 
-public void setProductTableData(List<ProductPanelModel> list) {
-    DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-    model.setRowCount(0); // Clear existing data
-    for (ProductPanelModel product : list) {
-        model.addRow(new Object[]{
-            product.getId(),
-            product.getName(),
-            product.getCategory(),
-            product.getQuantity(),
-            product.getPrice()
+        jTextField3.setText("Price(per)");
+        jTextField3.setForeground(java.awt.Color.GRAY);
+
+        jTextField4.setText("Quantity");
+        jTextField4.setForeground(java.awt.Color.GRAY);
+    }
+
+    public void setProductTableData(List<ProductPanelModel> list) {
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        model.setRowCount(0); // Clear existing data
+        for (ProductPanelModel product : list) {
+            model.addRow(new Object[]{
+                product.getId(),
+                product.getName(),
+                product.getCategory(),
+                product.getQuantity(),
+                product.getPrice()
+            });
+        }
+    }
+
+    public int getSelectedRow() {
+        return jTable1.getSelectedRow();
+    }
+
+    public int getProductIdAt(int row) {
+        // Assuming ID is in the first column (index 0)
+        Object value = jTable1.getValueAt(row, 0);
+        if (value instanceof Integer) {
+            return (int) value;
+        } else if (value instanceof Long) { // Handle Long if your ID column is BIGINT in DB
+            return ((Long) value).intValue();
+        }
+        return -1; // Or throw an exception, depending on error handling strategy
+    }
+
+    // --- NEW SETTERS FOR SEARCH RESULTS ---
+    public void setCategoryTextField(String categoryName) {
+        categoryfield.setText(categoryName);
+        categoryfield.setForeground(java.awt.Color.BLACK); // Set text color to black
+    }
+
+    public void setPriceTextField(BigDecimal price) {
+        jTextField3.setText(price.toPlainString());
+        jTextField3.setForeground(java.awt.Color.BLACK); // Set text color to black
+    }
+
+    public void setQuantityTextField(int quantity) {
+        jTextField4.setText(String.valueOf(quantity));
+        jTextField4.setForeground(java.awt.Color.BLACK); // Set text color to black
+    }
+
+    // Existing placeholder methods (no change needed here, just ensure they are called)
+    private void setPlaceholders() {
+        addPlaceholderStyle(jTextField2, "Product Name");
+        addPlaceholderStyle(categoryfield, "Category"); // Add category field to placeholders
+        addPlaceholderStyle(jTextField3, "Price(per)");
+        addPlaceholderStyle(jTextField4, "Quantity");
+    }
+
+    private void addPlaceholderStyle(javax.swing.JTextField textField, String placeholder) {
+        textField.setText(placeholder);
+        textField.setForeground(java.awt.Color.GRAY);
+
+        textField.addFocusListener(new java.awt.event.FocusAdapter() {
+            @Override
+            public void focusGained(java.awt.event.FocusEvent e) {
+                if (textField.getText().equals(placeholder)) {
+                    textField.setText("");
+                    textField.setForeground(java.awt.Color.BLACK);
+                }
+            }
+
+            @Override
+            public void focusLost(java.awt.event.FocusEvent e) {
+                if (textField.getText().isEmpty()) {
+                    textField.setText(placeholder);
+                    textField.setForeground(java.awt.Color.GRAY);
+                }
+            }
         });
     }
 }
-
-public int getSelectedRow() {
-    return jTable1.getSelectedRow();
-}
-
-public int getProductIdAt(int row) {
-    return (int) jTable1.getValueAt(row, 0);
-}
-private void setPlaceholders() {
-    addPlaceholderStyle(jTextField1, "Category");
-    addPlaceholderStyle(jTextField2, "Product Name");
-    addPlaceholderStyle(jTextField3, "Price(per)");
-    addPlaceholderStyle(jTextField4, "Quantity");
-}
-
-private void addPlaceholderStyle(javax.swing.JTextField textField, String placeholder) {
-    textField.setText(placeholder);
-    textField.setForeground(java.awt.Color.GRAY);
-
-    textField.addFocusListener(new java.awt.event.FocusAdapter() {
-        @Override
-        public void focusGained(java.awt.event.FocusEvent e) {
-            if (textField.getText().equals(placeholder)) {
-                textField.setText("");
-                textField.setForeground(java.awt.Color.BLACK);
-            }
-        }
-
-        @Override
-        public void focusLost(java.awt.event.FocusEvent e) {
-            if (textField.getText().isEmpty()) {
-                textField.setText(placeholder);
-                textField.setForeground(java.awt.Color.GRAY);
-            }
-      
-
-
-        }
-    });
-}
-public void addDashboardButtonListener(ActionListener listener) {
-    jButton9.addActionListener(listener);
-}
-  
-public void setCategory(String category) {
-    txtCategory.setText(category);
-}
-}
-
-
-
