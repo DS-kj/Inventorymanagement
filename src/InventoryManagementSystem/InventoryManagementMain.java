@@ -22,7 +22,7 @@ public class InventoryManagementMain {
     public static void main(String[] args) {
         ProductPanel view = new ProductPanel();
         ProductPanelController controller = new ProductPanelController(view);
-        controller.open();
+        controller.show();
     }
 }
 
