@@ -1,15 +1,15 @@
 package InventoryManagementSystem.controller;
 
 import InventoryManagementSystem.DAO.ProductPanelDao;
-
 import InventoryManagementSystem.model.ProductPanelModel;
-
 import InventoryManagementSystem.view.ProductPanel;
+
 import java.util.List;
 import javax.swing.*;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 
 public class ProductPanelController {
     private ProductPanel view;
@@ -18,7 +18,7 @@ public class ProductPanelController {
         this.view = view;
         this.view.addProductListener(new AddProductListener());
         this.view.addDeleteListener(new DeleteProductListener());
-        
+        this.view.addProductNameListener(new ProductNameListener()); // Add listener for product name changes
     }
 
     public void open() {
@@ -76,26 +76,48 @@ public class ProductPanelController {
             } else {
                 JOptionPane.showMessageDialog(view, "Please select a product.");
             }
-        }}
-          
+        }
+    }
+
+    // New class to handle product name changes
+    class ProductNameListener implements DocumentListener {
+        @Override
+        public void insertUpdate(DocumentEvent e) {
+            updateCategoryField();
+        }
+
+        @Override
+        public void removeUpdate(DocumentEvent e) {
+            updateCategoryField();
+        }
+
+        @Override
+        public void changedUpdate(DocumentEvent e) {
+            updateCategoryField();
+        }
+
+        private void updateCategoryField() {
+            String productName = view.getProductName().trim(); // Use view method to get product name
+
+            if (productName.isEmpty()) {
+                view.setCategory(""); // Use view method to set category
+                return;
+            }
+
+            // Query your database to get category by product name
+            String category = fetchCategoryFromDatabase(productName);
+
+            if (category != null) {
+                view.setCategory(category); // Use view method to set category
+            } else {
+                view.setCategory(""); // or show "Not found"
+            }
+        }
+
+        private String fetchCategoryFromDatabase(String productName) {
+            // Implement the logic to fetch category from the database
+            ProductPanelDao dao = new ProductPanelDao();
+            return dao.getCategoryByProductName(productName); // Assuming this method exists
+        }
+    }
 }
-        
-        
-   
-        
-    
-        
-    
-
-
-
-    
-    
-
-
-
-
-            
-        
-    
-

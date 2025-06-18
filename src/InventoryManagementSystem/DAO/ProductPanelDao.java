@@ -1,6 +1,5 @@
 package InventoryManagementSystem.DAO;
 
-import InventoryManagementSystem.database.MySqlConnection;
 import InventoryManagementSystem.model.ProductPanelModel;
 import java.sql.*;
 import java.util.ArrayList;
@@ -21,13 +20,13 @@ public class ProductPanelDao {
         // Check for null or empty fields
         if (product.getName() == null || product.getName().trim().isEmpty() ||
             product.getCategory() == null || product.getCategory().trim().isEmpty()) {
-            System.err.println(" Product name or category cannot be empty.");
+            System.err.println("Product name or category cannot be empty.");
             return false;
         }
 
         // Check for invalid quantity/price
         if (product.getQuantity() < 0 || product.getPrice() < 0) {
-            System.err.println(" Quantity or price cannot be negative.");
+            System.err.println("Quantity or price cannot be negative.");
             return false;
         }
 
@@ -38,10 +37,10 @@ public class ProductPanelDao {
             stmt.setInt(3, product.getQuantity());
             stmt.setDouble(4, product.getPrice());
             int rows = stmt.executeUpdate();
-            System.out.println(" Product added. Rows affected: " + rows);
+            System.out.println("Product added. Rows affected: " + rows);
             return rows > 0;
         } catch (SQLException e) {
-            System.err.println(" Error inserting product: " + e.getMessage());
+            System.err.println("Error inserting product: " + e.getMessage());
             e.printStackTrace();
             return false;
         }
@@ -53,10 +52,10 @@ public class ProductPanelDao {
         try (Connection conn = getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setInt(1, id);
             int rows = stmt.executeUpdate();
-            System.out.println("️ Product deleted. Rows affected: " + rows);
+            System.out.println("Product deleted. Rows affected: " + rows);
             return rows > 0;
         } catch (SQLException e) {
-            System.err.println(" Error deleting product: " + e.getMessage());
+            System.err.println("Error deleting product: " + e.getMessage());
             e.printStackTrace();
             return false;
         }
@@ -79,30 +78,28 @@ public class ProductPanelDao {
                 ));
             }
         } catch (SQLException e) {
-            System.err.println(" Error retrieving products: " + e.getMessage());
+            System.err.println("Error retrieving products: " + e.getMessage());
             e.printStackTrace();
         }
         return products;
     }
-    public String getSuggestedCategory(String productName) {
-    String sql = "SELECT c.name FROM category c " +
-                 "JOIN product p ON p.category_id = c.id " +
-                 "WHERE p.name LIKE ? LIMIT 1";
 
-    MySqlConnection db = new MySqlConnection(); // ✅ No getInstance
-    try (Connection conn = db.openConnection();
-         PreparedStatement stmt = conn.prepareStatement(sql)) {
+    // Get category by product name
+    public String getCategoryByProductName(String productName) {
+        String sql = "SELECT category FROM products WHERE name LIKE ? LIMIT 1"; // Corrected table name
+        try (Connection conn = getConnection(); // Use the reusable connection method
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
 
-        stmt.setString(1, "%" + productName + "%");
-        ResultSet rs = stmt.executeQuery();
+            stmt.setString(1, "%" + productName + "%");
+            ResultSet rs = stmt.executeQuery();
 
-        if (rs.next()) {
-            return rs.getString("name");
+            if (rs.next()) {
+                return rs.getString("category");
+            }
+        } catch (SQLException e) {
+            System.err.println("Error retrieving category: " + e.getMessage());
+            e.printStackTrace();
         }
-    } catch (SQLException e) {
-        e.printStackTrace();
+        return null; // Return null if not found
     }
-    return "";
-}
-
 }
