@@ -7,7 +7,9 @@ package InventoryManagementSystem;
 import InventoryManagementSystem.DAO.CategoryDao;
 import InventoryManagementSystem.controller.AdminPanelController;
 import InventoryManagementSystem.controller.CategoryController;
+import InventoryManagementSystem.controller.CustomerPanelController;
 import InventoryManagementSystem.controller.CustomerchooserController;
+import InventoryManagementSystem.controller.LoginController;
 import InventoryManagementSystem.controller.MainPageController;
 import InventoryManagementSystem.controller.ProductAndCartController;
 import InventoryManagementSystem.controller.ProductPanelController;
@@ -15,7 +17,9 @@ import InventoryManagementSystem.controller.ViewOrdersController;
 import InventoryManagementSystem.view.AdminPanel;
 //import InventoryManagementSystem.view.AdminPanel;
 import InventoryManagementSystem.view.Category;
+import InventoryManagementSystem.view.CustomerPanel;
 import InventoryManagementSystem.view.Customerchooser;
+import InventoryManagementSystem.view.LoginPanel;
 import InventoryManagementSystem.view.MainPage;
 import InventoryManagementSystem.view.ProductPanel;
 import InventoryManagementSystem.view.ProductandCart;
@@ -33,9 +37,16 @@ public class InventoryManagementMain {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        AdminPanel view = new AdminPanel();
-        AdminPanelController controller= new AdminPanelController(view);
-        controller.open();
+//        AdminPanel view = new AdminPanel();
+//        AdminPanelController controller= new AdminPanelController(view);
+//        controller.open();
+//                LoginPanel view=new LoginPanel();
+//                LoginController LoginOpener= new LoginController(view);
+//                 LoginOpener.open();
+                 CustomerPanel view=new CustomerPanel();
+                 CustomerPanelController customerP=new CustomerPanelController(view);
+                 
+                 customerP.open();
 //         Customerchooser view = new Customerchooser();
 //         CustomerchooserController controller= new CustomerchooserController(view);
 //         controller.open();

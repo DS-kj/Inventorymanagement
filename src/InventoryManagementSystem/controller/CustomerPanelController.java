@@ -1,6 +1,7 @@
 package InventoryManagementSystem.controller;
 
-import InventoryManagementSystem.DAO.CustomerPanelDao;
+
+import InventoryManagementSystem.dao.CustomerPanelDao;
 import InventoryManagementSystem.model.CustomerPanelModel;
 import InventoryManagementSystem.view.CustomerPanel;
 import java.awt.event.*;

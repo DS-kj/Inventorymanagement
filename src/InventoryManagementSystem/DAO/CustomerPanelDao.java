@@ -1,32 +1,29 @@
-package InventoryManagementSystem.DAO;
+package InventoryManagementSystem.dao;
 
 import InventoryManagementSystem.model.CustomerPanelModel;
+import InventoryManagementSystem.database.MySqlConnection;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class CustomerPanelDao {
 
-    // Database connection setup
-    private Connection getConnection() throws SQLException {
-        String url = "jdbc:mysql://localhost:3306/inventory?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC";
-        String user = "root";
-        String pass = "databasesem2";
-        return DriverManager.getConnection(url, user, pass);
-    }
+    private MySqlConnection connection = new MySqlConnection();
 
-    // Add customer with validation
+   
     public boolean addCustomer(CustomerPanelModel customer) {
-        // Validate input
-        if (customer.getName() == null ||customer.getName().trim().isEmpty()||
-                customer.getMobileNumber() ==null ||  customer.getMobileNumber().trim().isEmpty()||
-                customer.getEmail() ==null ||  customer.getEmail().trim().isEmpty())  {
-            System.err.println("Customer name or mobile number cannot be empty.");
+        if (customer.getName() == null || customer.getName().trim().isEmpty() ||
+            customer.getMobileNumber() == null || customer.getMobileNumber().trim().isEmpty() ||
+            customer.getEmail() == null || customer.getEmail().trim().isEmpty()) {
+            System.err.println("Customer name, mobile number, or email cannot be empty.");
             return false;
         }
 
-        String sql = "INSERT INTO Customers (Name, MobileNumber, Email) VALUES (?, ?, ?)";
-        try (Connection conn = getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
+        String sql = "INSERT INTO customers (name, mobile, email) VALUES (?, ?, ?)";
+        try (Connection conn = connection.openConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
             stmt.setString(1, customer.getName().trim());
             stmt.setString(2, customer.getMobileNumber().trim());
             stmt.setString(3, customer.getEmail().trim());
@@ -34,6 +31,7 @@ public class CustomerPanelDao {
             int rows = stmt.executeUpdate();
             System.out.println("Customer added. Rows affected: " + rows);
             return rows > 0;
+
         } catch (SQLException e) {
             System.err.println("Error inserting customer: " + e.getMessage());
             e.printStackTrace();
@@ -41,14 +39,16 @@ public class CustomerPanelDao {
         }
     }
 
-    // Delete customer by ID
     public boolean deleteCustomer(int id) {
-        String sql = "DELETE FROM Customers WHERE id = ?";
-        try (Connection conn = getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
+        String sql = "DELETE FROM customers WHERE id = ?";
+        try (Connection conn = connection.openConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
             stmt.setInt(1, id);
             int rows = stmt.executeUpdate();
             System.out.println("Customer deleted. Rows affected: " + rows);
             return rows > 0;
+
         } catch (SQLException e) {
             System.err.println("Error deleting customer: " + e.getMessage());
             e.printStackTrace();
@@ -56,25 +56,28 @@ public class CustomerPanelDao {
         }
     }
 
-    // Retrieve all customers
     public List<CustomerPanelModel> getAllCustomers() {
         List<CustomerPanelModel> customers = new ArrayList<>();
-        String sql = "SELECT * FROM Customers";
-        try (Connection conn = getConnection();
-             Statement stmt = conn.createStatement();
-             ResultSet rs = stmt.executeQuery(sql)) {
+        String sql = "SELECT * FROM customers";
+
+        try (Connection conn = connection.openConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql);
+             ResultSet rs = stmt.executeQuery()) {
+
             while (rs.next()) {
                 customers.add(new CustomerPanelModel(
                     rs.getInt("id"),
-                    rs.getString("Name"),
-                    rs.getString("Email"),
-                    rs.getString("MobileNumber")
+                    rs.getString("name"),
+                    rs.getString("mobile"),
+                    rs.getString("email")
                 ));
             }
+
         } catch (SQLException e) {
             System.err.println("Error retrieving customers: " + e.getMessage());
             e.printStackTrace();
         }
+
         return customers;
     }
 }
