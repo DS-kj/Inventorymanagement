@@ -76,7 +76,7 @@ public class Bill {
         bottomPanel.add(downloadButton, BorderLayout.EAST);
 
         downloadButton.addActionListener((var e) -> {
-            try (FileWriter writer = new FileWriter("C:\\Users\\ASUS\\Desktop\\Invent\\Inventorymanagement\\src\\InventoryManagementSystem\\bill.txt")) {
+            try (FileWriter writer = new FileWriter("C:\\Users\\ASUS\\Desktop\\Invent\\Inventorymanagement\\src\\InventoryManagementSystem\\bill.txt",true)) {
                 writer.write("Inventory Management System\n\n");
                 writer.write("Order ID: " + orderId + "\n");
                 writer.write("Date: " + currentDate + "\n");
@@ -93,7 +93,7 @@ public class Bill {
                     writer.write(String.format("%-20s %-10s %-10s %-10s\n", name, price, qty, subTotal));
                 }
 
-                writer.write("\nThank you, Please visit again!\n---------------------------------\n");
+                writer.write("\nThank you, Please visit again!\n-\n-\n-\n-----------------------------------\n-\n-\n");
                 JOptionPane.showMessageDialog(view, "Bill downloaded as bill.txt");
                 billDialog.dispose();
             } catch (IOException ex) {
