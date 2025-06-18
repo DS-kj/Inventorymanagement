@@ -13,6 +13,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 //import InventoryManagementSystem.model.AdminPanelModel;
 //import InventoryManagementSystem.view.AdminPanel;
@@ -35,6 +36,10 @@ public class AdminPanelController {
         this.view = view;
         this.view.createAccount(new CreateAccountListener());
         this.view.showandhide(new ShowPasswordToggleListener()); 
+        view.addEditUserListener(new EditUserListener());
+
+        this.view.addDeleteUserListener(new DeleteUserListener());
+    
 
     }
    public void open(){
@@ -42,11 +47,12 @@ public class AdminPanelController {
     view.setVisible(true);
 }
 
-private void refreshUserTable() {
+public void refreshUserTable() {
     UserDataDao dao = new UserDataDao();
     List<AdminPanelModel> users = dao.getAllUsers();
-    view.setUserTableData(users);
+    setUserTableData(users); // use controller method
 }
+
 
     public void close(){
         view.dispose();
@@ -61,6 +67,46 @@ class ShowPasswordToggleListener implements ActionListener {
         view.togglePasswordField(passwordVisible);
     }
 }
+public void reloadUserTable() {
+    DefaultTableModel model = (DefaultTableModel) view.getUserTable().getModel();
+    model.addRow(new Object[] {
+        model.getRowCount() + 1,
+        view.getUsernameAdminPanelEntry().getText(),  // ✅ fix here
+        view.getPhoneNumberEntry().getText()          // ✅ fix here
+    });
+}
+
+
+public void setUserTableData(List<AdminPanelModel> users) {
+    DefaultTableModel model = (DefaultTableModel) view.getUserTable().getModel();
+    model.setRowCount(0); // Clear existing rows
+    int serial = 1;
+    for (AdminPanelModel user : users) {
+        model.addRow(new Object[]{
+            serial++,
+            user.getUsernameAdminPanelEntry(),
+            user.getPhoneNumberEntry()
+        });
+    }
+}
+
+class EditUserListener implements ActionListener {
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        int selectedRow = view.getUserTable().getSelectedRow();
+        if (selectedRow != -1) {
+            String phone = (String) view.getUserTable().getValueAt(selectedRow, 2); // Phone number column
+            String name = (String) view.getUserTable().getValueAt(selectedRow, 1);  // Name column
+
+            AdminPanelModel selectedUser = new AdminPanelModel(phone, name, "");
+            new UserEditorController(selectedUser, AdminPanelController.this);  // <-- pass 'this' here
+        } else {
+            JOptionPane.showMessageDialog(view, "Please select a user to edit.");
+        }
+    }
+}
+
+
 
 class CreateAccountListener implements ActionListener {
         @Override
@@ -80,11 +126,40 @@ class CreateAccountListener implements ActionListener {
 
             if (dao.register(user)) {
                 JOptionPane.showMessageDialog(view, "Account created successfully.");
-                view.reloadUserTable(); 
+//                view.reloadUserTable(); 
+                reloadUserTable(); 
             } else {
                 JOptionPane.showMessageDialog(view, "Failed to create account.");
             }
         }
-    }   
+    } 
+class DeleteUserListener implements ActionListener {
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        int selectedRow = view.getUserTable().getSelectedRow();
+
+        if (selectedRow != -1) {
+            String phoneNumber = (String) view.getUserTable().getValueAt(selectedRow, 2); // column index for phone number
+
+            int confirm = JOptionPane.showConfirmDialog(view,
+                    "Are you sure you want to delete this user?",
+                    "Confirm Delete",
+                    JOptionPane.YES_NO_OPTION);
+
+            if (confirm == JOptionPane.YES_OPTION) {
+                UserDataDao dao = new UserDataDao();
+                if (dao.deleteUser(phoneNumber)) {
+                    refreshUserTable(); // Refresh table after deletion
+                    JOptionPane.showMessageDialog(view, "User deleted successfully.");
+                } else {
+                    JOptionPane.showMessageDialog(view, "Failed to delete user.");
+                }
+            }
+        } else {
+            JOptionPane.showMessageDialog(view, "Please select a user to delete.");
+        }
+    }
+}
+
 }
 

@@ -270,7 +270,7 @@ public class Category extends javax.swing.JFrame {
     }//GEN-LAST:event_CategoryActionPerformed
 
     private void ProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ProductActionPerformed
-        // TODO add your handling code here:
+        // TODO add your handling code here: 
     }//GEN-LAST:event_ProductActionPerformed
 
     private void InsertFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InsertFieldActionPerformed
@@ -371,5 +371,14 @@ public void setCategoryTableData(java.util.List<InventoryManagementSystem.model.
         model.addRow(new Object[]{category.getId(), category.getName()});
     }
 }
+public javax.swing.JButton getDeleteButton(){
+    return Deletebutton;
 }
-
+        
+public javax.swing.JTable getUserTable() {
+return jTable1;
+}
+public void addDeleteUserListener(ActionListener listener){
+    Deletebutton.addActionListener(listener);
+}
+}
