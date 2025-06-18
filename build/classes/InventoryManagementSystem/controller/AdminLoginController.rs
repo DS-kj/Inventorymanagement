@@ -1,3 +1,0 @@
-InventoryManagementSystem.Controller.AdminLoginController$LoginUser
-InventoryManagementSystem.Controller.AdminLoginController$ShowPasswordToggle
-InventoryManagementSystem.Controller.AdminLoginController
