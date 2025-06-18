@@ -3,9 +3,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package InventoryManagementSystem.view;
-
+import InventoryManagementSystem.view.Bill;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
+import InventoryManagementSystem.DAO.ProductAndCartDao;
 /**
  *
  * @author ACER
@@ -105,6 +106,11 @@ public class ProductandCart extends javax.swing.JFrame {
         goBack.setText("←GO BACK");
 
         Bill_Button.setText("BILL");
+        Bill_Button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Bill_ButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -162,6 +168,12 @@ public class ProductandCart extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void Bill_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Bill_ButtonActionPerformed
+       ProductAndCartDao dao = new ProductAndCartDao();
+    int orderId = dao.getLatestOrderId();
+        Bill billController = new Bill(this, orderId);
+    }//GEN-LAST:event_Bill_ButtonActionPerformed
 
     /**
      * @param args the command line arguments
