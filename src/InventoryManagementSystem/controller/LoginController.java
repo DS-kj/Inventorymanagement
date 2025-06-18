@@ -6,6 +6,7 @@ import InventoryManagementSystem.DAO.UserData;
 import InventoryManagementSystem.view.AdminPanel;
 import InventoryManagementSystem.view.Dashboard; 
 import InventoryManagementSystem.view.LoginPanel;
+import InventoryManagementSystem.view.MainPage;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
@@ -49,8 +50,9 @@ public class LoginController {
                 JOptionPane.showMessageDialog(view, "Login successful!");
 
                 
-                Dashboard dashboard = new Dashboard();
-                dashboard.setVisible(true);
+                MainPage view=new MainPage();
+         MainPageController mainPageOpener= new MainPageController(view);
+         mainPageOpener.open();
 
                 close();  
             }

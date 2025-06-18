@@ -14,18 +14,32 @@ import java.util.List;
 public class ProductAndCartController {
     private ProductandCart view;
     private List<ProductAndCartModel> cartList = new ArrayList<>();
-
+private int customerId;
     public ProductAndCartController(ProductandCart view) {
         this.view = view;
         loadProducts();
-        view.addAddToCartListener(new AddToCartListener());
+//        view.addAddToCartListener(new AddToCartListener());
 //        view.addSaveOrderListener(new SaveOrderListener());
+attachListeners();
+
+    }
+     public ProductAndCartController(ProductandCart view, int customerId) {
+        this.view = view;
+        this.customerId = customerId;
+                attachListeners();
+
+        
     }
        public void open(){
-   
+   loadProducts();
     view.setVisible(true);
 }
+   private void attachListeners() {
+        view.addAddToCartListener(new AddToCartListener());
+        view.addSaveOrderListener(new SaveOrderListener());
+        view.addBackButtonListener(new BackButtonListener());
 
+    }
     private void loadProducts() {
         ProductAndCartDao dao = new ProductAndCartDao();
         List<ProductAndCartModel> products = dao.getAllProducts();
@@ -68,21 +82,70 @@ public class ProductAndCartController {
         }
     }
 
-    private class SaveOrderListener implements ActionListener {
+    // private class SaveOrderListener implements ActionListener {
+    //     @Override
+    //     public void actionPerformed(ActionEvent e) {
+    //         if (cartList.isEmpty()) {
+    //             JOptionPane.showMessageDialog(view, "Cart is empty");
+    //             return;
+    //         }
+    //         ProductAndCartDao dao = new ProductAndCartDao();
+    //         if (dao.saveOrder(cartList)) {
+    //             JOptionPane.showMessageDialog(view, "Order saved successfully");
+    //             cartList.clear();
+    //             ((DefaultTableModel) view.getCartTable().getModel()).setRowCount(0);
+    //         } else {
+    //             JOptionPane.showMessageDialog(view, "Failed to save order");
+    //         }
+    //     }
+    // }
+//    private class SaveOrderListener implements ActionListener {
+//    @Override
+//    public void actionPerformed(ActionEvent e) {
+//        if (cartList.isEmpty()) {
+//            JOptionPane.showMessageDialog(view, "Cart is empty");
+//            return;
+//        }
+//        ProductAndCartDao dao = new ProductAndCartDao();
+//        if (dao.saveOrder(cartList, customerId)) { 
+//            JOptionPane.showMessageDialog(view, "Order saved successfully");
+//            cartList.clear();
+//            ((DefaultTableModel) view.getCartTable().getModel()).setRowCount(0);
+//        } else {
+//            JOptionPane.showMessageDialog(view, "Failed to save order");
+//        }
+//    }
+//}
+
+     private class SaveOrderListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
             if (cartList.isEmpty()) {
-                JOptionPane.showMessageDialog(view, "Cart is empty");
+                JOptionPane.showMessageDialog(view, "Cart is empty. Add products before saving.");
                 return;
             }
             ProductAndCartDao dao = new ProductAndCartDao();
-            if (dao.saveOrder(cartList)) {
-                JOptionPane.showMessageDialog(view, "Order saved successfully");
+            boolean saved = dao.saveOrder(cartList, customerId);  // i added this to pass the selected customerId for database reference
+
+            if (saved) {
+                JOptionPane.showMessageDialog(view, "Order saved successfully!");
                 cartList.clear();
                 ((DefaultTableModel) view.getCartTable().getModel()).setRowCount(0);
+                loadProducts();
             } else {
-                JOptionPane.showMessageDialog(view, "Failed to save order");
+                JOptionPane.showMessageDialog(view, "Failed to save order. Please try again.");
             }
         }
     }
+     private class BackButtonListener implements ActionListener {
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        InventoryManagementSystem.view.Customerchooser customerView = new InventoryManagementSystem.view.Customerchooser();
+        InventoryManagementSystem.controller.CustomerchooserController controller =
+                new InventoryManagementSystem.controller.CustomerchooserController(customerView);
+        controller.open(); 
+        view.dispose();
+    }
+}
+
 }

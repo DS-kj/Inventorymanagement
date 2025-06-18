@@ -4,6 +4,8 @@
  */
 package InventoryManagementSystem.view;
 
+import java.awt.event.ActionListener;
+
 /**
  *
  * @author ACER
@@ -11,11 +13,11 @@ package InventoryManagementSystem.view;
 public class ViewOrders extends javax.swing.JFrame {
 
     /**
-     * Creates new form ViewOrders
      */
     public ViewOrders() {
         initComponents();
     }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -244,4 +246,13 @@ public class ViewOrders extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
+public javax.swing.JTable getCustomertable() {
+    return Customertable;
+}
+public javax.swing.JButton getSelectButton() {
+    return Select;
+}
+public void addSelectCustomerListener(ActionListener listener) {
+    Select.addActionListener(listener);
+}
 }

@@ -11,28 +11,20 @@ import java.sql.*;
  */
 public class MySqlConnection implements DbConnection {
 
- @Override
-public Connection openConnection() {
-    String username = "root";
-    String password = "databasesem2";
-    String database = "Projectss";
-    String url = "jdbc:mysql://localhost:3306/" + database + "?useSSL=false&serverTimezone=UTC";
+    @Override
+    public Connection openConnection() {
 
-    try {
-        Class.forName("com.mysql.cj.jdbc.Driver");
-        System.out.println("JDBC Driver loaded successfully.");
-        Connection conn = DriverManager.getConnection(url, username, password);
-        System.out.println("Connected to database!");
-        return conn;
-    } catch (ClassNotFoundException e) {
-        System.err.println("JDBC Driver not found.");
-        e.printStackTrace();
-    } catch (SQLException e) {
-        System.err.println("Connection failed.");
-        e.printStackTrace();
+String username= "root";
+       String password = "databasesem2";
+       String database = "projectss";
+       try{
+           Class.forName("com.mysql.cj.jdbc.Driver");
+           Connection conn;
+           conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/"+ database, username,password);
+       return conn;}
+       catch (Exception e){
+           return null;    }
     }
-    return null;
-}
 
     @Override
     public void closeConnection(Connection conn) {
