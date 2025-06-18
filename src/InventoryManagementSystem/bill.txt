@@ -1,13 +1,13 @@
-
 Inventory Management System
 
-Order ID: 17
-Date: 2025-06-18 16:21:45
-Total Paid: Rs. 2878.56
+Order ID: 19
+Date: 2025-06-18 20:33:22
+Total Paid: Rs. 2958.52
 
 Name                 Price      Quantity   Sub Total 
 --------------------------------------------------------
 Wire                 19.99      12         239.88    
+Wire                 19.99      2          39.98     
 
 Thank you, Please visit again!
 -
@@ -18,8 +18,8 @@ Thank you, Please visit again!
 -
 Inventory Management System
 
-Order ID: 17
-Date: 2025-06-18 16:22:07
+Order ID: 20
+Date: 2025-06-18 20:34:00
 Total Paid: Rs. 79.96
 
 Name                 Price      Quantity   Sub Total 
@@ -35,13 +35,13 @@ Thank you, Please visit again!
 -
 Inventory Management System
 
-Order ID: 18
-Date: 2025-06-18 16:22:18
-Total Paid: Rs. 10574.71
+Order ID: 22
+Date: 2025-06-18 20:37:34
+Total Paid: Rs. 79.96
 
 Name                 Price      Quantity   Sub Total 
 --------------------------------------------------------
-Wire                 19.99      23         459.77    
+Wire                 19.99      2          39.98     
 
 Thank you, Please visit again!
 -

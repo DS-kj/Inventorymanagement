@@ -1,11 +1,11 @@
 package InventoryManagementSystem.model;
 
 public class ProductAndCartModel {
-    private int id;
-    private String name;
-    private String category;
+    private final int id;
+    private final String name;
+    private final String category;
     private int quantity;
-    private double price;
+    private final double price;
 
     public ProductAndCartModel(int id, String name, String category, int quantity, double price) {
         this.id = id;
