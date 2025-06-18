@@ -1,105 +1,224 @@
 package InventoryManagementSystem.DAO;
 
+import InventoryManagementSystem.database.DbConnection;
+import InventoryManagementSystem.database.MySqlConnection; // Assuming you have this
 import InventoryManagementSystem.model.ProductPanelModel;
-import java.sql.*;
+import java.math.BigDecimal; // Import BigDecimal
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional; // Import Optional for search result
 
 public class ProductPanelDao {
 
-    // Reusable connection function
-    private Connection getConnection() throws SQLException {
-        String url = "jdbc:mysql://localhost:3306/inventory?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC";
-        String user = "root";
-        String pass = "12345";
-        return DriverManager.getConnection(url, user, pass);
+    private DbConnection dbConnection;
+
+    public ProductPanelDao() {
+        this.dbConnection = new MySqlConnection(); // Or whatever your concrete implementation is
     }
 
-    // Add product with validation
+    /**
+     * Adds a new product to the database.
+     * @param product The ProductPanelModel object containing product details.
+     * @return true if the product was added successfully, false otherwise.
+     */
     public boolean addProduct(ProductPanelModel product) {
-        // Check for null or empty fields
-        if (product.getName() == null || product.getName().trim().isEmpty() ||
-            product.getCategory() == null || product.getCategory().trim().isEmpty()) {
-            System.err.println("Product name or category cannot be empty.");
-            return false;
-        }
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        try {
+            conn = dbConnection.openConnection();
+            if (conn == null) {
+                System.err.println("DB connection failed for addProduct.");
+                return false;
+            }
 
-        // Check for invalid quantity/price
-        if (product.getQuantity() < 0 || product.getPrice() < 0) {
-            System.err.println("Quantity or price cannot be negative.");
-            return false;
-        }
+            int categoryId = getCategoryIdByName(product.getCategory()); // Get ID for the category name
+            if (categoryId == -1) {
+                System.err.println("Category not found for name: " + product.getCategory() + ". Product not added.");
+                // Optionally, could offer to add the category here or throw an exception.
+                return false;
+            }
 
-        String sql = "INSERT INTO products (name, category, quantity, price) VALUES (?, ?, ?, ?)";
-        try (Connection conn = getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
-            stmt.setString(1, product.getName().trim());
-            stmt.setString(2, product.getCategory().trim());
-            stmt.setInt(3, product.getQuantity());
-            stmt.setDouble(4, product.getPrice());
-            int rows = stmt.executeUpdate();
-            System.out.println("Product added. Rows affected: " + rows);
-            return rows > 0;
+            String sql = "INSERT INTO product (name, category_id, quantity, price) VALUES (?, ?, ?, ?)";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, product.getName());
+            pstmt.setInt(2, categoryId);
+            pstmt.setInt(3, product.getQuantity());
+            pstmt.setBigDecimal(4, product.getPrice()); // Set BigDecimal
+
+            return pstmt.executeUpdate() > 0;
+
         } catch (SQLException e) {
-            System.err.println("Error inserting product: " + e.getMessage());
+            System.err.println("SQL Error in addProduct: " + e.getMessage());
             e.printStackTrace();
             return false;
+        } finally {
+            try {
+                if (pstmt != null) pstmt.close();
+            } catch (SQLException e) { /* ignore */ }
+            dbConnection.closeConnection(conn);
         }
     }
 
-    // Delete product by ID
-    public boolean deleteProduct(int id) {
-        String sql = "DELETE FROM products WHERE id=?";
-        try (Connection conn = getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
-            stmt.setInt(1, id);
-            int rows = stmt.executeUpdate();
-            System.out.println("Product deleted. Rows affected: " + rows);
-            return rows > 0;
+    /**
+     * Deletes a product from the database by its ID.
+     * @param productId The ID of the product to delete.
+     * @return true if the product was deleted successfully, false otherwise.
+     */
+    public boolean deleteProduct(int productId) {
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        try {
+            conn = dbConnection.openConnection();
+            if (conn == null) {
+                System.err.println("DB connection failed for deleteProduct.");
+                return false;
+            }
+            String sql = "DELETE FROM product WHERE id = ?";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, productId);
+            return pstmt.executeUpdate() > 0;
         } catch (SQLException e) {
-            System.err.println("Error deleting product: " + e.getMessage());
+            System.err.println("SQL Error in deleteProduct: " + e.getMessage());
             e.printStackTrace();
             return false;
+        } finally {
+            try {
+                if (pstmt != null) pstmt.close();
+            } catch (SQLException e) { /* ignore */ }
+            dbConnection.closeConnection(conn);
         }
     }
 
-    // Retrieve all products
+    /**
+     * Retrieves all products from the database.
+     * @return A list of ProductPanelModel objects.
+     */
     public List<ProductPanelModel> getAllProducts() {
         List<ProductPanelModel> products = new ArrayList<>();
-        String sql = "SELECT * FROM products";
-        try (Connection conn = getConnection();
-             Statement stmt = conn.createStatement();
-             ResultSet rs = stmt.executeQuery(sql)) {
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        try {
+            conn = dbConnection.openConnection();
+            if (conn == null) {
+                System.err.println("DB connection failed for getAllProducts.");
+                return products;
+            }
+            String sql = "SELECT p.id, p.name, c.name AS category_name, p.quantity, p.price " +
+                         "FROM product p JOIN category c ON p.category_id = c.id";
+            pstmt = conn.prepareStatement(sql);
+            rs = pstmt.executeQuery();
+
             while (rs.next()) {
-                products.add(new ProductPanelModel(
-                    rs.getInt("id"),
-                    rs.getString("name"),
-                    rs.getString("category"),
-                    rs.getInt("quantity"),
-                    rs.getDouble("price")
-                ));
+                int id = rs.getInt("id");
+                String name = rs.getString("name");
+                String category = rs.getString("category_name");
+                int quantity = rs.getInt("quantity");
+                BigDecimal price = rs.getBigDecimal("price"); // Get BigDecimal
+                products.add(new ProductPanelModel(id, name, category, quantity, price));
             }
         } catch (SQLException e) {
-            System.err.println("Error retrieving products: " + e.getMessage());
+            System.err.println("SQL Error in getAllProducts: " + e.getMessage());
             e.printStackTrace();
+        } finally {
+            try {
+                if (rs != null) rs.close();
+                if (pstmt != null) pstmt.close();
+            } catch (SQLException e) { /* ignore */ }
+            dbConnection.closeConnection(conn);
         }
         return products;
     }
 
-    // Get category by product name
-    public String getCategoryByProductName(String productName) {
-        String sql = "SELECT category FROM products WHERE name LIKE ? LIMIT 1"; // Corrected table name
-        try (Connection conn = getConnection(); // Use the reusable connection method
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
+    /**
+     * Retrieves a single product by its name.
+     * @param productName The name of the product to search for.
+     * @return An Optional containing the ProductPanelModel if found, or empty if not found.
+     */
+    public Optional<ProductPanelModel> getProductByName(String productName) {
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        ProductPanelModel product = null;
 
-            stmt.setString(1, "%" + productName + "%");
-            ResultSet rs = stmt.executeQuery();
+        String sql = "SELECT p.id, p.name AS product_name, c.name AS category_name, p.quantity, p.price " +
+                     "FROM product p " +
+                     "JOIN category c ON p.category_id = c.id " +
+                     "WHERE p.name = ?"; // Using exact match for search
+
+        try {
+            conn = dbConnection.openConnection();
+            if (conn == null) {
+                System.err.println("Database connection failed for getProductByName.");
+                return Optional.empty();
+            }
+
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, productName);
+
+            rs = pstmt.executeQuery();
 
             if (rs.next()) {
-                return rs.getString("category");
+                int id = rs.getInt("id");
+                String prodName = rs.getString("product_name");
+                String categoryName = rs.getString("category_name");
+                int quantity = rs.getInt("quantity");
+                BigDecimal price = rs.getBigDecimal("price"); // Get BigDecimal
+
+                product = new ProductPanelModel(id, prodName, categoryName, quantity, price);
             }
         } catch (SQLException e) {
-            System.err.println("Error retrieving category: " + e.getMessage());
+            System.err.println("SQL error fetching product by name: " + e.getMessage());
             e.printStackTrace();
+        } finally {
+            try {
+                if (rs != null) rs.close();
+                if (pstmt != null) pstmt.close();
+            } catch (SQLException e) { /* ignore */ }
+            dbConnection.closeConnection(conn);
         }
-        return null; // Return null if not found
+        return Optional.ofNullable(product);
+    }
+
+    /**
+     * Helper method to get category ID by category name.
+     * @param categoryName The name of the category.
+     * @return The ID of the category, or -1 if not found.
+     * @throws SQLException If a database access error occurs.
+     */
+    private int getCategoryIdByName(String categoryName) throws SQLException {
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        int categoryId = -1;
+        try {
+            conn = dbConnection.openConnection();
+            if (conn == null) {
+                System.err.println("DB connection failed for getCategoryIdByName.");
+                return -1;
+            }
+            String sql = "SELECT id FROM category WHERE name = ?";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, categoryName);
+            rs = pstmt.executeQuery();
+            if (rs.next()) {
+                categoryId = rs.getInt("id");
+            }
+        } finally {
+            // It's crucial to close resources in a finally block
+            // However, if dbConnection.openConnection() returns a connection that is
+            // managed externally (e.g., connection pool), closing here might be wrong.
+            // Assuming for now it's a simple connection that needs closing.
+            try {
+                if (rs != null) rs.close();
+                if (pstmt != null) pstmt.close();
+            } catch (SQLException e) { /* ignore */ }
+            dbConnection.closeConnection(conn); // Close the connection opened *within* this method
+        }
+        return categoryId;
     }
 }
