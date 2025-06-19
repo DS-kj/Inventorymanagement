@@ -178,9 +178,6 @@
           <SubComponents>
             <Component class="javax.swing.JLabel" name="jLabel4">
               <Properties>
-                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="2" name="/Users/nitesskatuwal/Library/Mobile Documents/com~apple~CloudDocs/.Trash/Screenshot 2025-05-20 at 20.11.37.png"/>
-                </Property>
                 <Property name="text" type="java.lang.String" value="jLabel4"/>
               </Properties>
             </Component>

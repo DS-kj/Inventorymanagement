@@ -254,4 +254,4 @@ public void addAdminSwitch(ActionListener listener) {
 public void addLoginButtonListener(ActionListener listener) {
     jButton1.addActionListener(listener); // Replace jButton1 with your Forgot Password button
 }
-    }
+}
