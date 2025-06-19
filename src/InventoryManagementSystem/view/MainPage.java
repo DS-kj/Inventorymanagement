@@ -452,7 +452,7 @@ public class HoverPanel extends javax.swing.JPanel {
                 .addGap(60, 60, 60)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(Order, javax.swing.GroupLayout.DEFAULT_SIZE, 184, Short.MAX_VALUE)
-                    .addComponent(Category, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                    .addComponent(Category, javax.swing.GroupLayout.PREFERRED_SIZE, 184, Short.MAX_VALUE))
                 .addGap(55, 55, 55)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(Product, javax.swing.GroupLayout.DEFAULT_SIZE, 191, Short.MAX_VALUE)

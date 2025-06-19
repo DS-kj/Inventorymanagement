@@ -64,7 +64,7 @@
                   <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="Order" pref="184" max="32767" attributes="0"/>
-                      <Component id="Category" pref="0" max="32767" attributes="0"/>
+                      <Component id="Category" pref="184" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="55" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
