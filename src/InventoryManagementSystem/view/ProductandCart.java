@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package InventoryManagementSystem.view;
-
+import java.awt.Color;
 import java.awt.event.ActionListener;
 
 /**
@@ -28,7 +28,11 @@ public class ProductandCart extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
+        jPanel1 = new InventoryManagementSystem.view.GradientBackgroundPanel(
+            new java.awt.Color(50, 120, 165),  // Brighter Left Side
+            new java.awt.Color(9, 47, 70),     // Darker Right Side
+            true   // diagonal gradient, use false for vertical
+        );
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
