@@ -20,6 +20,8 @@ public class ProductPanel extends javax.swing.JFrame {
      */
     public ProductPanel() {
         initComponents();
+        setPlaceholders();
+
                 
 
     }
@@ -303,7 +305,35 @@ public javax.swing.JTextField getPriceField() {
 public javax.swing.JTable getProductTable() {
     return jTable1;
 }
+public javax.swing.JButton DeleteButton() {
+    return jButton2;
+}
+private void setPlaceholders() {
+    
+    addPlaceholderStyle(jTextField2, "Product Name");
+    addPlaceholderStyle(jTextField3, "Price(per)");
+    addPlaceholderStyle(jTextField4, "Quantity");
+}
+
+private void addPlaceholderStyle(javax.swing.JTextField textField, String placeholder) {
+    textField.setText(placeholder);
+    textField.setForeground(java.awt.Color.GRAY);
+
+    textField.addFocusListener(new java.awt.event.FocusAdapter() {
+        @Override
+        public void focusGained(java.awt.event.FocusEvent e) {
+            if (textField.getText().equals(placeholder)) {
+                textField.setText("");
+                textField.setForeground(java.awt.Color.BLACK);
+            }
+        }
+    });
+            
 
 
 
+
+
+    
+            }
 }
