@@ -73,9 +73,9 @@ public class ProductPanel extends javax.swing.JFrame {
 
         jTextField2.setText("Product Name");
 
-        jTextField3.setText("Price(per)");
+        jTextField3.setText("Quantity");
 
-        jTextField4.setText("Quantity");
+        jTextField4.setText("Price(per)");
 
         jButton8.setBackground(new java.awt.Color(0, 204, 51));
         jButton8.setText("Add");
@@ -311,8 +311,8 @@ public javax.swing.JButton DeleteButton() {
 private void setPlaceholders() {
     
     addPlaceholderStyle(jTextField2, "Product Name");
-    addPlaceholderStyle(jTextField3, "Price(per)");
-    addPlaceholderStyle(jTextField4, "Quantity");
+    addPlaceholderStyle(jTextField3, "Quantity");
+    addPlaceholderStyle(jTextField4, "Price(per)");
 }
 
 private void addPlaceholderStyle(javax.swing.JTextField textField, String placeholder) {
