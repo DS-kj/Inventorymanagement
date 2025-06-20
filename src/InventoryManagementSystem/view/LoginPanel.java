@@ -17,6 +17,7 @@ public class LoginPanel extends javax.swing.JFrame {
      */
     public LoginPanel() {
         initComponents();
+        setPlaceholders();
     }
 
     /**
@@ -254,4 +255,61 @@ public void addAdminSwitch(ActionListener listener) {
 public void addLoginButtonListener(ActionListener listener) {
     jButton1.addActionListener(listener); // Replace jButton1 with your Forgot Password button
 }
+private void setPlaceholders() {
+    addPlaceholderToTextField(jTextField1, "UserName");
+    addPlaceholderToPasswordField(jPasswordField1, "Password");
+}
+
+private void addPlaceholderToTextField(javax.swing.JTextField textField, String placeholder) {
+    textField.setText(placeholder);
+    textField.setForeground(java.awt.Color.GRAY);
+
+    textField.addFocusListener(new java.awt.event.FocusAdapter() {
+        @Override
+        public void focusGained(java.awt.event.FocusEvent e) {
+            if (textField.getText().equals(placeholder)) {
+                textField.setText("");
+                textField.setForeground(java.awt.Color.BLACK);
+            }
+        }
+
+        @Override
+        public void focusLost(java.awt.event.FocusEvent e) {
+            if (textField.getText().isEmpty()) {
+                textField.setText(placeholder);
+                textField.setForeground(java.awt.Color.GRAY);
+            }
+        }
+    });
+}
+
+private void addPlaceholderToPasswordField(javax.swing.JPasswordField passwordField, String placeholder) {
+    passwordField.setText(placeholder);
+    passwordField.setEchoChar((char) 0); // Show text instead of echo
+
+    passwordField.setForeground(java.awt.Color.GRAY);
+
+    passwordField.addFocusListener(new java.awt.event.FocusAdapter() {
+        @Override
+        public void focusGained(java.awt.event.FocusEvent e) {
+            String currentText = new String(passwordField.getPassword());
+            if (currentText.equals(placeholder)) {
+                passwordField.setText("");
+                passwordField.setEchoChar('•'); // Restore echo char
+                passwordField.setForeground(java.awt.Color.BLACK);
+            }
+        }
+
+        @Override
+        public void focusLost(java.awt.event.FocusEvent e) {
+            String currentText = new String(passwordField.getPassword());
+            if (currentText.isEmpty()) {
+                passwordField.setText(placeholder);
+                passwordField.setEchoChar((char) 0);
+                passwordField.setForeground(java.awt.Color.GRAY);
+            }
+        }
+    });
+}
+
 }
