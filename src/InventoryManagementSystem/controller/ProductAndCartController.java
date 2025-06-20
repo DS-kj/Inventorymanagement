@@ -73,8 +73,13 @@ attachListeners();
                     ProductAndCartModel cartItem = new ProductAndCartModel(id, name, category, quantity, price);
                     cartList.add(cartItem);
 
+                     // Update cart table
                     DefaultTableModel cartModel = (DefaultTableModel) view.getCartTable().getModel();
                     cartModel.addRow(new Object[]{name, quantity, quantity * price});
+
+                    // Decrease the available quantity in the product table (UI only)
+                    int newAvailableQuantity = availableQuantity - quantity;
+                    model.setValueAt(newAvailableQuantity, selectedRow, 3);;
                 }
             } else {
                 JOptionPane.showMessageDialog(view, "Please select a product to add to cart");
