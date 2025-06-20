@@ -52,10 +52,6 @@ public class AdminLogin extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(202, 221, 242));
         jLabel2.setText("Password");
 
-        jTextField1.setText("jTextField1");
-
-        jPasswordField1.setText("jPasswordField1");
-
         jButton1.setText("Show");
 
         jButton2.setText("Login");
