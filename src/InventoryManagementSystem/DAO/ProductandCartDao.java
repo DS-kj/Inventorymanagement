@@ -6,6 +6,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class ProductAndCartDao {
     private final MySqlConnection connection = new MySqlConnection();
 
