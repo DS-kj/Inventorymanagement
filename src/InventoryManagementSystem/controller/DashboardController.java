@@ -1,38 +1,77 @@
 package InventoryManagementSystem.controller;
 
-import javax.swing.*;
-//import InventoryManagementSystem.view.CategoryView;
+import InventoryManagementSystem.DAO.DashboardDao;
+import InventoryManagementSystem.model.DashboardModel;
+import InventoryManagementSystem.view.Dashboard;
+
+import java.util.List;
 
 public class DashboardController {
 
-    
+    private final Dashboard view;
+    private final DashboardDao dao;
 
-    public void handleNavigation(String action) {
-        switch (action) {
-//            case "Category" -> new CategoryView().setVisible(true);
+    public DashboardController(Dashboard view) {
+        this.view = view;
+        this.dao = new DashboardDao();
+    }
 
-            case "Category" -> showNoTableMessage(action);
-            case "Product" -> showNoTableMessage(action);
-            case "Customer" -> showNoTableMessage(action);
-            case "Order" -> showNoTableMessage(action);
-            case "View Order" -> showNoTableMessage(action);
-            case "Log Out" -> {
-                int option = JOptionPane.showConfirmDialog(null, "Are you sure you want to logout?", "Confirm", JOptionPane.YES_NO_OPTION);
-                if (option == JOptionPane.YES_OPTION) {
-                    System.exit(0);
-                }
-            }
-            default -> JOptionPane.showMessageDialog(null,
-                    "No table named '" + action + "' found.",
-                    "Information",
-                    JOptionPane.INFORMATION_MESSAGE);
+    public void loadProducts() {
+        List<DashboardModel> products = dao.getAllProducts();
+        refreshTable(products);
+    }
+
+    public void loadProducts(String keyword) {
+        List<DashboardModel> products = dao.searchProducts(keyword);
+        refreshTable(products);
+    }
+
+    private void refreshTable(List<DashboardModel> products) {
+        view.clearTable();
+        for (DashboardModel p : products) {
+            Object[] row = {
+                p.getId(),
+                p.getProductName(),
+                p.getCategory(),
+                p.getQuantity(),
+                p.getPrice(),
+                p.getRate()
+            };
+            view.addRowToTable(row);
         }
     }
 
-    private void showNoTableMessage(String tableName) {
-        JOptionPane.showMessageDialog(null,
-                "No table named '" + tableName + "' found.",
-                "Information",
-                JOptionPane.INFORMATION_MESSAGE);
+    public void handleNavigation(String action) {
+        // Here you can call a NavigationManager or switch like before to open other modules
+        switch (action) {
+            case "Dashboard" -> {
+                // Already in dashboard, maybe refresh or do nothing
+                loadProducts();
+            }
+            case "Category" -> {
+                // Open Category view/controller
+                // ...
+            }
+            case "Product" -> {
+                // Open Product view/controller
+                // ...
+            }
+            case "Customer" -> {
+                // Open Customer view/controller
+                // ...
+            }
+            case "Order" -> {
+                // Open Order view/controller
+                // ...
+            }
+            case "View Order" -> {
+                // Open View Order view/controller
+                // ...
+            }
+            case "Log Out" -> {
+                System.exit(0);
+            }
+            default -> System.out.println("No handler for " + action);
+        }
     }
 }
