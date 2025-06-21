@@ -255,4 +255,7 @@ public javax.swing.JButton getSelectButton() {
 public void addSelectCustomerListener(ActionListener listener) {
     Select.addActionListener(listener);
 }
+public void addCategoryButtonListener(ActionListener listener) {
+    Category.addActionListener(listener);
+}
 }
