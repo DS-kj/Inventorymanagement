@@ -23,6 +23,7 @@ public class Category extends javax.swing.JFrame {
      */
     public Category() {
         initComponents();
+        setPlaceholders();
     }
 
     /**
@@ -87,6 +88,8 @@ public class Category extends javax.swing.JFrame {
         Dashboard.setBackground(new java.awt.Color(36, 160, 237));
         Dashboard.setForeground(new java.awt.Color(255, 255, 255));
         Dashboard.setText("Dashboard");
+        Dashboard.setBorder(null);
+        Dashboard.setBorderPainted(false);
 
         Category.setBackground(new java.awt.Color(36, 160, 237));
         Category.setForeground(new java.awt.Color(255, 255, 255));
@@ -148,7 +151,7 @@ public class Category extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap(8, Short.MAX_VALUE)
-                .addComponent(Dashboard, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(Dashboard, javax.swing.GroupLayout.DEFAULT_SIZE, 33, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
                 .addComponent(Category, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
@@ -416,5 +419,23 @@ public void addDeleteUserListener(ActionListener listener){
 }
 public void addEditNameListener(ActionListener l) {
     Editname.addActionListener(l);
+}
+private void setPlaceholders() {
+    addPlaceholderStyle(InsertField, "Product Name");
+}
+ 
+private void addPlaceholderStyle(javax.swing.JTextField textField, String placeholder) {
+    textField.setText(placeholder);
+    textField.setForeground(java.awt.Color.GRAY);
+ 
+    textField.addFocusListener(new java.awt.event.FocusAdapter() {
+        @Override
+        public void focusGained(java.awt.event.FocusEvent e) {
+            if (textField.getText().equals(placeholder)) {
+                textField.setText("");
+                textField.setForeground(java.awt.Color.BLACK);
+            }
+        }
+    });
 }
 }
