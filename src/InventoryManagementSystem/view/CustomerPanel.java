@@ -28,32 +28,32 @@ public class CustomerPanel extends javax.swing.JFrame {
     public CustomerPanel() {
         initComponents();
         setPlaceholders();
-        jButton10.addActionListener(e -> {
+        Dashboard.addActionListener(e -> {
     new Dashboard().setVisible(true);
     this.dispose();
 });
 
-jButton11.addActionListener(e -> {
+Category.addActionListener(e -> {
     new Category().setVisible(true);
     this.dispose();
 });
 
-jButton12.addActionListener(e -> {
+Product.addActionListener(e -> {
     new ProductandCart().setVisible(true);
     this.dispose();
 });
 
-jButton13.addActionListener(e -> {
+Customer.addActionListener(e -> {
     new Customerchooser().setVisible(true);
     this.dispose();
 });
 
-jButton14.addActionListener(e -> {
+Order.addActionListener(e -> {
     new OrderList().setVisible(true);
     this.dispose();
 });
 
-jButton15.addActionListener(e -> {
+ViewOrder.addActionListener(e -> {
     new ViewOrders().setVisible(true);
     this.dispose();
 
@@ -83,12 +83,12 @@ jButton15.addActionListener(e -> {
         jTextField3 = new javax.swing.JTextField();
         jButton9 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
-        jButton10 = new javax.swing.JButton();
-        jButton11 = new javax.swing.JButton();
-        jButton12 = new javax.swing.JButton();
-        jButton13 = new javax.swing.JButton();
-        jButton14 = new javax.swing.JButton();
-        jButton15 = new javax.swing.JButton();
+        Dashboard = new javax.swing.JButton();
+        Category = new javax.swing.JButton();
+        Product = new javax.swing.JButton();
+        Customer = new javax.swing.JButton();
+        Order = new javax.swing.JButton();
+        ViewOrder = new javax.swing.JButton();
         jButton16 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -136,32 +136,32 @@ jButton15.addActionListener(e -> {
         jButton9.setForeground(new java.awt.Color(255, 255, 255));
         jButton9.setText("ADD");
 
-        jButton10.setText("Dashboard");
-        jButton10.addActionListener(new java.awt.event.ActionListener() {
+        Dashboard.setText("Dashboard");
+        Dashboard.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton10ActionPerformed(evt);
+                DashboardActionPerformed(evt);
             }
         });
 
-        jButton11.setText("Category");
-        jButton11.addActionListener(new java.awt.event.ActionListener() {
+        Category.setText("Category");
+        Category.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton11ActionPerformed(evt);
+                CategoryActionPerformed(evt);
             }
         });
 
-        jButton12.setText("Product");
+        Product.setText("Product");
 
-        jButton13.setText("Customer");
-        jButton13.addActionListener(new java.awt.event.ActionListener() {
+        Customer.setText("Customer");
+        Customer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton13ActionPerformed(evt);
+                CustomerActionPerformed(evt);
             }
         });
 
-        jButton14.setText("Order");
+        Order.setText("Order");
 
-        jButton15.setText("View Order");
+        ViewOrder.setText("View Order");
 
         jButton16.setBackground(new java.awt.Color(255, 0, 0));
         jButton16.setText("Log Out");
@@ -173,12 +173,12 @@ jButton15.addActionListener(e -> {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton15, javax.swing.GroupLayout.DEFAULT_SIZE, 118, Short.MAX_VALUE)
+                    .addComponent(Dashboard, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(Category, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(Product, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(Customer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(Order, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(ViewOrder, javax.swing.GroupLayout.DEFAULT_SIZE, 118, Short.MAX_VALUE)
                     .addComponent(jButton16, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -186,17 +186,17 @@ jButton15.addActionListener(e -> {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButton10)
+                .addComponent(Dashboard)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton11)
+                .addComponent(Category)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton12)
+                .addComponent(Product)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton13)
+                .addComponent(Customer)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton14)
+                .addComponent(Order)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton15)
+                .addComponent(ViewOrder)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton16)
                 .addContainerGap(11, Short.MAX_VALUE))
@@ -282,17 +282,17 @@ jButton15.addActionListener(e -> {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField2ActionPerformed
 
-    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+    private void DashboardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DashboardActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton10ActionPerformed
+    }//GEN-LAST:event_DashboardActionPerformed
 
-    private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
+    private void CategoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CategoryActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton11ActionPerformed
+    }//GEN-LAST:event_CategoryActionPerformed
 
-    private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
+    private void CustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CustomerActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton13ActionPerformed
+    }//GEN-LAST:event_CustomerActionPerformed
 
     /**
      * @param args the command line arguments
@@ -330,12 +330,12 @@ jButton15.addActionListener(e -> {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton10;
-    private javax.swing.JButton jButton11;
-    private javax.swing.JButton jButton12;
-    private javax.swing.JButton jButton13;
-    private javax.swing.JButton jButton14;
-    private javax.swing.JButton jButton15;
+    private javax.swing.JButton Category;
+    private javax.swing.JButton Customer;
+    private javax.swing.JButton Dashboard;
+    private javax.swing.JButton Order;
+    private javax.swing.JButton Product;
+    private javax.swing.JButton ViewOrder;
     private javax.swing.JButton jButton16;
     private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;

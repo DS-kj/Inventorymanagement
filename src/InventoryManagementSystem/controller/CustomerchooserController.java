@@ -6,6 +6,7 @@ import InventoryManagementSystem.view.Category;
 import InventoryManagementSystem.view.CustomerPanel;
 import InventoryManagementSystem.view.Customerchooser;
 import InventoryManagementSystem.view.Dashboard;
+import InventoryManagementSystem.view.MainPage;
 import InventoryManagementSystem.view.ProductPanel;
 import InventoryManagementSystem.view.ProductandCart;
 import InventoryManagementSystem.view.ViewOrders;
@@ -30,7 +31,8 @@ public class CustomerchooserController {
         view.customer(new CustomerListener());
         view.order(new OrderListener());
         view.viewOrder(new ViewOrderListener());
-        view.viewOrder(new productListener());
+        view.product(new ProductListener());
+        view.goBackMainMenu(new MainMenuListener());
     }
            public void open(){
    
@@ -119,7 +121,7 @@ controllerCategory.open();
                 view.dispose();
         }
     }
-    private class productListener implements ActionListener {
+    private class ProductListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
             ProductPanel prodView = new ProductPanel();
@@ -129,5 +131,14 @@ controllerCategory.open();
                 view.dispose();
         }
     }
-    
+    private class MainMenuListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            MainPage mainView=new MainPage();
+         MainPageController mainPageOpener= new MainPageController(mainView);
+         mainPageOpener.open();
+                System.out.println("Main Menu clicked!");
+                view.dispose();
+        }
+    }
 }
