@@ -1,0 +1,10 @@
+Inventory Management System
+
+Order ID: 16
+Date: 2025-06-18 16:03:03
+Total Paid: Rs. 0.00
+
+Name                 Price      Quantity   Sub Total 
+--------------------------------------------------------
+
+Thank you, Please visit again!

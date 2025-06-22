@@ -1,14 +1,12 @@
 package InventoryManagementSystem.controller;
 
 import InventoryManagementSystem.view.Category;
+import InventoryManagementSystem.view.CustomerPanel;
 import InventoryManagementSystem.view.Customerchooser;
 import InventoryManagementSystem.view.Dashboard;
 import InventoryManagementSystem.view.MainPage;
 import InventoryManagementSystem.view.ProductPanel;
 import InventoryManagementSystem.view.ViewOrders;
-import InventoryManagementSystem.view.CustomerPanel;
-
-
 //import InventoryManagementSystem.view.HoverPanel;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -32,7 +30,9 @@ public class MainPageController {
         this.view.addProductListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                new ProductPanel().setVisible(true);
+                 ProductPanel view = new ProductPanel();
+        ProductPanelController controller = new ProductPanelController(view);
+        controller.show();
                 System.out.println("Product clicked!");
             }
         });
@@ -52,7 +52,11 @@ controllerCategory.open();
         this.view.addCustomerListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                new CustomerPanel().setVisible(true);
+//                new Customer().setVisible(true);
+   CustomerPanel viewCustomerP=new CustomerPanel();
+                 CustomerPanelController customerP=new CustomerPanelController(viewCustomerP);
+                 
+                 customerP.open();
                 System.out.println("Customer clicked!");
             }
         });
@@ -76,6 +80,26 @@ controllerCategory.open();
          ViewOrdersController controllerOrder= new ViewOrdersController(viewOrder);
          controllerOrder.open();
                 System.out.println("History clicked!");
+            }
+        });
+          this.view.addLogoutListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                  int response = javax.swing.JOptionPane.showConfirmDialog(
+            view,
+            "Are you sure you want to log out?",
+            "Confirm Logout",
+            javax.swing.JOptionPane.YES_NO_OPTION,
+            javax.swing.JOptionPane.QUESTION_MESSAGE
+        );
+
+        if (response == javax.swing.JOptionPane.YES_OPTION) {
+            view.dispose();
+            System.out.println("User logged out.");
+        } else {
+            System.out.println("Logout cancelled.");
+        }
+    
             }
         });
     
