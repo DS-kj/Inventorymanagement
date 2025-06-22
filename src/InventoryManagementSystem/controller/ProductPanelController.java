@@ -5,7 +5,14 @@ import InventoryManagementSystem.DAO.CategoryDao;
 import InventoryManagementSystem.dao.ProductPanelDao;
 import InventoryManagementSystem.model.ProductModel;
 import InventoryManagementSystem.model.CategoryModel;
+import InventoryManagementSystem.view.Category;
+import InventoryManagementSystem.view.CustomerPanel;
+import InventoryManagementSystem.view.Customerchooser;
+import InventoryManagementSystem.view.Dashboard;
+import InventoryManagementSystem.view.LoginPanel;
+import InventoryManagementSystem.view.MainPage;
 import InventoryManagementSystem.view.ProductPanel;
+import InventoryManagementSystem.view.ViewOrders;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -26,8 +33,15 @@ public class ProductPanelController {
         this.categoryDao = new CategoryDao();
         populateCategoryDropdown();
         initController();
-        
         loadProductsToTable();
+        view.dashboard(new DashboardListener());
+        view.category(new CategoryListener());
+        view.customer(new CustomerListener());
+        view.order(new OrderListener());
+        view.viewOrder(new ViewOrderListener());
+        view.product(new ProductListener());
+        view.goBackMainMenu(new MainMenuListener());
+        view.logOut(new LogOutListener());
     }
      public void show() {
         view.setVisible(true);
@@ -40,13 +54,7 @@ public class ProductPanelController {
                 insertProduct();
             }
         });
-   
-    
-
-    view.DeleteButton().addActionListener(new DeleteProductListener());
-}
-
-     
+    }
      private void populateCategoryDropdown() {
         List<CategoryModel> categories = categoryDao.getAllCategories();
         JComboBox comboBox = view.getCategoryChooser();
@@ -86,8 +94,6 @@ public class ProductPanelController {
             ex.printStackTrace();
         }
     }
-    
-
     public void loadProductsToTable() {
         List<ProductModel> products = dao.getAllProducts();
         DefaultTableModel model = (DefaultTableModel) view.getProductTable().getModel();
@@ -104,40 +110,102 @@ public class ProductPanelController {
             model.addRow(row);
         }
     }
-    class DeleteProductListener implements ActionListener {
+
+    void open() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+    private class DashboardListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            try {
-                int row = view.getProductTable().getSelectedRow();
-
-                if (row < 0) {
-                    JOptionPane.showMessageDialog(view, "Please select a product to delete.");
-                    return;
-                }
-
-                int id = (int) view.getProductTable().getValueAt(row, 0); // Assuming column 0 = ID
-
-                int confirm = JOptionPane.showConfirmDialog(
-                    view,
-                    "Are you sure you want to delete this product?",
-                    "Confirm Deletion",
-                    JOptionPane.YES_NO_OPTION
-                );
-
-                if (confirm == JOptionPane.YES_OPTION) {
-                    boolean success = dao.deleteProduct(id);
-
-                    if (success) {
-                        JOptionPane.showMessageDialog(view, "Product deleted successfully.");
-                        loadProductsToTable();
-                    } else {
-                        JOptionPane.showMessageDialog(view, "Failed to delete product.");
-                    }
-                }
-            } catch (Exception ex) {
-                ex.printStackTrace();
-                JOptionPane.showMessageDialog(view, "An error occurred while deleting the product.");
-            }
+           new Dashboard().setVisible(true);
+                System.out.println("Dashboard clicked!");
+                view.dispose();
         }
     }
+
+    private class CategoryListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            Category viewCategory = new Category();
+CategoryController controllerCategory = new CategoryController(viewCategory);
+controllerCategory.open();
+                System.out.println("Category clicked!");
+                view.dispose();
+        }
+    }
+
+    private class CustomerListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            CustomerPanel viewCustomerP=new CustomerPanel();
+                 CustomerPanelController customerP=new CustomerPanelController(viewCustomerP);
+                 
+                 customerP.open();
+                System.out.println("Customer clicked!");
+                view.dispose();
+        }
+    }
+
+    private class OrderListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            Customerchooser chooser = new Customerchooser();
+            new CustomerchooserController(chooser).open();
+            view.dispose();
+        }
+    }
+
+    private class ViewOrderListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+           ViewOrders viewOrder = new ViewOrders();
+         ViewOrdersController controllerOrder= new ViewOrdersController(viewOrder);
+         controllerOrder.open();
+                System.out.println("History clicked!");
+                view.dispose();
+        }
+    }
+    private class ProductListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            ProductPanel prodView = new ProductPanel();
+        ProductPanelController controller = new ProductPanelController(prodView);
+        controller.show();
+                System.out.println("Product clicked!");
+                view.dispose();
+        }
+    }
+    private class MainMenuListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            MainPage mainView=new MainPage();
+         MainPageController mainPageOpener= new MainPageController(mainView);
+         mainPageOpener.open();
+                System.out.println("Main Menu clicked!");
+                view.dispose();
+        }
+    }
+     private class LogOutListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            int response = javax.swing.JOptionPane.showConfirmDialog(
+            view,
+            "Are you sure you want to log out?",
+            "Confirm Logout",
+            javax.swing.JOptionPane.YES_NO_OPTION,
+            javax.swing.JOptionPane.QUESTION_MESSAGE
+        );
+
+        if (response == javax.swing.JOptionPane.YES_OPTION) {
+            view.dispose();
+            LoginPanel viewLogin=new LoginPanel();
+                LoginController LoginOpener= new LoginController(viewLogin);
+                 LoginOpener.open();
+            System.out.println("User logged out.");
+        } else {
+            System.out.println("Logout cancelled.");
+        }
+    
+            }
+        }
 }

@@ -6,6 +6,7 @@ import InventoryManagementSystem.view.Category;
 import InventoryManagementSystem.view.CustomerPanel;
 import InventoryManagementSystem.view.Customerchooser;
 import InventoryManagementSystem.view.Dashboard;
+import InventoryManagementSystem.view.LoginPanel;
 import InventoryManagementSystem.view.MainPage;
 import InventoryManagementSystem.view.ProductPanel;
 import InventoryManagementSystem.view.ProductandCart;
@@ -33,6 +34,7 @@ public class CustomerchooserController {
         view.viewOrder(new ViewOrderListener());
         view.product(new ProductListener());
         view.goBackMainMenu(new MainMenuListener());
+        view.logOut(new LogOutListener());
     }
            public void open(){
    
@@ -141,4 +143,27 @@ controllerCategory.open();
                 view.dispose();
         }
     }
+     private class LogOutListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            int response = javax.swing.JOptionPane.showConfirmDialog(
+            view,
+            "Are you sure you want to log out?",
+            "Confirm Logout",
+            javax.swing.JOptionPane.YES_NO_OPTION,
+            javax.swing.JOptionPane.QUESTION_MESSAGE
+        );
+
+        if (response == javax.swing.JOptionPane.YES_OPTION) {
+            view.dispose();
+            LoginPanel viewLogin=new LoginPanel();
+                LoginController LoginOpener= new LoginController(viewLogin);
+                 LoginOpener.open();
+            System.out.println("User logged out.");
+        } else {
+            System.out.println("Logout cancelled.");
+        }
+    
+            }
+        }
 }
