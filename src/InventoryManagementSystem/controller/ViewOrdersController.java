@@ -95,4 +95,12 @@ public class ViewOrdersController {
                 view.dispose();
         }
     }
+     private class OrderListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            Customerchooser chooser = new Customerchooser();
+            new CustomerchooserController(chooser).open();
+            view.dispose();
+        }
+    }
 }
