@@ -103,4 +103,14 @@ public class ViewOrdersController {
             view.dispose();
         }
     }
+     private class ViewOrderListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+           ViewOrders viewOrder = new ViewOrders();
+         ViewOrdersController controllerOrder= new ViewOrdersController(viewOrder);
+         controllerOrder.open();
+                System.out.println("History clicked!");
+                view.dispose();
+        }
+    }
 }
