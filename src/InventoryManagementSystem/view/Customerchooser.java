@@ -33,13 +33,13 @@ public class Customerchooser extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
-        jButton5 = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
+        Dashboard = new javax.swing.JButton();
+        Category = new javax.swing.JButton();
+        Product = new javax.swing.JButton();
+        Customer = new javax.swing.JButton();
+        Order = new javax.swing.JButton();
+        history = new javax.swing.JButton();
+        logout = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         customerTable = new javax.swing.JTable();
         selectButton = new javax.swing.JButton();
@@ -51,33 +51,53 @@ public class Customerchooser extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(29, 86, 121));
 
-        jButton5.setText("Dashboard");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        Dashboard.setText("Dashboard");
+        Dashboard.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                DashboardActionPerformed(evt);
             }
         });
 
-        jButton1.setText("Category");
-
-        jButton2.setText("Product");
-
-        jButton3.setText("Customer");
-
-        jButton4.setText("Order");
-
-        jButton6.setText("View Order");
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
+        Category.setText("Category");
+        Category.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
+                CategoryActionPerformed(evt);
             }
         });
 
-        jButton7.setBackground(new java.awt.Color(255, 0, 51));
-        jButton7.setText("Logout");
-        jButton7.addActionListener(new java.awt.event.ActionListener() {
+        Product.setText("Product");
+        Product.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton7ActionPerformed(evt);
+                ProductActionPerformed(evt);
+            }
+        });
+
+        Customer.setText("Customer");
+        Customer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CustomerActionPerformed(evt);
+            }
+        });
+
+        Order.setText("Order");
+        Order.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                OrderActionPerformed(evt);
+            }
+        });
+
+        history.setText("View Order");
+        history.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                historyActionPerformed(evt);
+            }
+        });
+
+        logout.setBackground(new java.awt.Color(255, 0, 51));
+        logout.setText("Logout");
+        logout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                logoutActionPerformed(evt);
             }
         });
 
@@ -88,31 +108,31 @@ public class Customerchooser extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton5)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton6)
-                    .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(Dashboard)
+                    .addComponent(Category, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Product, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Customer, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Order, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(history)
+                    .addComponent(logout, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButton5)
+                .addComponent(Dashboard)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1)
+                .addComponent(Category)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton2)
+                .addComponent(Product)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton3)
+                .addComponent(Customer)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton4)
+                .addComponent(Order)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton6)
+                .addComponent(history)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton7)
+                .addComponent(logout)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -215,21 +235,37 @@ public class Customerchooser extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton5ActionPerformed
+    private void DashboardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DashboardActionPerformed
+   // TODO add your handling code here:
+    }//GEN-LAST:event_DashboardActionPerformed
 
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton6ActionPerformed
+    private void historyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_historyActionPerformed
+// TODO add your handling code here:
+    }//GEN-LAST:event_historyActionPerformed
 
-    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+    private void logoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton7ActionPerformed
+    }//GEN-LAST:event_logoutActionPerformed
 
     private void selectButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectButtonActionPerformed
 //        new ProductandCart().setVisible(true);
     }//GEN-LAST:event_selectButtonActionPerformed
+
+    private void CategoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CategoryActionPerformed
+
+    }//GEN-LAST:event_CategoryActionPerformed
+
+    private void ProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ProductActionPerformed
+
+    }//GEN-LAST:event_ProductActionPerformed
+
+    private void CustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CustomerActionPerformed
+       // TODO add your handling code here:
+    }//GEN-LAST:event_CustomerActionPerformed
+
+    private void OrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OrderActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_OrderActionPerformed
 
     /**
      * @param args the command line arguments
@@ -267,19 +303,19 @@ public class Customerchooser extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Category;
+    private javax.swing.JButton Customer;
+    private javax.swing.JButton Dashboard;
+    private javax.swing.JButton Order;
+    private javax.swing.JButton Product;
     private javax.swing.JTable customerTable;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
+    private javax.swing.JButton history;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton logout;
     private javax.swing.JButton selectButton;
     // End of variables declaration//GEN-END:variables
 public javax.swing.JTable getCustomerTable() {
