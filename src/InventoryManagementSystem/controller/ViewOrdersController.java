@@ -17,8 +17,6 @@ public class ViewOrdersController {
     public ViewOrdersController(ViewOrders view) {
         this.view = view;
         this.customerDao = new CustomerDao();  
-        view.addCategoryButtonListener(e -> handleNavigation("Category"));
-        view.addProductButtonListener(e -> handleNavigation("Product"));
         loadCustomersToTable();
         view.addSelectCustomerListener(new SelectCustomerListener());
 
@@ -57,26 +55,6 @@ public class ViewOrdersController {
         } else {
             JOptionPane.showMessageDialog(view, "Please select a customer.");
         }
-    }
-}
-
-     public void handleNavigation(String action) {
-    switch (action) {
-        case "Category" -> {
-            Category view = new Category();
-            new CategoryController(view).open(); 
-            this.view.dispose(); 
-        }
-        case "Product" -> {
-            ProductPanel view = new ProductPanel();
-            new ProductPanelController(view).show(); 
-            this.view.dispose(); 
-        }
-        default -> JOptionPane.showMessageDialog(null, 
-            "Action not supported: " + action, 
-            "Error", 
-            JOptionPane.ERROR_MESSAGE
-        );
     }
 }
 }
