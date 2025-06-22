@@ -49,19 +49,22 @@ public class DashboardController {
 public void handleNavigation(String action) {
         switch (action) {
          
-   case "Category" ->{Category view=new Category();
-                CategoryController CategoryOpener= new CategoryController(view);
-                 CategoryOpener.open();}
+   case "Category" ->{Category viewCategory=new Category();
+                CategoryController CategoryOpener= new CategoryController(viewCategory);
+                 CategoryOpener.open();
+                view.dispose();}
  case "Product" -> {
-            ProductPanel view = new ProductPanel();
-        ProductPanelController controller = new ProductPanelController(view);
+            ProductPanel viewProduct = new ProductPanel();
+        ProductPanelController controller = new ProductPanelController(viewProduct);
         controller.show();
+        view.dispose();
                 System.out.println("Product clicked!");
         }
         case "Customer" -> {
-            CustomerPanel view = new CustomerPanel();
-            CustomerPanelController controller = new CustomerPanelController(view);
+            CustomerPanel viewCustomer = new CustomerPanel();
+            CustomerPanelController controller = new CustomerPanelController(viewCustomer);
             controller.open();
+            view.dispose();
         }
         case "Order" -> {
             Customerchooser viewCustomer = new Customerchooser();
@@ -70,9 +73,10 @@ public void handleNavigation(String action) {
                 System.out.println("Order clicked!");
         }
         case "View Order" -> {
-            ViewOrders view = new ViewOrders();
-            ViewOrdersController controller = new ViewOrdersController(view);
+            ViewOrders viewOrder = new ViewOrders();
+            ViewOrdersController controller = new ViewOrdersController(viewOrder);
             controller.open();
+            view.dispose();
         }
             case "Log Out" -> {
                 int option = JOptionPane.showConfirmDialog(null, "Are you sure you want to logout?", "Confirm", JOptionPane.YES_NO_OPTION);
@@ -81,7 +85,7 @@ public void handleNavigation(String action) {
                 }
             }
             default -> JOptionPane.showMessageDialog(null,
-                    "No table named '" + action + "' found.",
+                    "Already in Dashboard '" + action + "' found.",
                     "Information",
                     JOptionPane.INFORMATION_MESSAGE);
         }
