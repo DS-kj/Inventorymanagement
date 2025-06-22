@@ -28,41 +28,6 @@ public class CustomerPanel extends javax.swing.JFrame {
     public CustomerPanel() {
         initComponents();
         setPlaceholders();
-        Dashboard.addActionListener(e -> {
-    new Dashboard().setVisible(true);
-    this.dispose();
-});
-
-Category.addActionListener(e -> {
-    new Category().setVisible(true);
-    this.dispose();
-});
-
-Product.addActionListener(e -> {
-    new ProductandCart().setVisible(true);
-    this.dispose();
-});
-
-Customer.addActionListener(e -> {
-    new Customerchooser().setVisible(true);
-    this.dispose();
-});
-
-Order.addActionListener(e -> {
-    new OrderList().setVisible(true);
-    this.dispose();
-});
-
-ViewOrder.addActionListener(e -> {
-    new ViewOrders().setVisible(true);
-    this.dispose();
-
-});
-// Example logout button action
- jButton16.addActionListener(e -> {
-    new AdminLogin().setVisible(true);  // Open login screen
-    this.dispose();                // Close current CustomerPanel window
-});
     }
 
     /**
@@ -448,6 +413,28 @@ private void addPlaceholderStyle(javax.swing.JTextField textField, String placeh
         }
     });
 }
+public void dashboard(ActionListener listener) {
+    Dashboard.addActionListener(listener);
+}
+public void category(ActionListener listener){
+Category.addActionListener(listener);
 
+}
+public void customer(ActionListener listener) {
+    Customer.addActionListener(listener);
+}
+public void order(ActionListener listener){
+Order.addActionListener(listener);
+
+}
+public void viewOrder(ActionListener listener) {
+    ViewOrder.addActionListener(listener);
+}
+public void product(ActionListener listener) {
+    Product.addActionListener(listener);
+}
+//public void goBackMainMenu(ActionListener listener) {
+//    MainMenuButton.addActionListener(listener);
+//}
 
 }
