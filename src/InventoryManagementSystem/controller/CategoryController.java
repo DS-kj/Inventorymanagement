@@ -15,6 +15,7 @@ public class CategoryController {
         this.view = view;
         this.view.createCategory(new CreateCategoryListener());
         this.view.addDeleteUserListener(new DeleteUserListener());
+        this.view.addEditNameListener(new EditCategoryListener());
     }
  
     public void open() {
@@ -78,5 +79,33 @@ public class CategoryController {
             JOptionPane.showMessageDialog(view, "Please select a category to delete.");
         }
     }        
-    }      
+    }
+    class EditCategoryListener implements ActionListener {
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        int selectedRow = view.getUserTable().getSelectedRow();
+        if (selectedRow == -1) {
+            JOptionPane.showMessageDialog(view, "Please select a category to edit.");
+            return;
+        }
+        int categoryId = (int) view.getUserTable().getValueAt(selectedRow, 0);
+        String oldName = (String) view.getUserTable().getValueAt(selectedRow, 1);
+
+        String newName = JOptionPane.showInputDialog(view, "Edit category name:", oldName);
+        if (newName == null) return; // User cancelled
+        newName = newName.trim();
+        if (newName.isEmpty()) {
+            JOptionPane.showMessageDialog(view, "Category name cannot be empty.");
+            return;
+        }
+        CategoryDao dao = new CategoryDao();
+        boolean updated = dao.updateCategoryName(categoryId, newName);
+        if (updated) {
+            JOptionPane.showMessageDialog(view, "Category name updated successfully.");
+            refreshCategoryTable();
+        } else {
+            JOptionPane.showMessageDialog(view, "Failed to update category name.");
+        }
+    }
+}
 }

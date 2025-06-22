@@ -23,6 +23,7 @@ public class Category extends javax.swing.JFrame {
      */
     public Category() {
         initComponents();
+        setPlaceholders();
     }
 
     /**
@@ -34,7 +35,14 @@ public class Category extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel2 = new javax.swing.JPanel();
+        jPanel2 = new GradientBackgroundPanel(
+            //    new java.awt.Color(50, 120, 165),  // Brighter Left Side
+            //    new java.awt.Color(9, 47, 70),     // Darker Right Side
+            //    true
+            new java.awt.Color(9, 47, 70),  // start color
+            new java.awt.Color(32, 95, 178), // end color
+            true
+        );
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
@@ -51,13 +59,14 @@ public class Category extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         AddButton = new javax.swing.JButton();
+        Editname = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel2.setBackground(new java.awt.Color(29, 86, 121));
+        jPanel2.setBackground(new java.awt.Color(173, 216, 230));
         jPanel2.setPreferredSize(new java.awt.Dimension(800, 517));
 
-        jPanel1.setBackground(new java.awt.Color(9, 47, 70));
+        jPanel1.setBackground(new java.awt.Color(9, 54, 82));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI Variable", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
@@ -71,7 +80,7 @@ public class Category extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addContainerGap(721, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -81,10 +90,16 @@ public class Category extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel3.setBackground(new java.awt.Color(29, 86, 121));
+        jPanel3.setBackground(new java.awt.Color(173, 216, 230));
 
+        Dashboard.setBackground(new java.awt.Color(36, 160, 237));
+        Dashboard.setForeground(new java.awt.Color(255, 255, 255));
         Dashboard.setText("Dashboard");
+        Dashboard.setBorder(null);
+        Dashboard.setBorderPainted(false);
 
+        Category.setBackground(new java.awt.Color(36, 160, 237));
+        Category.setForeground(new java.awt.Color(255, 255, 255));
         Category.setText("Category");
         Category.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -92,6 +107,8 @@ public class Category extends javax.swing.JFrame {
             }
         });
 
+        Product.setBackground(new java.awt.Color(36, 160, 237));
+        Product.setForeground(new java.awt.Color(255, 255, 255));
         Product.setText("Product");
         Product.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -99,13 +116,25 @@ public class Category extends javax.swing.JFrame {
             }
         });
 
+        Customer.setBackground(new java.awt.Color(36, 160, 237));
+        Customer.setForeground(new java.awt.Color(255, 255, 255));
         Customer.setText("Customer");
 
+        Order.setBackground(new java.awt.Color(36, 160, 237));
+        Order.setForeground(new java.awt.Color(255, 255, 255));
         Order.setText("Order");
+        Order.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                OrderActionPerformed(evt);
+            }
+        });
 
+        Vieworder.setBackground(new java.awt.Color(36, 160, 237));
+        Vieworder.setForeground(new java.awt.Color(255, 255, 255));
         Vieworder.setText("View Order");
 
-        Logout.setBackground(new java.awt.Color(255, 0, 0));
+        Logout.setBackground(new java.awt.Color(211, 47, 47));
+        Logout.setForeground(new java.awt.Color(255, 255, 255));
         Logout.setText("Log Out");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -129,7 +158,7 @@ public class Category extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap(8, Short.MAX_VALUE)
-                .addComponent(Dashboard, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(Dashboard, javax.swing.GroupLayout.DEFAULT_SIZE, 33, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
                 .addComponent(Category, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
@@ -155,7 +184,7 @@ public class Category extends javax.swing.JFrame {
             }
         });
 
-        Deletebutton.setBackground(new java.awt.Color(161, 22, 22));
+        Deletebutton.setBackground(new java.awt.Color(36, 160, 237));
         Deletebutton.setForeground(new java.awt.Color(255, 255, 255));
         Deletebutton.setText("Delete");
         Deletebutton.setBorder(null);
@@ -181,7 +210,7 @@ public class Category extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jTable1);
 
-        AddButton.setBackground(new java.awt.Color(161, 22, 22));
+        AddButton.setBackground(new java.awt.Color(36, 160, 237));
         AddButton.setForeground(new java.awt.Color(255, 255, 255));
         AddButton.setText("Add");
         AddButton.setBorder(null);
@@ -199,11 +228,14 @@ public class Category extends javax.swing.JFrame {
             }
         });
 
+        Editname.setBackground(new java.awt.Color(36, 160, 237));
+        Editname.setForeground(new java.awt.Color(255, 255, 255));
+        Editname.setText("Edit Name");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(10, 10, 10)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -220,8 +252,12 @@ public class Category extends javax.swing.JFrame {
                         .addComponent(Deletebutton, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(70, 70, 70)
-                        .addComponent(jLabel2)))
+                        .addComponent(jLabel2))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(49, 49, 49)
+                        .addComponent(Editname)))
                 .addGap(57, 57, 57))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -243,6 +279,8 @@ public class Category extends javax.swing.JFrame {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(AddButton, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(Deletebutton, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(Editname)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addGap(55, 55, 55))
         );
@@ -292,6 +330,10 @@ public class Category extends javax.swing.JFrame {
 // TODO add your handling code here:
     }//GEN-LAST:event_AddButtonMousePressed
 
+    private void OrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OrderActionPerformed
+            // TODO add your handling code here:
+    }//GEN-LAST:event_OrderActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -338,6 +380,7 @@ public class Category extends javax.swing.JFrame {
     private javax.swing.JButton Customer;
     private javax.swing.JButton Dashboard;
     private javax.swing.JButton Deletebutton;
+    private javax.swing.JButton Editname;
     private javax.swing.JTextField InsertField;
     private javax.swing.JButton Logout;
     private javax.swing.JButton Order;
@@ -380,5 +423,26 @@ return jTable1;
 }
 public void addDeleteUserListener(ActionListener listener){
     Deletebutton.addActionListener(listener);
+}
+public void addEditNameListener(ActionListener l) {
+    Editname.addActionListener(l);
+}
+private void setPlaceholders() {
+    addPlaceholderStyle(InsertField, "Product Name");
+}
+ 
+private void addPlaceholderStyle(javax.swing.JTextField textField, String placeholder) {
+    textField.setText(placeholder);
+    textField.setForeground(java.awt.Color.GRAY);
+ 
+    textField.addFocusListener(new java.awt.event.FocusAdapter() {
+        @Override
+        public void focusGained(java.awt.event.FocusEvent e) {
+            if (textField.getText().equals(placeholder)) {
+                textField.setText("");
+                textField.setForeground(java.awt.Color.BLACK);
+            }
+        }
+    });
 }
 }
