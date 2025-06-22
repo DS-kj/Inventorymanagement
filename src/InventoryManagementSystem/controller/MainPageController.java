@@ -4,6 +4,7 @@ import InventoryManagementSystem.view.Category;
 import InventoryManagementSystem.view.CustomerPanel;
 import InventoryManagementSystem.view.Customerchooser;
 import InventoryManagementSystem.view.Dashboard;
+import InventoryManagementSystem.view.LoginPanel;
 import InventoryManagementSystem.view.MainPage;
 import InventoryManagementSystem.view.ProductPanel;
 import InventoryManagementSystem.view.ViewOrders;
@@ -102,6 +103,9 @@ controllerCategory.open();
 
         if (response == javax.swing.JOptionPane.YES_OPTION) {
             view.dispose();
+            LoginPanel viewLogin=new LoginPanel();
+                LoginController LoginOpener= new LoginController(viewLogin);
+                 LoginOpener.open();
             System.out.println("User logged out.");
         } else {
             System.out.println("Logout cancelled.");
