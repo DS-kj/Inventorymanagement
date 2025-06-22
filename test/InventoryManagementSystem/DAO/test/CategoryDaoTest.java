@@ -31,34 +31,34 @@ public class CategoryDaoTest {
         Assert.assertTrue("Category list size should be >= 0", categories.size() >= 0);
     }
 
-//    @Test
-//    public void testUpdateCategoryName() {
-//        // Add a category first
-//        CategoryModel category = new CategoryModel(0, "OldName");
-//        boolean added = dao.addCategory(category);
-//        Assert.assertTrue("Category should be added before update", added);
-//
-//        // Fetch the category to get its ID
-//        List<CategoryModel> categories = dao.getAllCategories();
-//        int id = categories.stream()
-//                .filter(c -> "OldName".equals(c.getName()))
-//                .findFirst()
-//                .map(CategoryModel::getId)
-//                .orElse(-1);
-//
-//        Assert.assertTrue("Category ID should be valid", id != -1);
-//
-//        // Update the name
-//        boolean updated = dao.updateCategoryName(id, "NewName");
-//        Assert.assertTrue("Category name should be updated successfully", updated);
-//
-//        // Verify update
-//        categories = dao.getAllCategories();
-//        boolean foundNewName = categories.stream()
-//                .anyMatch(c -> "NewName".equals(c.getName()));
-//        Assert.assertTrue("Updated category name should be found", foundNewName);
-//    }
-//
+    @Test
+    public void testUpdateCategoryName() {
+        // Add a category first
+        CategoryModel category = new CategoryModel(0, "OldName");
+        boolean added = dao.addCategory(category);
+        Assert.assertTrue("Category should be added before update", added);
+
+        // Fetch the category to get its ID
+        List<CategoryModel> categories = dao.getAllCategories();
+        int id = categories.stream()
+                .filter(c -> "OldName".equals(c.getName()))
+                .findFirst()
+                .map(CategoryModel::getId)
+                .orElse(-1);
+
+        Assert.assertTrue("Category ID should be valid", id != -1);
+
+        // Update the name
+        boolean updated = dao.updateCategoryName(id, "NewName");
+        Assert.assertTrue("Category name should be updated successfully", updated);
+
+        // Verify update
+        categories = dao.getAllCategories();
+        boolean foundNewName = categories.stream()
+                .anyMatch(c -> "NewName".equals(c.getName()));
+        Assert.assertTrue("Updated category name should be found", foundNewName);
+    }
+
 //    @Test
 //    public void testDeleteCategory() {
 //        // Add a category first
