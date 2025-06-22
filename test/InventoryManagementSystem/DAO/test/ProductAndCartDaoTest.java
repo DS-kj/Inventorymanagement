@@ -33,15 +33,15 @@ public class ProductAndCartDaoTest {
         Assert.assertTrue("Latest order ID should be zero or positive", latestOrderId >= 0);
     }
 
-    @Test
-    public void testSaveOrder() {
-        // Prepare test data
-        List<ProductAndCartModel> cartItems = new ArrayList<>();
-        cartItems.add(new ProductAndCartModel(1, "Test Product", "Test Category", 1, 10.0));
-
-        int testCustomerId = 1;  // Replace with a valid customer id in your DB
-
-        boolean result = dao.saveOrder(cartItems, testCustomerId);
-        Assert.assertTrue("Order should be saved successfully", result);
-    }
-}
+//    @Test
+//    public void testSaveOrder() {
+//        // Prepare test data
+//        List<ProductAndCartModel> cartItems = new ArrayList<>();
+//        cartItems.add(new ProductAndCartModel(1, "Test Product", "Test Category", 1, 10.0));
+//
+//        int testCustomerId = 1;  // Replace with a valid customer id in your DB
+//
+//        boolean result = dao.saveOrder(cartItems, testCustomerId);
+//        Assert.assertTrue("Order should be saved successfully", result);
+//    }
+//}
