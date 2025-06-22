@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package InventoryManagementSystem.view;
+import InventoryManagementSystem.DAO.ProductAndCartDao;
 import java.awt.Color;
 import java.awt.event.ActionListener;
 
@@ -110,6 +111,11 @@ public class ProductandCart extends javax.swing.JFrame {
         goBack.setText("←GO BACK");
 
         Bill_Button.setText("BILL");
+        Bill_Button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Bill_ButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -166,6 +172,13 @@ public class ProductandCart extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void Bill_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Bill_ButtonActionPerformed
+        // TODO add your handling code here:
+            ProductAndCartDao dao = new ProductAndCartDao();
+    int orderId = dao.getLatestOrderId();
+        Bill billController = new Bill(this, orderId);
+    }//GEN-LAST:event_Bill_ButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -244,6 +257,13 @@ public void addSaveOrderListener(ActionListener listener) {
 
 public void addBackButtonListener(ActionListener listener) {
     goBack.addActionListener(listener);
+}
+public javax.swing.JButton getBillButton() {
+    return Bill_Button;
+}
+
+public void addBillButtonListener(ActionListener listener) {
+    Bill_Button.addActionListener(listener);
 }
 
 
