@@ -75,6 +75,16 @@ public class ViewOrdersController {
                 view.dispose();
         }
     }
+    private class ProductListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            ProductPanel prodView = new ProductPanel();
+        ProductPanelController controller = new ProductPanelController(prodView);
+        controller.show();
+                System.out.println("Product clicked!");
+                view.dispose();
+        }
+    }
      private class CustomerListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
