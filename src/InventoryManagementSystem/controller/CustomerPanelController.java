@@ -7,6 +7,7 @@ import InventoryManagementSystem.view.Category;
 import InventoryManagementSystem.view.CustomerPanel;
 import InventoryManagementSystem.view.Customerchooser;
 import InventoryManagementSystem.view.Dashboard;
+import InventoryManagementSystem.view.EditCustomerDialog;
 import InventoryManagementSystem.view.LoginPanel;
 import InventoryManagementSystem.view.MainPage;
 import InventoryManagementSystem.view.ProductPanel;
@@ -17,6 +18,7 @@ import javax.swing.*;
 
 public class CustomerPanelController {
     private CustomerPanel view;
+    private CustomerPanelDao dao;
 
     public CustomerPanelController(CustomerPanel view) {
         this.view = view;
@@ -30,6 +32,8 @@ public class CustomerPanelController {
         view.product(new ProductListener());
         view.goBackMainMenu(new MainMenuListener());
         view.logOut(new LogOutListener());
+        view.getBtnEditCustomer(new EditCustomerListener());
+        this.dao = new CustomerPanelDao();
         
     }
 
@@ -184,5 +188,54 @@ controllerCategory.open();
     
             }
         }
+    class EditCustomerListener implements ActionListener {
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        int selectedRow = view.getCustomerTable().getSelectedRow();
+
+        if (selectedRow != -1) {
+            int id = (int) view.getCustomerTable().getValueAt(selectedRow, 0);
+            String name = (String) view.getCustomerTable().getValueAt(selectedRow, 1);
+            String mobile = (String) view.getCustomerTable().getValueAt(selectedRow, 2);
+            String email = (String) view.getCustomerTable().getValueAt(selectedRow, 3);
+
+            EditCustomerDialog editDialog = new EditCustomerDialog(view);
+            editDialog.getTxtName().setText(name);
+            editDialog.getTxtMobile().setText(mobile);
+            editDialog.getTxtEmail().setText(email);
+
+            editDialog.getBtnSave().addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent ev) {
+                    String updatedName = editDialog.getTxtName().getText().trim();
+                    String updatedMobile = editDialog.getTxtMobile().getText().trim();
+                    String updatedEmail = editDialog.getTxtEmail().getText().trim();
+
+                    if (updatedName.isEmpty() || updatedMobile.isEmpty() || updatedEmail.isEmpty()) {
+                        JOptionPane.showMessageDialog(editDialog, "All fields must be filled.", "Validation Error", JOptionPane.WARNING_MESSAGE);
+                        return;
+                    }
+
+                    CustomerPanelModel updatedCustomer = new CustomerPanelModel(id, updatedName, updatedMobile, updatedEmail);
+                    boolean success = dao.updateCustomer(updatedCustomer);
+
+                    if (success) {
+                        JOptionPane.showMessageDialog(editDialog, "Customer updated successfully.");
+                        editDialog.dispose();
+                        refreshTable();
+                    } else {
+                        JOptionPane.showMessageDialog(editDialog, "Update failed.", "Error", JOptionPane.ERROR_MESSAGE);
+                    }
+                }
+            });
+
+            editDialog.setVisible(true);
+
+        } else {
+            JOptionPane.showMessageDialog(view, "Please select a customer to edit.");
+        }
+    }
+}
+
 }
 

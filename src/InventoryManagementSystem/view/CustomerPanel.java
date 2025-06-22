@@ -65,6 +65,7 @@ public class CustomerPanel extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         MainMenuButton = new javax.swing.JToggleButton();
+        Edit = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -211,6 +212,8 @@ public class CustomerPanel extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        Edit.setText("Edit");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -232,7 +235,9 @@ public class CustomerPanel extends javax.swing.JFrame {
                     .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(63, 63, 63)
-                        .addComponent(jButton9)))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(Edit)
+                            .addComponent(jButton9))))
                 .addGap(14, 14, 14))
         );
         jPanel2Layout.setVerticalGroup(
@@ -261,6 +266,8 @@ public class CustomerPanel extends javax.swing.JFrame {
                         .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jButton9)
+                        .addGap(18, 18, 18)
+                        .addComponent(Edit)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
@@ -345,6 +352,7 @@ public class CustomerPanel extends javax.swing.JFrame {
     private javax.swing.JButton Category;
     private javax.swing.JButton Customer;
     private javax.swing.JButton Dashboard;
+    private javax.swing.JButton Edit;
     private javax.swing.JButton LogOutButton;
     private javax.swing.JToggleButton MainMenuButton;
     private javax.swing.JButton Order;
@@ -462,6 +470,12 @@ public void goBackMainMenu(ActionListener listener) {
 }
 public void logOut(ActionListener listener) {
     LogOutButton.addActionListener(listener);
+}
+public void getBtnEditCustomer(ActionListener listener) {
+    Edit.addActionListener(listener);
+}
+public javax.swing.JTable getCustomerTable() {
+    return jTable1;
 }
 
 }
