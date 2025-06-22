@@ -61,7 +61,7 @@ public class CustomerPanel extends javax.swing.JFrame {
         Customer = new javax.swing.JButton();
         Order = new javax.swing.JButton();
         ViewOrder = new javax.swing.JButton();
-        jButton16 = new javax.swing.JButton();
+        LogOutButton = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         MainMenuButton = new javax.swing.JToggleButton();
@@ -138,8 +138,8 @@ public class CustomerPanel extends javax.swing.JFrame {
 
         ViewOrder.setText("View Order");
 
-        jButton16.setBackground(new java.awt.Color(255, 0, 0));
-        jButton16.setText("Log Out");
+        LogOutButton.setBackground(new java.awt.Color(255, 0, 0));
+        LogOutButton.setText("Log Out");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -154,7 +154,7 @@ public class CustomerPanel extends javax.swing.JFrame {
                     .addComponent(Customer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(Order, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(ViewOrder, javax.swing.GroupLayout.DEFAULT_SIZE, 118, Short.MAX_VALUE)
-                    .addComponent(jButton16, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(LogOutButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -173,7 +173,7 @@ public class CustomerPanel extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(ViewOrder)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton16)
+                .addComponent(LogOutButton)
                 .addContainerGap(11, Short.MAX_VALUE))
         );
 
@@ -345,11 +345,11 @@ public class CustomerPanel extends javax.swing.JFrame {
     private javax.swing.JButton Category;
     private javax.swing.JButton Customer;
     private javax.swing.JButton Dashboard;
+    private javax.swing.JButton LogOutButton;
     private javax.swing.JToggleButton MainMenuButton;
     private javax.swing.JButton Order;
     private javax.swing.JButton Product;
     private javax.swing.JButton ViewOrder;
-    private javax.swing.JButton jButton16;
     private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
@@ -459,6 +459,9 @@ public void product(ActionListener listener) {
 }
 public void goBackMainMenu(ActionListener listener) {
     MainMenuButton.addActionListener(listener);
+}
+public void logOut(ActionListener listener) {
+    LogOutButton.addActionListener(listener);
 }
 
 }

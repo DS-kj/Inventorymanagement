@@ -216,7 +216,7 @@
                           <Component id="Customer" alignment="0" max="32767" attributes="0"/>
                           <Component id="Order" alignment="0" max="32767" attributes="0"/>
                           <Component id="ViewOrder" alignment="0" pref="118" max="32767" attributes="0"/>
-                          <Component id="jButton16" alignment="0" max="32767" attributes="0"/>
+                          <Component id="LogOutButton" alignment="0" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
@@ -238,7 +238,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="ViewOrder" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jButton16" min="-2" max="-2" attributes="0"/>
+                      <Component id="LogOutButton" min="-2" max="-2" attributes="0"/>
                       <EmptySpace pref="11" max="32767" attributes="0"/>
                   </Group>
               </Group>
@@ -284,7 +284,7 @@
                 <Property name="text" type="java.lang.String" value="View Order"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton16">
+            <Component class="javax.swing.JButton" name="LogOutButton">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="0" green="0" red="ff" type="rgb"/>

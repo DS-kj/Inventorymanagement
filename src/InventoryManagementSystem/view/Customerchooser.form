@@ -131,7 +131,7 @@
                               <Component id="Customer" alignment="0" min="-2" pref="88" max="-2" attributes="0"/>
                               <Component id="Order" alignment="0" min="-2" pref="88" max="-2" attributes="0"/>
                               <Component id="ViewOrder" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="jButton7" alignment="0" min="-2" pref="84" max="-2" attributes="0"/>
+                              <Component id="LogOutButton" alignment="0" min="-2" pref="84" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -152,7 +152,7 @@
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="ViewOrder" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jButton7" min="-2" max="-2" attributes="0"/>
+                          <Component id="LogOutButton" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
                       </Group>
                   </Group>
@@ -195,7 +195,7 @@
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ViewOrderActionPerformed"/>
                   </Events>
                 </Component>
-                <Component class="javax.swing.JButton" name="jButton7">
+                <Component class="javax.swing.JButton" name="LogOutButton">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="33" green="0" red="ff" type="rgb"/>
@@ -203,7 +203,7 @@
                     <Property name="text" type="java.lang.String" value="Logout"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton7ActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="LogOutButtonActionPerformed"/>
                   </Events>
                 </Component>
               </SubComponents>

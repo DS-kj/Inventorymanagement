@@ -39,7 +39,7 @@ public class Customerchooser extends javax.swing.JFrame {
         Customer = new javax.swing.JButton();
         Order = new javax.swing.JButton();
         ViewOrder = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
+        LogOutButton = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         customerTable = new javax.swing.JTable();
         selectButton = new javax.swing.JButton();
@@ -74,11 +74,11 @@ public class Customerchooser extends javax.swing.JFrame {
             }
         });
 
-        jButton7.setBackground(new java.awt.Color(255, 0, 51));
-        jButton7.setText("Logout");
-        jButton7.addActionListener(new java.awt.event.ActionListener() {
+        LogOutButton.setBackground(new java.awt.Color(255, 0, 51));
+        LogOutButton.setText("Logout");
+        LogOutButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton7ActionPerformed(evt);
+                LogOutButtonActionPerformed(evt);
             }
         });
 
@@ -95,7 +95,7 @@ public class Customerchooser extends javax.swing.JFrame {
                     .addComponent(Customer, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Order, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(ViewOrder)
-                    .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(LogOutButton, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -113,7 +113,7 @@ public class Customerchooser extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(ViewOrder)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton7)
+                .addComponent(LogOutButton)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -235,9 +235,9 @@ public class Customerchooser extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_ViewOrderActionPerformed
 
-    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+    private void LogOutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LogOutButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton7ActionPerformed
+    }//GEN-LAST:event_LogOutButtonActionPerformed
 
     private void selectButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectButtonActionPerformed
 //        new ProductandCart().setVisible(true);
@@ -286,12 +286,12 @@ public class Customerchooser extends javax.swing.JFrame {
     private javax.swing.JButton Category;
     private javax.swing.JButton Customer;
     private javax.swing.JButton Dashboard;
+    private javax.swing.JButton LogOutButton;
     private javax.swing.JButton MainMenuButton;
     private javax.swing.JButton Order;
     private javax.swing.JButton Product;
     private javax.swing.JButton ViewOrder;
     private javax.swing.JTable customerTable;
-    private javax.swing.JButton jButton7;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
@@ -330,6 +330,9 @@ public void product(ActionListener listener) {
 }
 public void goBackMainMenu(ActionListener listener) {
     MainMenuButton.addActionListener(listener);
+}
+public void logOut(ActionListener listener) {
+    LogOutButton.addActionListener(listener);
 }
 
 
