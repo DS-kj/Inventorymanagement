@@ -21,6 +21,13 @@ public class CustomerPanelController {
         this.view = view;
         this.view.addCustomerListener(new AddCustomerListener());
         this.view.addDeleteListener(new DeleteCustomerListener());
+        view.dashboard(new CustomerchooserController.DashboardListener());
+        view.category(new CustomerchooserController.CategoryListener());
+        view.customer(new CustomerchooserController.CustomerListener());
+        view.order(new CustomerchooserController.OrderListener());
+        view.viewOrder(new CustomerchooserController.ViewOrderListener());
+        view.product(new CustomerchooserController.ProductListener());
+        view.goBackMainMenu(new CustomerchooserController.MainMenuListener());
     }
 
     public void open() {
