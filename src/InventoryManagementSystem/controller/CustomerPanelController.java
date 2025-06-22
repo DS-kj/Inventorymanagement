@@ -21,13 +21,13 @@ public class CustomerPanelController {
         this.view = view;
         this.view.addCustomerListener(new AddCustomerListener());
         this.view.addDeleteListener(new DeleteCustomerListener());
-        view.dashboard(new CustomerchooserController.DashboardListener());
-        view.category(new CustomerchooserController.CategoryListener());
-        view.customer(new CustomerchooserController.CustomerListener());
-        view.order(new CustomerchooserController.OrderListener());
-        view.viewOrder(new CustomerchooserController.ViewOrderListener());
-        view.product(new CustomerchooserController.ProductListener());
-        view.goBackMainMenu(new CustomerchooserController.MainMenuListener());
+        view.dashboard(new DashboardListener());
+        view.category(new CategoryListener());
+        view.customer(new CustomerListener());
+        view.order(new OrderListener());
+        view.viewOrder(new ViewOrderListener());
+        view.product(new ProductListener());
+//        view.goBackMainMenu(new CustomerchooserController.MainMenuListener());
     }
 
     public void open() {
@@ -122,7 +122,8 @@ controllerCategory.open();
         @Override
         public void actionPerformed(ActionEvent e) {
             Customerchooser chooser = new Customerchooser();
-            new CustomerchooserController(chooser).open();
+            CustomerchooserController chooserCustomer=new CustomerchooserController(chooser);
+                    chooserCustomer.open();
             view.dispose();
         }
     }
