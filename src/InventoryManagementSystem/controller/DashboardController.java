@@ -6,6 +6,7 @@ import InventoryManagementSystem.view.Category;
 import InventoryManagementSystem.view.CustomerPanel;
 import InventoryManagementSystem.view.Customerchooser;
 import InventoryManagementSystem.view.Dashboard;
+import InventoryManagementSystem.view.MainPage;
 import InventoryManagementSystem.view.OrderList;
 import InventoryManagementSystem.view.ProductPanel;
 import InventoryManagementSystem.view.ViewOrders;
@@ -21,6 +22,20 @@ public class DashboardController {
     public DashboardController(Dashboard view) {
         this.view = view;
         this.dao = new DashboardDao();
+
+        // Add window listener once during initialization
+        this.view.addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosing(java.awt.event.WindowEvent e) {
+                // Open MainPage when Dashboard closes
+                MainPage mainPageView = new MainPage();
+                MainPageController mainPageOpener = new MainPageController(mainPageView);
+                mainPageOpener.open();
+
+                // Dispose Dashboard window
+                view.dispose();
+            }
+        });
     }
 
     public void loadProducts() {
@@ -46,34 +61,45 @@ public class DashboardController {
             view.addRowToTable(row);
         }
     }
-public void handleNavigation(String action) {
+
+    public void handleNavigation(String action) {
         switch (action) {
-         
-   case "Category" ->{Category view=new Category();
-                CategoryController CategoryOpener= new CategoryController(view);
-                 CategoryOpener.open();}
- case "Product" -> {
-            ProductPanel view = new ProductPanel();
-        ProductPanelController controller = new ProductPanelController(view);
-        controller.show();
+            case "Dashboard" -> {
+                loadProducts();
+                System.out.println("Dashboard refreshed!");
+            }
+            case "Category" -> {
+                view.dispose(); // Close Dashboard
+                Category categoryView = new Category();
+                CategoryController categoryOpener = new CategoryController(categoryView);
+                categoryOpener.open();
+            }
+            case "Product" -> {
+                view.dispose(); // Close Dashboard
+                ProductPanel productView = new ProductPanel();
+                ProductPanelController controller = new ProductPanelController(productView);
+                controller.show();
                 System.out.println("Product clicked!");
-        }
-        case "Customer" -> {
-            CustomerPanel view = new CustomerPanel();
-            CustomerPanelController controller = new CustomerPanelController(view);
-            controller.open();
-        }
-        case "Order" -> {
-            Customerchooser viewCustomer = new Customerchooser();
-         CustomerchooserController controllerCustomer= new CustomerchooserController(viewCustomer);
-         controllerCustomer.open();
+            }
+            case "Customer" -> {
+                view.dispose(); // Close Dashboard
+                CustomerPanel customerView = new CustomerPanel();
+                CustomerPanelController controller = new CustomerPanelController(customerView);
+                controller.open();
+            }
+            case "Order" -> {
+                view.dispose(); // Close Dashboard
+                Customerchooser viewCustomer = new Customerchooser();
+                CustomerchooserController controllerCustomer = new CustomerchooserController(viewCustomer);
+                controllerCustomer.open();
                 System.out.println("Order clicked!");
-        }
-        case "View Order" -> {
-            ViewOrders view = new ViewOrders();
-            ViewOrdersController controller = new ViewOrdersController(view);
-            controller.open();
-        }
+            }
+            case "View Order" -> {
+                view.dispose(); // Close Dashboard
+                ViewOrders viewOrders = new ViewOrders();
+                ViewOrdersController controller = new ViewOrdersController(viewOrders);
+                controller.open();
+            }
             case "Log Out" -> {
                 int option = JOptionPane.showConfirmDialog(null, "Are you sure you want to logout?", "Confirm", JOptionPane.YES_NO_OPTION);
                 if (option == JOptionPane.YES_OPTION) {
