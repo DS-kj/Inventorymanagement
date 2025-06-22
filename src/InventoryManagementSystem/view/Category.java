@@ -35,7 +35,14 @@ public class Category extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel2 = new javax.swing.JPanel();
+        jPanel2 = new GradientBackgroundPanel(
+            //    new java.awt.Color(50, 120, 165),  // Brighter Left Side
+            //    new java.awt.Color(9, 47, 70),     // Darker Right Side
+            //    true
+            new java.awt.Color(9, 47, 70),  // start color
+            new java.awt.Color(32, 95, 178), // end color
+            true
+        );
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
@@ -59,7 +66,7 @@ public class Category extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(173, 216, 230));
         jPanel2.setPreferredSize(new java.awt.Dimension(800, 517));
 
-        jPanel1.setBackground(new java.awt.Color(173, 216, 230));
+        jPanel1.setBackground(new java.awt.Color(9, 54, 82));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI Variable", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
