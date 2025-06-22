@@ -26,7 +26,6 @@ public class ProductPanelController {
         this.categoryDao = new CategoryDao();
         populateCategoryDropdown();
         initController();
-        
         loadProductsToTable();
     }
      public void show() {
@@ -40,13 +39,7 @@ public class ProductPanelController {
                 insertProduct();
             }
         });
-   
-    
-
-    view.DeleteButton().addActionListener(new DeleteProductListener());
-}
-
-     
+    }
      private void populateCategoryDropdown() {
         List<CategoryModel> categories = categoryDao.getAllCategories();
         JComboBox comboBox = view.getCategoryChooser();
@@ -86,8 +79,6 @@ public class ProductPanelController {
             ex.printStackTrace();
         }
     }
-    
-
     public void loadProductsToTable() {
         List<ProductModel> products = dao.getAllProducts();
         DefaultTableModel model = (DefaultTableModel) view.getProductTable().getModel();
@@ -104,40 +95,8 @@ public class ProductPanelController {
             model.addRow(row);
         }
     }
-    class DeleteProductListener implements ActionListener {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            try {
-                int row = view.getProductTable().getSelectedRow();
 
-                if (row < 0) {
-                    JOptionPane.showMessageDialog(view, "Please select a product to delete.");
-                    return;
-                }
-
-                int id = (int) view.getProductTable().getValueAt(row, 0); // Assuming column 0 = ID
-
-                int confirm = JOptionPane.showConfirmDialog(
-                    view,
-                    "Are you sure you want to delete this product?",
-                    "Confirm Deletion",
-                    JOptionPane.YES_NO_OPTION
-                );
-
-                if (confirm == JOptionPane.YES_OPTION) {
-                    boolean success = dao.deleteProduct(id);
-
-                    if (success) {
-                        JOptionPane.showMessageDialog(view, "Product deleted successfully.");
-                        loadProductsToTable();
-                    } else {
-                        JOptionPane.showMessageDialog(view, "Failed to delete product.");
-                    }
-                }
-            } catch (Exception ex) {
-                ex.printStackTrace();
-                JOptionPane.showMessageDialog(view, "An error occurred while deleting the product.");
-            }
-        }
+    void open() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }

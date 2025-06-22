@@ -3,8 +3,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package InventoryManagementSystem.view;
-
 import InventoryManagementSystem.DAO.ProductAndCartDao;
+import java.awt.Color;
 import java.awt.event.ActionListener;
 
 /**
@@ -29,7 +29,14 @@ public class ProductandCart extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
+        jPanel1 = new GradientBackgroundPanel(
+            //    new java.awt.Color(50, 120, 165),  // Brighter Left Side
+            //    new java.awt.Color(9, 47, 70),     // Darker Right Side
+            //    true
+            new java.awt.Color(9, 47, 70),  // start color
+            new java.awt.Color(32, 95, 178), // end color
+            true
+        );
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -170,7 +177,7 @@ public class ProductandCart extends javax.swing.JFrame {
 
     private void Bill_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Bill_ButtonActionPerformed
         // TODO add your handling code here:
-        ProductAndCartDao dao = new ProductAndCartDao();
+            ProductAndCartDao dao = new ProductAndCartDao();
     int orderId = dao.getLatestOrderId();
         Bill billController = new Bill(this, orderId);
     }//GEN-LAST:event_Bill_ButtonActionPerformed
@@ -252,6 +259,13 @@ public void addSaveOrderListener(ActionListener listener) {
 
 public void addBackButtonListener(ActionListener listener) {
     goBack.addActionListener(listener);
+}
+public javax.swing.JButton getBillButton() {
+    return Bill_Button;
+}
+
+public void addBillButtonListener(ActionListener listener) {
+    Bill_Button.addActionListener(listener);
 }
 
 
