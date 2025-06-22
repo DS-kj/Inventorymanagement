@@ -57,4 +57,12 @@ public class ViewOrdersController {
         }
     }
 }
+     private class DashboardListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+           new Dashboard().setVisible(true);
+                System.out.println("Dashboard clicked!");
+                view.dispose();
+        }
+    }
 }
