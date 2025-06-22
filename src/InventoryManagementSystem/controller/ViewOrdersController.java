@@ -19,6 +19,13 @@ public class ViewOrdersController {
         this.customerDao = new CustomerDao();  
         loadCustomersToTable();
         view.addSelectCustomerListener(new SelectCustomerListener());
+        view.dashboard(new DashboardListener());
+        view.category(new CategoryListener());
+        view.customer(new CustomerListener());
+        view.order(new OrderListener());
+        view.viewOrder(new ViewOrderListener());
+        view.product(new ProductListener());
+        view.goBackMainMenu(new MainMenuListener());
 
     }
  public void open(){
