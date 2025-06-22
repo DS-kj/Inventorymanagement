@@ -32,15 +32,15 @@ public class CustomerPanelDaoTest {
         }
     }
 
-//    @Test
-//    public void testDeleteCustomer() {
-//        // First, add a test customer to delete
-//        CustomerPanelModel customer = new CustomerPanelModel(
-//                0, "ToDelete", "1234567890", "delete@example.com"
-//        );
-//        boolean added = dao.addCustomer(customer);
-//        Assert.assertTrue("Customer should be added for deletion test", added);
-//
+    @Test
+    public void testDeleteCustomer() {
+        // First, add a test customer to delete
+        CustomerPanelModel customer = new CustomerPanelModel(
+                0, "ToDelete", "1234567890", "delete@example.com"
+        );
+        boolean added = dao.addCustomer(customer);
+        Assert.assertTrue("Customer should be added for deletion test", added);
+
 //        // Get the newly added customer's ID
 //        int deleteId = -1;
 //        List<CustomerPanelModel> customers = dao.getAllCustomers();
