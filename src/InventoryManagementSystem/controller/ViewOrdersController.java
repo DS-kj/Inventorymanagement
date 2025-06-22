@@ -26,6 +26,7 @@ public class ViewOrdersController {
         view.viewOrder(new ViewOrderListener());
         view.product(new ProductListener());
         view.goBackMainMenu(new MainMenuListener());
+        view.LogOut(new LogOutListener());
 
     }
  public void open(){
@@ -129,5 +130,24 @@ public class ViewOrdersController {
                 System.out.println("Main Menu clicked!");
                 view.dispose();
         }
+    }
+     private class LogOutListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            int response = javax.swing.JOptionPane.showConfirmDialog(
+            view,
+            "Are you sure you want to log out?",
+            "Confirm Logout",
+            javax.swing.JOptionPane.YES_NO_OPTION,
+            javax.swing.JOptionPane.QUESTION_MESSAGE
+        );
+
+        if (response == javax.swing.JOptionPane.YES_OPTION) {
+            view.dispose();
+            System.out.println("User logged out.");
+        } else {
+            System.out.println("Logout cancelled.");
+        }
+    }
     }
 }
