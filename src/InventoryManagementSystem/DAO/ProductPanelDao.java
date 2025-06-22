@@ -95,4 +95,23 @@ public class ProductPanelDao {
             return false;
         }
     }
+    public boolean updateProduct(ProductModel product) {
+    String sql = "UPDATE products SET name = ?, quantity = ?, price = ? WHERE id = ?";
+
+    try (Connection conn = connection.openConnection();
+         PreparedStatement ps = conn.prepareStatement(sql)) {
+
+        ps.setString(1, product.getName());
+        ps.setInt(2, product.getQuantity());
+        ps.setDouble(3, product.getPrice());
+        ps.setInt(4, product.getId());
+
+        return ps.executeUpdate() > 0;
+
+    } catch (SQLException e) {
+        e.printStackTrace();
+        return false;
+    }
+}
+
 }

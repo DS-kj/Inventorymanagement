@@ -47,6 +47,9 @@
           </Border>
         </Property>
       </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new GradientBackgroundPanel(&#xa;    //    new java.awt.Color(50, 120, 165),  // Brighter Left Side&#xa;    //    new java.awt.Color(9, 47, 70),     // Darker Right Side&#xa;    //    true&#xa;    new java.awt.Color(9, 47, 70),  // start color&#xa;    new java.awt.Color(32, 95, 178), // end color&#xa;    true&#xa;)"/>
+      </AuxValues>
 
       <Layout>
         <DimensionLayout dim="0">
@@ -67,7 +70,6 @@
                           </Group>
                       </Group>
                       <Group type="102" alignment="1" attributes="0">
-                          <EmptySpace min="4" pref="4" max="-2" attributes="0"/>
                           <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="jPasswordField1" min="-2" pref="195" max="-2" attributes="0"/>
