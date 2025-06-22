@@ -68,8 +68,8 @@ public class ViewOrdersController {
             this.view.dispose(); 
         }
         case "Product" -> {
-            ProductandCart view = new ProductandCart();
-            new ProductAndCartController(view).open(); 
+            ProductPanel view = new ProductPanel();
+            new ProductPanelController(view).show(); 
             this.view.dispose(); 
         }
         default -> JOptionPane.showMessageDialog(null, 

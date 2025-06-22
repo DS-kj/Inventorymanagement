@@ -428,7 +428,7 @@ public void addEditNameListener(ActionListener l) {
     Editname.addActionListener(l);
 }
 private void setPlaceholders() {
-    addPlaceholderStyle(InsertField, "Product Name");
+    addPlaceholderStyle(InsertField, "Category Name");
 }
  
 private void addPlaceholderStyle(javax.swing.JTextField textField, String placeholder) {
