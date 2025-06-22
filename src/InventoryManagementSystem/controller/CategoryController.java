@@ -199,6 +199,9 @@ controllerCategory.open();
 
         if (response == javax.swing.JOptionPane.YES_OPTION) {
             view.dispose();
+            LoginPanel viewlogin=new LoginPanel();
+                LoginController LoginOpener= new LoginController(viewlogin);
+                 LoginOpener.open();
             System.out.println("User logged out.");
         } else {
             System.out.println("Logout cancelled.");
