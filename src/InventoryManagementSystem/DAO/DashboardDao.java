@@ -28,8 +28,7 @@ public class DashboardDao {
                         rs.getString("name"),
                         rs.getString("category"),
                         rs.getInt("quantity"),
-                        rs.getDouble("price"),
-                        rs.getDouble("rate")
+                        rs.getDouble("price")
                 );
                 products.add(p);
             }
@@ -52,14 +51,13 @@ public class DashboardDao {
 
             try (ResultSet rs = ps.executeQuery()) {
                 while (rs.next()) {
-                    DashboardModel p = new DashboardModel(
-                            rs.getInt("id"),
-                            rs.getString("name"),
-                            rs.getString("category"),
-                            rs.getInt("quantity"),
-                            rs.getDouble("price"),
-                            rs.getDouble("rate")
-                    );
+                 DashboardModel p = new DashboardModel(
+    rs.getInt("id"),
+    rs.getString("name"),
+    rs.getString("category"),
+    rs.getInt("quantity"),
+    rs.getDouble("price")
+);
                     products.add(p);
                 }
             }

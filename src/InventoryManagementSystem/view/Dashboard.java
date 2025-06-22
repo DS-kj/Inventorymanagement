@@ -59,7 +59,7 @@ public class Dashboard extends JFrame {
         add(menuPanel, BorderLayout.WEST);
 
         // Table setup
-        String[] columnNames = {"ID", "Product Name", "Category", "Quantity", "Price (per)", "Rate"};
+       String[] columnNames = {"ID", "Product Name", "Category", "Quantity", "Price (per)"};
         tableModel = new DefaultTableModel(columnNames, 0) {
             @Override public boolean isCellEditable(int row, int col) { return false; }
         };

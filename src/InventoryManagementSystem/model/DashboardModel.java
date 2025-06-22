@@ -6,9 +6,8 @@ public class DashboardModel {
     private String category;
     private int quantity;
     private double price;
-    private double rate;
 
-    public DashboardModel() {}
+    public DashboardModel(int aInt, String string, String string1, int aInt1, double aDouble) {}
 
     public DashboardModel(int id, String productName, String category, int quantity, double price, double rate) {
         this.id = id;
@@ -16,7 +15,6 @@ public class DashboardModel {
         this.category = category;
         this.quantity = quantity;
         this.price = price;
-        this.rate = rate;
     }
 
     // Getters and setters
@@ -35,6 +33,4 @@ public class DashboardModel {
     public double getPrice() { return price; }
     public void setPrice(double price) { this.price = price; }
 
-    public double getRate() { return rate; }
-    public void setRate(double rate) { this.rate = rate; }
 }

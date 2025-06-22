@@ -2,9 +2,16 @@ package InventoryManagementSystem.controller;
 
 import InventoryManagementSystem.DAO.DashboardDao;
 import InventoryManagementSystem.model.DashboardModel;
+import InventoryManagementSystem.view.Category;
+import InventoryManagementSystem.view.CustomerPanel;
+import InventoryManagementSystem.view.Customerchooser;
 import InventoryManagementSystem.view.Dashboard;
+import InventoryManagementSystem.view.OrderList;
+import InventoryManagementSystem.view.ProductPanel;
+import InventoryManagementSystem.view.ViewOrders;
 
 import java.util.List;
+import javax.swing.JOptionPane;
 
 public class DashboardController {
 
@@ -35,43 +42,48 @@ public class DashboardController {
                 p.getCategory(),
                 p.getQuantity(),
                 p.getPrice(),
-                p.getRate()
             };
             view.addRowToTable(row);
         }
     }
-
-    public void handleNavigation(String action) {
-        // Here you can call a NavigationManager or switch like before to open other modules
+public void handleNavigation(String action) {
         switch (action) {
-            case "Dashboard" -> {
-                // Already in dashboard, maybe refresh or do nothing
-                loadProducts();
-            }
-            case "Category" -> {
-                // Open Category view/controller
-                // ...
-            }
-            case "Product" -> {
-                // Open Product view/controller
-                // ...
-            }
-            case "Customer" -> {
-                // Open Customer view/controller
-                // ...
-            }
-            case "Order" -> {
-                // Open Order view/controller
-                // ...
-            }
-            case "View Order" -> {
-                // Open View Order view/controller
-                // ...
-            }
+         
+   case "Category" ->{Category view=new Category();
+                CategoryController CategoryOpener= new CategoryController(view);
+                 CategoryOpener.open();}
+ case "Product" -> {
+            ProductPanel view = new ProductPanel();
+        ProductPanelController controller = new ProductPanelController(view);
+        controller.show();
+                System.out.println("Product clicked!");
+        }
+        case "Customer" -> {
+            CustomerPanel view = new CustomerPanel();
+            CustomerPanelController controller = new CustomerPanelController(view);
+            controller.open();
+        }
+        case "Order" -> {
+            Customerchooser viewCustomer = new Customerchooser();
+         CustomerchooserController controllerCustomer= new CustomerchooserController(viewCustomer);
+         controllerCustomer.open();
+                System.out.println("Order clicked!");
+        }
+        case "View Order" -> {
+            ViewOrders view = new ViewOrders();
+            ViewOrdersController controller = new ViewOrdersController(view);
+            controller.open();
+        }
             case "Log Out" -> {
-                System.exit(0);
+                int option = JOptionPane.showConfirmDialog(null, "Are you sure you want to logout?", "Confirm", JOptionPane.YES_NO_OPTION);
+                if (option == JOptionPane.YES_OPTION) {
+                    System.exit(0);
+                }
             }
-            default -> System.out.println("No handler for " + action);
+            default -> JOptionPane.showMessageDialog(null,
+                    "No table named '" + action + "' found.",
+                    "Information",
+                    JOptionPane.INFORMATION_MESSAGE);
         }
     }
 }
