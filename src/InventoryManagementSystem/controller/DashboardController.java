@@ -6,7 +6,6 @@ import InventoryManagementSystem.view.Category;
 import InventoryManagementSystem.view.CustomerPanel;
 import InventoryManagementSystem.view.Customerchooser;
 import InventoryManagementSystem.view.Dashboard;
-import InventoryManagementSystem.view.MainPage;
 import InventoryManagementSystem.view.OrderList;
 import InventoryManagementSystem.view.ProductPanel;
 import InventoryManagementSystem.view.ViewOrders;
@@ -22,20 +21,6 @@ public class DashboardController {
     public DashboardController(Dashboard view) {
         this.view = view;
         this.dao = new DashboardDao();
-
-        // Add window listener once during initialization
-        this.view.addWindowListener(new java.awt.event.WindowAdapter() {
-            @Override
-            public void windowClosing(java.awt.event.WindowEvent e) {
-                // Open MainPage when Dashboard closes
-                MainPage mainPageView = new MainPage();
-                MainPageController mainPageOpener = new MainPageController(mainPageView);
-                mainPageOpener.open();
-
-                // Dispose Dashboard window
-                view.dispose();
-            }
-        });
     }
 
     public void loadProducts() {
@@ -61,55 +46,56 @@ public class DashboardController {
             view.addRowToTable(row);
         }
     }
-
     public void handleNavigation(String action) {
-        switch (action) {
-            case "Dashboard" -> {
-                loadProducts();
-                System.out.println("Dashboard refreshed!");
-            }
-            case "Category" -> {
-                view.dispose(); // Close Dashboard
-                Category categoryView = new Category();
-                CategoryController categoryOpener = new CategoryController(categoryView);
-                categoryOpener.open();
-            }
-            case "Product" -> {
-                view.dispose(); // Close Dashboard
-                ProductPanel productView = new ProductPanel();
-                ProductPanelController controller = new ProductPanelController(productView);
-                controller.show();
-                System.out.println("Product clicked!");
-            }
-            case "Customer" -> {
-                view.dispose(); // Close Dashboard
-                CustomerPanel customerView = new CustomerPanel();
-                CustomerPanelController controller = new CustomerPanelController(customerView);
-                controller.open();
-            }
-            case "Order" -> {
-                view.dispose(); // Close Dashboard
-                Customerchooser viewCustomer = new Customerchooser();
-                CustomerchooserController controllerCustomer = new CustomerchooserController(viewCustomer);
-                controllerCustomer.open();
-                System.out.println("Order clicked!");
-            }
-            case "View Order" -> {
-                view.dispose(); // Close Dashboard
-                ViewOrders viewOrders = new ViewOrders();
-                ViewOrdersController controller = new ViewOrdersController(viewOrders);
-                controller.open();
-            }
-            case "Log Out" -> {
-                int option = JOptionPane.showConfirmDialog(null, "Are you sure you want to logout?", "Confirm", JOptionPane.YES_NO_OPTION);
-                if (option == JOptionPane.YES_OPTION) {
-                    System.exit(0);
-                }
-            }
-            default -> JOptionPane.showMessageDialog(null,
-                    "No table named '" + action + "' found.",
-                    "Information",
-                    JOptionPane.INFORMATION_MESSAGE);
+    switch (action) {
+        case "Dashboard" -> {
+            loadProducts();
+            System.out.println("Dashboard refreshed!");
         }
+        case "Category" -> {
+            view.dispose(); 
+            Category categoryView = new Category();
+            CategoryController categoryOpener = new CategoryController(categoryView);
+            categoryOpener.open();
+        }
+        case "Product" -> {
+            view.dispose(); 
+            ProductPanel productView = new ProductPanel();
+            ProductPanelController controller = new ProductPanelController(productView);
+            controller.show();
+            System.out.println("Product clicked!");
+        }
+        case "Customer" -> {
+            view.dispose();
+            CustomerPanel customerView = new CustomerPanel();
+            CustomerPanelController controller = new CustomerPanelController(customerView);
+            controller.open();
+        }
+        case "Order" -> {
+            view.dispose(); 
+            Customerchooser viewCustomer = new Customerchooser();
+            CustomerchooserController controllerCustomer = new CustomerchooserController(viewCustomer);
+            controllerCustomer.open();
+            System.out.println("Order clicked!");
+        }
+        case "View Order" -> {
+            view.dispose();
+            ViewOrders viewOrders = new ViewOrders();
+            ViewOrdersController controller = new ViewOrdersController(viewOrders);
+            controller.open();
+        }
+        case "Log Out" -> {
+            int option = JOptionPane.showConfirmDialog(null, "Are you sure you want to logout?", "Confirm", JOptionPane.YES_NO_OPTION);
+            if (option == JOptionPane.YES_OPTION) {
+                System.exit(0);
+            }
+        }
+        default -> JOptionPane.showMessageDialog(null,
+                "No table named '" + action + "' found.",
+                "Information",
+                JOptionPane.INFORMATION_MESSAGE);
     }
+    
+}
+
 }
