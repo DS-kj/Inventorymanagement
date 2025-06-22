@@ -6,6 +6,9 @@ package InventoryManagementSystem.view;
 
 import InventoryManagementSystem.model.AdminPanelModel;
 import java.awt.Color;
+import java.awt.GradientPaint;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.event.ActionListener;
 import javax.swing.table.DefaultTableModel;
 
@@ -22,7 +25,42 @@ public class AdminPanel extends javax.swing.JFrame {
         initComponents();
         PasswordAdminPanelEntry.setEchoChar((char) 0);
     }
-
+//public class GradientBackgroundPanel extends javax.swing.JPanel {
+//    private final Color colorStart;
+//    private final Color colorEnd;
+//    private final boolean diagonal;
+//
+//    /**
+//     * Creates a panel with a gradient background.
+//     * @param colorStart The start color of the gradient.
+//     * @param colorEnd The end color of the gradient.
+//     * @param diagonal True for diagonal gradient, false for vertical.
+//     */
+//    public GradientBackgroundPanel(Color colorStart, Color colorEnd, boolean diagonal) {
+//        this.colorStart = colorStart;
+//        this.colorEnd = colorEnd;
+//        this.diagonal = diagonal;
+//        setOpaque(false); // Important for custom painting
+//    }
+//
+//    @Override
+//    protected void paintComponent(Graphics g) {
+//        super.paintComponent(g);
+//        Graphics2D g2d = (Graphics2D) g.create();
+//
+//        GradientPaint gp;
+//        if (diagonal) {
+//            gp = new GradientPaint(0, 0, colorStart, getWidth(), getHeight(), colorEnd);
+//        } else {
+//            gp = new GradientPaint(0, 0, colorStart, 0, getHeight(), colorEnd);
+//        }
+//
+//        g2d.setPaint(gp);
+//        g2d.fillRect(0, 0, getWidth(), getHeight());
+//
+//        g2d.dispose();
+//    }
+//}
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -34,7 +72,11 @@ public class AdminPanel extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
-        jPanel3 = new javax.swing.JPanel();
+        jPanel3 = new InventoryManagementSystem.view.GradientBackgroundPanel(
+            new Color(9, 47, 70),  // start color
+            new Color(32, 95, 178), // end color
+            true  // diagonal gradient, use false for vertical
+        );
         PhoneNumberEntry = new javax.swing.JTextField();
         PasswordAdminPanelEntry = new javax.swing.JPasswordField();
         UsernameAdminPanelEntry = new javax.swing.JTextField();
@@ -44,7 +86,11 @@ public class AdminPanel extends javax.swing.JFrame {
         EditButton = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jPanel1 = new javax.swing.JPanel();
+        jPanel1 = new GradientBackgroundPanel(
+            new Color(9, 47, 70),  // start color
+            new Color(12, 67, 178), // end color
+            true  // diagonal gradient, use false for vertical
+        );
         jLabel2 = new javax.swing.JLabel();
 
         jLabel1.setText("jLabel1");
@@ -139,17 +185,17 @@ public class AdminPanel extends javax.swing.JFrame {
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap(149, Short.MAX_VALUE)
-                .addComponent(PhoneNumberEntry, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(PhoneNumberEntry, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(UsernameAdminPanelEntry, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(UsernameAdminPanelEntry, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(PasswordAdminPanelEntry, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(PasswordAdminPanelEntry, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(showandhide, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(CreateAccount, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 138, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 130, Short.MAX_VALUE)
                 .addComponent(EditButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Delete)
@@ -372,23 +418,23 @@ public void addEditUserListener(ActionListener listener) {
 
 
 
-public void reloadUserTable() {
-    
-    DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-    model.addRow(new Object[] {
-        model.getRowCount() + 1,  // S.No
-        UsernameAdminPanelEntry.getText(),
-        PhoneNumberEntry.getText()
-    });
-}
-public void setUserTableData(java.util.List<AdminPanelModel> users) {
-    DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-    model.setRowCount(0); // Clear existing rows
-    int serial = 1;
-    for (AdminPanelModel user : users) {
-        model.addRow(new Object[]{serial++, user.getUsernameAdminPanelEntry(), user.getPhoneNumberEntry()});
-    }
-}
+//public void reloadUserTable() {
+//    
+//    DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+//    model.addRow(new Object[] {
+//        model.getRowCount() + 1,  // S.No
+//        UsernameAdminPanelEntry.getText(),
+//        PhoneNumberEntry.getText()
+//    });
+//}
+//public void setUserTableData(java.util.List<AdminPanelModel> users) {
+//    DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+//    model.setRowCount(0); // Clear existing rows
+//    int serial = 1;
+//    for (AdminPanelModel user : users) {
+//        model.addRow(new Object[]{serial++, user.getUsernameAdminPanelEntry(), user.getPhoneNumberEntry()});
+//    }
+//}
 
 }
 

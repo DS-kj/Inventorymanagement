@@ -89,6 +89,9 @@
               </Border>
             </Property>
           </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new InventoryManagementSystem.view.GradientBackgroundPanel(&#xa;    new Color(9, 47, 70),  // start color&#xa;    new Color(32, 95, 178), // end color&#xa;    true  // diagonal gradient, use false for vertical&#xa;)"/>
+          </AuxValues>
 
           <Layout>
             <DimensionLayout dim="0">
@@ -111,17 +114,17 @@
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace pref="149" max="32767" attributes="0"/>
-                      <Component id="PhoneNumberEntry" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="PhoneNumberEntry" min="-2" pref="33" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="UsernameAdminPanelEntry" min="-2" pref="22" max="-2" attributes="0"/>
+                      <Component id="UsernameAdminPanelEntry" min="-2" pref="30" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="PasswordAdminPanelEntry" min="-2" pref="22" max="-2" attributes="0"/>
+                      <Component id="PasswordAdminPanelEntry" min="-2" pref="31" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="showandhide" min="-2" pref="20" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="CreateAccount" min="-2" pref="23" max="-2" attributes="0"/>
-                      <EmptySpace pref="138" max="32767" attributes="0"/>
+                      <EmptySpace pref="130" max="32767" attributes="0"/>
                       <Component id="EditButton" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="Delete" min="-2" max="-2" attributes="0"/>
@@ -254,6 +257,9 @@
               <Color blue="46" green="2f" red="9" type="rgb"/>
             </Property>
           </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new GradientBackgroundPanel(&#xa;    new Color(9, 47, 70),  // start color&#xa;    new Color(12, 67, 178), // end color&#xa;    true  // diagonal gradient, use false for vertical&#xa;)"/>
+          </AuxValues>
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout">
             <Property name="useNullLayout" type="boolean" value="true"/>

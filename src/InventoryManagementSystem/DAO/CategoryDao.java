@@ -66,6 +66,7 @@ public class CategoryDao {
        e.printStackTrace();
        return false;
    }
+   
 }
     public boolean updateCategoryName(int id, String newName) {
     String sql = "UPDATE category SET name = ? WHERE id = ?";

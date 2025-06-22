@@ -4,6 +4,11 @@
  */
 package InventoryManagementSystem.view;
 
+import InventoryManagementSystem.model.CategoryModel;
+import javax.swing.JComboBox;
+
+
+
 /**
  *
  * @author LENOVO
@@ -15,6 +20,8 @@ public class ProductPanel extends javax.swing.JFrame {
      */
     public ProductPanel() {
         initComponents();
+                
+
     }
 
     /**
@@ -29,7 +36,6 @@ public class ProductPanel extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jTextField1 = new javax.swing.JTextField();
         jTextField2 = new javax.swing.JTextField();
         jTextField3 = new javax.swing.JTextField();
         jTextField4 = new javax.swing.JTextField();
@@ -43,6 +49,7 @@ public class ProductPanel extends javax.swing.JFrame {
         jButton14 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        Categorychooser = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -61,8 +68,6 @@ public class ProductPanel extends javax.swing.JFrame {
             }
         ));
         jScrollPane1.setViewportView(jTable1);
-
-        jTextField1.setText("Category");
 
         jTextField2.setText("Product Name");
 
@@ -137,6 +142,13 @@ public class ProductPanel extends javax.swing.JFrame {
             }
         });
 
+        Categorychooser.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        Categorychooser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CategorychooserActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -154,11 +166,11 @@ public class ProductPanel extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE)
                         .addComponent(jTextField4)
-                        .addComponent(jTextField3)
-                        .addComponent(jTextField1))
+                        .addComponent(jTextField3))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(39, 39, 39)
-                        .addComponent(jButton8)))
+                        .addComponent(jButton8))
+                    .addComponent(Categorychooser, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(170, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -168,9 +180,9 @@ public class ProductPanel extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(219, 219, 219)
                         .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(Categorychooser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(16, 16, 16)
                         .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -210,6 +222,10 @@ public class ProductPanel extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void CategorychooserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CategorychooserActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CategorychooserActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -242,11 +258,13 @@ public class ProductPanel extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new ProductPanel().setVisible(true);
+                
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> Categorychooser;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
@@ -260,9 +278,32 @@ public class ProductPanel extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     // End of variables declaration//GEN-END:variables
+public javax.swing.JComboBox getCategoryChooser() {
+    return Categorychooser;
+}
+public javax.swing.JButton getAddButton() {
+    return jButton8;
+}
+
+public javax.swing.JTextField getProductNameField() {
+    return jTextField2;
+}
+
+public javax.swing.JTextField getQuantityField() {
+    return jTextField3;
+}
+
+public javax.swing.JTextField getPriceField() {
+    return jTextField4;
+}
+public javax.swing.JTable getProductTable() {
+    return jTable1;
+}
+
+
+
 }
