@@ -27,7 +27,7 @@ public class CustomerPanelController {
         view.order(new OrderListener());
         view.viewOrder(new ViewOrderListener());
         view.product(new ProductListener());
-//        view.goBackMainMenu(new CustomerchooserController.MainMenuListener());
+        view.goBackMainMenu(new MainMenuListener());
     }
 
     public void open() {
