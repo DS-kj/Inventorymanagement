@@ -287,11 +287,11 @@ public class HoverPanel extends javax.swing.JPanel {
         ProductLayout.setHorizontalGroup(
             ProductLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(ProductLayout.createSequentialGroup()
-                .addContainerGap(74, Short.MAX_VALUE)
+                .addContainerGap(73, Short.MAX_VALUE)
                 .addGroup(ProductLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3)
                     .addComponent(jLabel9))
-                .addContainerGap(74, Short.MAX_VALUE))
+                .addContainerGap(73, Short.MAX_VALUE))
         );
         ProductLayout.setVerticalGroup(
             ProductLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -349,11 +349,11 @@ public class HoverPanel extends javax.swing.JPanel {
         CustomerLayout.setHorizontalGroup(
             CustomerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(CustomerLayout.createSequentialGroup()
-                .addContainerGap(73, Short.MAX_VALUE)
+                .addContainerGap(72, Short.MAX_VALUE)
                 .addGroup(CustomerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4)
                     .addComponent(jLabel10))
-                .addContainerGap(73, Short.MAX_VALUE))
+                .addContainerGap(72, Short.MAX_VALUE))
         );
         CustomerLayout.setVerticalGroup(
             CustomerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -384,7 +384,7 @@ public class HoverPanel extends javax.swing.JPanel {
                 .addGroup(OrderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel5)
                     .addComponent(jLabel11))
-                .addContainerGap(84, Short.MAX_VALUE))
+                .addContainerGap(83, Short.MAX_VALUE))
         );
         OrderLayout.setVerticalGroup(
             OrderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
