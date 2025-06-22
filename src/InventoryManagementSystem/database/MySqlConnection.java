@@ -15,8 +15,8 @@ public class MySqlConnection implements DbConnection {
     public Connection openConnection() {
 
 String username= "root";
-       String password = "1618014350569";
-       String database = "InventoryManagementSystem";
+       String password = "12345";
+       String database = "inventorymanagementsystem";
        try{
            Class.forName("com.mysql.cj.jdbc.Driver");
            Connection conn;
