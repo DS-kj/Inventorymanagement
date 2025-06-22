@@ -10,13 +10,15 @@ import java.sql.*;
  * @author ACER
  */
 public class MySqlConnection implements DbConnection {
-
+private final String username = "root";
+    private final String password = "631116";
+    private final String database = "inventorymanagementsystem";
     @Override
     public Connection openConnection() {
 
-String username= "root";
-       String password = "631116";
-       String database = "inventorymanagementsystem";
+//String username= "root";
+//       String password = "631116";
+//       String database = "inventorymanagementsystem";
        try{
            Class.forName("com.mysql.cj.jdbc.Driver");
            Connection conn;
@@ -34,7 +36,21 @@ String username= "root";
             }}catch(Exception e){
             }
            }
+public void createDatabaseIfNotExists() {
+        String url = "jdbc:mysql://localhost:3306/"; // no database specified
+        String sql = "CREATE DATABASE IF NOT EXISTS " + database;
 
+        try (Connection conn = DriverManager.getConnection(url, username, password);
+             Statement stmt = conn.createStatement()) {
+
+            stmt.executeUpdate(sql);
+            System.out.println("Database `" + database + "` created or already exists.");
+
+        } catch (SQLException e) {
+            System.err.println("Error creating database: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
     
     public ResultSet runQuery(Connection conn, String query) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
