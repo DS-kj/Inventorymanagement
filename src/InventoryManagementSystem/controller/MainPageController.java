@@ -6,6 +6,9 @@ import InventoryManagementSystem.view.Dashboard;
 import InventoryManagementSystem.view.MainPage;
 import InventoryManagementSystem.view.ProductPanel;
 import InventoryManagementSystem.view.ViewOrders;
+import InventoryManagementSystem.view.CustomerPanel;
+
+
 //import InventoryManagementSystem.view.HoverPanel;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -49,7 +52,7 @@ controllerCategory.open();
         this.view.addCustomerListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-//                new Customer().setVisible(true);
+                new CustomerPanel().setVisible(true);
                 System.out.println("Customer clicked!");
             }
         });
