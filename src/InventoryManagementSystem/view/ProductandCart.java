@@ -3,7 +3,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package InventoryManagementSystem.view;
-import java.awt.Color;
+
+import InventoryManagementSystem.DAO.ProductAndCartDao;
 import java.awt.event.ActionListener;
 
 /**
@@ -28,12 +29,7 @@ public class ProductandCart extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new InventoryManagementSystem.view.GradientBackgroundPanel(
-            new java.awt.Color(50, 120, 165),  // Brighter Left Side
-            new java.awt.Color(9, 47, 70),     // Darker Right Side
-            true  // diagonal gradient, use false for vertical
-
-        );
+        jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -110,6 +106,11 @@ public class ProductandCart extends javax.swing.JFrame {
         goBack.setText("←GO BACK");
 
         Bill_Button.setText("BILL");
+        Bill_Button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Bill_ButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -166,6 +167,13 @@ public class ProductandCart extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void Bill_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Bill_ButtonActionPerformed
+        // TODO add your handling code here:
+        ProductAndCartDao dao = new ProductAndCartDao();
+    int orderId = dao.getLatestOrderId();
+        Bill billController = new Bill(this, orderId);
+    }//GEN-LAST:event_Bill_ButtonActionPerformed
 
     /**
      * @param args the command line arguments
