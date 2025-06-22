@@ -40,9 +40,9 @@ public class InventoryManagementMain {
 //        AdminPanel view = new AdminPanel();
 //        AdminPanelController controller= new AdminPanelController(view);
 //        controller.open();
-//                LoginPanel view=new LoginPanel();
-//                LoginController LoginOpener= new LoginController(view);
-//                 LoginOpener.open();
+                LoginPanel view=new LoginPanel();
+                LoginController LoginOpener= new LoginController(view);
+                 LoginOpener.open();
 //                 CustomerPanel view=new CustomerPanel();
 //                 CustomerPanelController customerP=new CustomerPanelController(view);
 //                 
@@ -51,9 +51,9 @@ public class InventoryManagementMain {
 //         CustomerchooserController controller= new CustomerchooserController(view);
 //         controller.open();
 
-         MainPage view=new MainPage();
-         MainPageController mainPageOpener= new MainPageController(view);
-         mainPageOpener.open();
+//         MainPage view=new MainPage();
+//         MainPageController mainPageOpener= new MainPageController(view);
+//         mainPageOpener.open();
 
 // ProductPanel view = new ProductPanel();
 //        ProductPanelController controller = new ProductPanelController(view);
