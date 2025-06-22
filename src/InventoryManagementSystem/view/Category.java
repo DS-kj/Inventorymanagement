@@ -480,4 +480,7 @@ public void product(ActionListener listener) {
 public void goBackMainMenu(ActionListener listener) {
     MainMenuButton.addActionListener(listener);
 }
+public void LogOut(ActionListener listener) {
+    Logout.addActionListener(listener);
+}
 }
