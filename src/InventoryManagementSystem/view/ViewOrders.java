@@ -264,4 +264,27 @@ public javax.swing.JButton getSelectButton() {
 public void addSelectCustomerListener(ActionListener listener) {
     Select.addActionListener(listener);
 }
+public void dashboard(ActionListener listener) {
+    Dashboard.addActionListener(listener);
+}
+public void category(ActionListener listener){
+Category.addActionListener(listener);
+ 
+}
+public void customer(ActionListener listener) {
+    Customer.addActionListener(listener);
+}
+public void order(ActionListener listener){
+Order.addActionListener(listener);
+ 
+}
+public void viewOrder(ActionListener listener) {
+    Vieworder.addActionListener(listener);
+}
+public void product(ActionListener listener) {
+    Product.addActionListener(listener);
+}
+public void goBackMainMenu(ActionListener listener) {
+    MainMenuButton.addActionListener(listener);
+}
 }
