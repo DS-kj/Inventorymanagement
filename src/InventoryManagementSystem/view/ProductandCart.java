@@ -3,10 +3,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package InventoryManagementSystem.view;
-import InventoryManagementSystem.view.Bill;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import InventoryManagementSystem.DAO.ProductAndCartDao;
+import java.awt.Color;
+import java.awt.event.ActionListener;
+
 /**
  *
  * @author ACER
@@ -29,7 +29,12 @@ public class ProductandCart extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
+        jPanel1 = new InventoryManagementSystem.view.GradientBackgroundPanel(
+            new java.awt.Color(50, 120, 165),  // Brighter Left Side
+            new java.awt.Color(9, 47, 70),     // Darker Right Side
+            true  // diagonal gradient, use false for vertical
+
+        );
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -123,15 +128,14 @@ public class ProductandCart extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(AddToCart)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 412, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 412, Short.MAX_VALUE))
                         .addGap(36, 36, 36)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(Save_Order_Button)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(Bill_Button))
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 382, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 382, Short.MAX_VALUE)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(goBack)))
@@ -145,14 +149,14 @@ public class ProductandCart extends javax.swing.JFrame {
                 .addComponent(goBack)
                 .addGap(12, 12, 12)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 348, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 348, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 348, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(AddToCart)
                     .addComponent(Bill_Button)
                     .addComponent(Save_Order_Button))
-                .addContainerGap(58, Short.MAX_VALUE))
+                .addGap(58, 58, 58))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -170,7 +174,8 @@ public class ProductandCart extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void Bill_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Bill_ButtonActionPerformed
-       ProductAndCartDao dao = new ProductAndCartDao();
+        // TODO add your handling code here:
+            ProductAndCartDao dao = new ProductAndCartDao();
     int orderId = dao.getLatestOrderId();
         Bill billController = new Bill(this, orderId);
     }//GEN-LAST:event_Bill_ButtonActionPerformed
@@ -252,6 +257,13 @@ public void addSaveOrderListener(ActionListener listener) {
 
 public void addBackButtonListener(ActionListener listener) {
     goBack.addActionListener(listener);
+}
+public javax.swing.JButton getBillButton() {
+    return Bill_Button;
+}
+
+public void addBillButtonListener(ActionListener listener) {
+    Bill_Button.addActionListener(listener);
 }
 
 

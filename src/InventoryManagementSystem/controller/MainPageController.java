@@ -82,6 +82,26 @@ controllerCategory.open();
                 System.out.println("History clicked!");
             }
         });
+          this.view.addLogoutListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                  int response = javax.swing.JOptionPane.showConfirmDialog(
+            view,
+            "Are you sure you want to log out?",
+            "Confirm Logout",
+            javax.swing.JOptionPane.YES_NO_OPTION,
+            javax.swing.JOptionPane.QUESTION_MESSAGE
+        );
+
+        if (response == javax.swing.JOptionPane.YES_OPTION) {
+            view.dispose();
+            System.out.println("User logged out.");
+        } else {
+            System.out.println("Logout cancelled.");
+        }
+    
+            }
+        });
     
     }
     public void open(){
