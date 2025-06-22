@@ -2,9 +2,7 @@ package InventoryManagementSystem.controller;
 
 import InventoryManagementSystem.dao.CustomerDao;
 import InventoryManagementSystem.model.CustomerModel;
-import InventoryManagementSystem.view.Category;
-import InventoryManagementSystem.view.OrderList;
-import InventoryManagementSystem.view.ViewOrders;
+import InventoryManagementSystem.view.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -20,6 +18,7 @@ public class ViewOrdersController {
         this.view = view;
         this.customerDao = new CustomerDao();  
         view.addCategoryButtonListener(e -> handleNavigation("Category"));
+        view.addProductButtonListener(e -> handleNavigation("Product"));
         loadCustomersToTable();
         view.addSelectCustomerListener(new SelectCustomerListener());
 
@@ -66,6 +65,11 @@ public class ViewOrdersController {
         case "Category" -> {
             Category view = new Category();
             new CategoryController(view).open(); 
+            this.view.dispose(); 
+        }
+        case "Product" -> {
+            ProductandCart view = new ProductandCart();
+            new ProductAndCartController(view).open(); 
             this.view.dispose(); 
         }
         default -> JOptionPane.showMessageDialog(null, 
