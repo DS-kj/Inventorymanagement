@@ -258,4 +258,7 @@ public void addSelectCustomerListener(ActionListener listener) {
 public void addCategoryButtonListener(ActionListener listener) {
     Category.addActionListener(listener);
 }
+public void addProductButtonListener(ActionListener listener) {
+    Product.addActionListener(listener);
+}
 }
