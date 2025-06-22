@@ -24,13 +24,13 @@ public class CategoryDaoTest {
         Assert.assertTrue("Category should be added successfully", added);
     }
 
-//    @Test
-//    public void testGetAllCategories() {
-//        List<CategoryModel> categories = dao.getAllCategories();
-//        Assert.assertNotNull("Category list should not be null", categories);
-//        Assert.assertTrue("Category list size should be >= 0", categories.size() >= 0);
-//    }
-//
+    @Test
+    public void testGetAllCategories() {
+        List<CategoryModel> categories = dao.getAllCategories();
+        Assert.assertNotNull("Category list should not be null", categories);
+        Assert.assertTrue("Category list size should be >= 0", categories.size() >= 0);
+    }
+
 //    @Test
 //    public void testUpdateCategoryName() {
 //        // Add a category first
