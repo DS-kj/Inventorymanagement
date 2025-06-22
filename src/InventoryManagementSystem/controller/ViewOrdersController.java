@@ -65,4 +65,14 @@ public class ViewOrdersController {
                 view.dispose();
         }
     }
+     private class CategoryListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            Category viewCategory = new Category();
+            CategoryController controllerCategory = new CategoryController(viewCategory);
+            controllerCategory.open();
+                System.out.println("Category clicked!");
+                view.dispose();
+        }
+    }
 }
