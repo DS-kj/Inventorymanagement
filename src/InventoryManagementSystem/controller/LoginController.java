@@ -1,10 +1,12 @@
 package InventoryManagementSystem.controller;
 
+import InventoryManagementSystem.Controller.AdminLoginController;
 import InventoryManagementSystem.DAO.UserDao;
 import InventoryManagementSystem.model.LoginRequest;
 import InventoryManagementSystem.DAO.UserData;
 import InventoryManagementSystem.controller.AdminPanelController;
 import InventoryManagementSystem.controller.MainPageController;
+import InventoryManagementSystem.view.AdminLogin;
 import InventoryManagementSystem.view.AdminPanel;
 import InventoryManagementSystem.view.Dashboard; 
 import InventoryManagementSystem.view.LoginPanel;
@@ -63,9 +65,13 @@ public class LoginController {
     class GoToAdmin implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-        AdminPanel view = new AdminPanel();
-        AdminPanelController controller= new AdminPanelController(view);
-        controller.open();
+            
+            AdminLogin view= new AdminLogin();
+            AdminLoginController controller= new AdminLoginController(view);
+            controller.open();
+//        AdminPanel view = new AdminPanel();
+//        AdminPanelController controller= new AdminPanelController(view);
+//        controller.open();
         }}
 }
  

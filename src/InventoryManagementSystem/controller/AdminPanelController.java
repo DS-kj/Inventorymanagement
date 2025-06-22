@@ -13,6 +13,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 //import InventoryManagementSystem.model.AdminPanelModel;
 //import InventoryManagementSystem.view.AdminPanel;
@@ -49,8 +50,9 @@ public class AdminPanelController {
 public void refreshUserTable() {
     UserDataDao dao = new UserDataDao();
     List<AdminPanelModel> users = dao.getAllUsers();
-    view.setUserTableData(users);
+    setUserTableData(users); // use controller method
 }
+
 
     public void close(){
         view.dispose();
@@ -65,6 +67,29 @@ class ShowPasswordToggleListener implements ActionListener {
         view.togglePasswordField(passwordVisible);
     }
 }
+public void reloadUserTable() {
+    DefaultTableModel model = (DefaultTableModel) view.getUserTable().getModel();
+    model.addRow(new Object[] {
+        model.getRowCount() + 1,
+        view.getUsernameAdminPanelEntry().getText(),  // ✅ fix here
+        view.getPhoneNumberEntry().getText()          // ✅ fix here
+    });
+}
+
+
+public void setUserTableData(List<AdminPanelModel> users) {
+    DefaultTableModel model = (DefaultTableModel) view.getUserTable().getModel();
+    model.setRowCount(0); // Clear existing rows
+    int serial = 1;
+    for (AdminPanelModel user : users) {
+        model.addRow(new Object[]{
+            serial++,
+            user.getUsernameAdminPanelEntry(),
+            user.getPhoneNumberEntry()
+        });
+    }
+}
+
 class EditUserListener implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -101,7 +126,8 @@ class CreateAccountListener implements ActionListener {
 
             if (dao.register(user)) {
                 JOptionPane.showMessageDialog(view, "Account created successfully.");
-                view.reloadUserTable(); 
+//                view.reloadUserTable(); 
+                reloadUserTable(); 
             } else {
                 JOptionPane.showMessageDialog(view, "Failed to create account.");
             }
