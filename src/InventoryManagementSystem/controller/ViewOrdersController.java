@@ -113,4 +113,14 @@ public class ViewOrdersController {
                 view.dispose();
         }
     }
+     private class MainMenuListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            MainPage mainView=new MainPage();
+         MainPageController mainPageOpener= new MainPageController(mainView);
+         mainPageOpener.open();
+                System.out.println("Main Menu clicked!");
+                view.dispose();
+        }
+    }
 }
