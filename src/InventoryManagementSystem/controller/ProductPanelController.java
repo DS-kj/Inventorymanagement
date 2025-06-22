@@ -9,6 +9,7 @@ import InventoryManagementSystem.view.Category;
 import InventoryManagementSystem.view.CustomerPanel;
 import InventoryManagementSystem.view.Customerchooser;
 import InventoryManagementSystem.view.Dashboard;
+import InventoryManagementSystem.view.EditProductDialog;
 import InventoryManagementSystem.view.LoginPanel;
 import InventoryManagementSystem.view.MainPage;
 import InventoryManagementSystem.view.ProductPanel;
@@ -42,6 +43,7 @@ public class ProductPanelController {
         view.product(new ProductListener());
         view.goBackMainMenu(new MainMenuListener());
         view.logOut(new LogOutListener());
+        view.getEditButton(new EditProductListener());
     }
      public void show() {
         view.setVisible(true);
@@ -110,6 +112,63 @@ public class ProductPanelController {
             model.addRow(row);
         }
     }
+    private class EditProductListener implements ActionListener {
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        int selectedRow = view.getProductTable().getSelectedRow();
+
+        if (selectedRow != -1) {
+            int id = (int) view.getProductTable().getValueAt(selectedRow, 0);
+            String name = (String) view.getProductTable().getValueAt(selectedRow, 1);
+            String categoryName = (String) view.getProductTable().getValueAt(selectedRow, 2); // for label only
+            int quantity = (int) view.getProductTable().getValueAt(selectedRow, 3);
+            double price = (double) view.getProductTable().getValueAt(selectedRow, 4);
+
+            EditProductDialog dialog = new EditProductDialog(view);
+            dialog.getTxtName().setText(name);
+            dialog.getTxtQuantity().setText(String.valueOf(quantity));
+            dialog.getTxtPrice().setText(String.valueOf(price));
+            dialog.getLblCategory().setText(categoryName); // display only
+
+            dialog.getBtnSave().addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent ev) {
+                    try {
+                        String updatedName = dialog.getTxtName().getText().trim();
+                        int updatedQty = Integer.parseInt(dialog.getTxtQuantity().getText().trim());
+                        double updatedPrice = Double.parseDouble(dialog.getTxtPrice().getText().trim());
+
+                        if (updatedName.isEmpty()) {
+                            JOptionPane.showMessageDialog(dialog, "Product name cannot be empty.");
+                            return;
+                        }
+
+                        CategoryModel dummyCategory = new CategoryModel(0, categoryName); // placeholder
+                        ProductModel updatedProduct = new ProductModel(id, updatedName, dummyCategory, updatedQty, updatedPrice);
+                        boolean success = dao.updateProduct(updatedProduct);
+
+                        if (success) {
+                            JOptionPane.showMessageDialog(dialog, "Product updated successfully.");
+                            dialog.dispose();
+                            loadProductsToTable();
+                        } else {
+                            JOptionPane.showMessageDialog(dialog, "Update failed.", "Error", JOptionPane.ERROR_MESSAGE);
+                        }
+
+                    } catch (NumberFormatException ex) {
+                        JOptionPane.showMessageDialog(dialog, "Invalid input in quantity or price.", "Input Error", JOptionPane.WARNING_MESSAGE);
+                    }
+                }
+            });
+
+            dialog.setVisible(true);
+
+        } else {
+            JOptionPane.showMessageDialog(view, "Please select a product to edit.");
+        }
+    }
+}
+
 
     void open() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
@@ -208,4 +267,5 @@ controllerCategory.open();
     
             }
         }
+     
 }
