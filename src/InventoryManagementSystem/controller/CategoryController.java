@@ -2,7 +2,7 @@ package InventoryManagementSystem.controller;
  
 import InventoryManagementSystem.DAO.CategoryDao;
 import InventoryManagementSystem.model.CategoryModel;
-import InventoryManagementSystem.view.Category;
+import InventoryManagementSystem.view.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
@@ -16,6 +16,13 @@ public class CategoryController {
         this.view.createCategory(new CreateCategoryListener());
         this.view.addDeleteUserListener(new DeleteUserListener());
         this.view.addEditNameListener(new EditCategoryListener());
+        view.dashboard(new DashboardListener());
+        view.category(new CategoryListener());
+        view.customer(new CustomerListener());
+        view.order(new OrderListener());
+        view.viewOrder(new ViewOrderListener());
+        view.product(new ProductListener());
+        view.goBackMainMenu(new MainMenuListener());
     }
  
     public void open() {
@@ -108,4 +115,74 @@ public class CategoryController {
         }
     }
 }
+    private class DashboardListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+           new Dashboard().setVisible(true);
+                System.out.println("Dashboard clicked!");
+                view.dispose();
+        }
+    }
+ 
+    private class CategoryListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            Category viewCategory = new Category();
+CategoryController controllerCategory = new CategoryController(viewCategory);
+controllerCategory.open();
+                System.out.println("Category clicked!");
+                view.dispose();
+        }
+    }
+ 
+    private class CustomerListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            CustomerPanel viewCustomerP=new CustomerPanel();
+                 CustomerPanelController customerP=new CustomerPanelController(viewCustomerP);
+                 customerP.open();
+                System.out.println("Customer clicked!");
+                view.dispose();
+        }
+    }
+ 
+    private class OrderListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            Customerchooser chooser = new Customerchooser();
+            new CustomerchooserController(chooser).open();
+            view.dispose();
+        }
+    }
+ 
+    private class ViewOrderListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+           ViewOrders viewOrder = new ViewOrders();
+         ViewOrdersController controllerOrder= new ViewOrdersController(viewOrder);
+         controllerOrder.open();
+                System.out.println("History clicked!");
+                view.dispose();
+        }
+    }
+    private class ProductListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            ProductPanel prodView = new ProductPanel();
+        ProductPanelController controller = new ProductPanelController(prodView);
+        controller.show();
+                System.out.println("Product clicked!");
+                view.dispose();
+        }
+    }
+    private class MainMenuListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            MainPage mainView=new MainPage();
+         MainPageController mainPageOpener= new MainPageController(mainView);
+         mainPageOpener.open();
+                System.out.println("Main Menu clicked!");
+                view.dispose();
+        }
+    }
 }
