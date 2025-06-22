@@ -17,10 +17,15 @@ public class ViewOrdersController {
     public ViewOrdersController(ViewOrders view) {
         this.view = view;
         this.customerDao = new CustomerDao();  
-        view.addCategoryButtonListener(e -> handleNavigation("Category"));
-        view.addProductButtonListener(e -> handleNavigation("Product"));
         loadCustomersToTable();
         view.addSelectCustomerListener(new SelectCustomerListener());
+        view.dashboard(new DashboardListener());
+        view.category(new CategoryListener());
+        view.customer(new CustomerListener());
+        view.order(new OrderListener());
+        view.viewOrder(new ViewOrderListener());
+        view.product(new ProductListener());
+        view.goBackMainMenu(new MainMenuListener());
 
     }
  public void open(){
@@ -59,24 +64,70 @@ public class ViewOrdersController {
         }
     }
 }
-
-     public void handleNavigation(String action) {
-    switch (action) {
-        case "Category" -> {
-            Category view = new Category();
-            new CategoryController(view).open(); 
-            this.view.dispose(); 
+     private class DashboardListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+           new Dashboard().setVisible(true);
+                System.out.println("Dashboard clicked!");
+                view.dispose();
         }
-        case "Product" -> {
-            ProductandCart view = new ProductandCart();
-            new ProductAndCartController(view).open(); 
-            this.view.dispose(); 
-        }
-        default -> JOptionPane.showMessageDialog(null, 
-            "Action not supported: " + action, 
-            "Error", 
-            JOptionPane.ERROR_MESSAGE
-        );
     }
-}
+     private class CategoryListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            Category viewCategory = new Category();
+            CategoryController controllerCategory = new CategoryController(viewCategory);
+            controllerCategory.open();
+                System.out.println("Category clicked!");
+                view.dispose();
+        }
+    }
+    private class ProductListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            ProductPanel prodView = new ProductPanel();
+        ProductPanelController controller = new ProductPanelController(prodView);
+        controller.show();
+                System.out.println("Product clicked!");
+                view.dispose();
+        }
+    }
+     private class CustomerListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            CustomerPanel viewCustomerP=new CustomerPanel();
+                 CustomerPanelController customerP=new CustomerPanelController(viewCustomerP);
+                 customerP.open();
+                System.out.println("Customer clicked!");
+                view.dispose();
+        }
+    }
+     private class OrderListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            Customerchooser chooser = new Customerchooser();
+            new CustomerchooserController(chooser).open();
+            view.dispose();
+        }
+    }
+     private class ViewOrderListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+           ViewOrders viewOrder = new ViewOrders();
+         ViewOrdersController controllerOrder= new ViewOrdersController(viewOrder);
+         controllerOrder.open();
+                System.out.println("History clicked!");
+                view.dispose();
+        }
+    }
+     private class MainMenuListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            MainPage mainView=new MainPage();
+         MainPageController mainPageOpener= new MainPageController(mainView);
+         mainPageOpener.open();
+                System.out.println("Main Menu clicked!");
+                view.dispose();
+        }
+    }
 }

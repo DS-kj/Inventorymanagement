@@ -61,7 +61,7 @@ public class Bill {
             data[i][2] = qty;
             data[i][3] = String.format("%.2f", subTotal);
         }
-      
+
         JTable billTable = new JTable(data, columns);
         billTable.setEnabled(false);
         JScrollPane scrollPane = new JScrollPane(billTable);
@@ -77,29 +77,36 @@ public class Bill {
         bottomPanel.add(downloadButton, BorderLayout.EAST);
 
         downloadButton.addActionListener((ActionEvent e) -> {
-            //removes overlapping
-            try (FileWriter writer = new FileWriter("C:\\Users\\ASUS\\Desktop\\Invent\\Inventorymanagement\\src\\InventoryManagementSystem\\bill.txt",true)) {
-                writer.write("Inventory Management System\n\n");
-                writer.write("Order ID: " + orderId + "\n");
-                writer.write("Date: " + currentDate + "\n");
-                writer.write("Total Paid: Rs. " + String.format("%.2f", totalPaid) + "\n\n");
+            JFileChooser fileChooser = new JFileChooser();
+            fileChooser.setDialogTitle("Save Bill");
+            fileChooser.setSelectedFile(new java.io.File("bill.txt"));
+            int userSelection = fileChooser.showSaveDialog(view);
 
-                writer.write(String.format("%-20s %-10s %-10s %-10s\n", "Name", "Price", "Quantity", "Sub Total"));
-                writer.write("--------------------------------------------------------\n");
+            if (userSelection == JFileChooser.APPROVE_OPTION) {
+                java.io.File fileToSave = fileChooser.getSelectedFile();
+                try (FileWriter writer = new FileWriter(fileToSave, true)) {
+                    writer.write("Inventory Management System\n\n");
+                    writer.write("Order ID: " + orderId + "\n");
+                    writer.write("Date: " + currentDate + "\n");
+                    writer.write("Total Paid: Rs. " + String.format("%.2f", totalPaid) + "\n\n");
 
-                for (int i = 0; i < rowCount; i++) {
-                    String name = data[i][0].toString();
-                    String price = data[i][1].toString();
-                    String qty = data[i][2].toString();
-                    String subTotal = data[i][3].toString();
-                    writer.write(String.format("%-20s %-10s %-10s %-10s\n", name, price, qty, subTotal));
+                    writer.write(String.format("%-20s %-10s %-10s %-10s\n", "Name", "Price", "Quantity", "Sub Total"));
+                    writer.write("--------------------------------------------------------\n");
+
+                    for (int i = 0; i < rowCount; i++) {
+                        String name = data[i][0].toString();
+                        String price = data[i][1].toString();
+                        String qty = data[i][2].toString();
+                        String subTotal = data[i][3].toString();
+                        writer.write(String.format("%-20s %-10s %-10s %-10s\n", name, price, qty, subTotal));
+                    }
+
+                    writer.write("\nThank you, Please visit again!\n-\n-\n-\n-----------------------------------\n-\n-\n");
+                    JOptionPane.showMessageDialog(view, "Bill downloaded successfully.");
+                    billDialog.dispose();
+                } catch (IOException ex) {
+                    JOptionPane.showMessageDialog(view, "Error saving bill: " + ex.getMessage());
                 }
-
-                writer.write("\nThank you, Please visit again!\n-\n-\n-\n-----------------------------------\n-\n-\n");
-                JOptionPane.showMessageDialog(view, "Bill downloaded as bill.txt");
-                billDialog.dispose();
-            } catch (IOException ex) {
-                JOptionPane.showMessageDialog(view, "Error saving bill: " + ex.getMessage());
             }
         });
 
