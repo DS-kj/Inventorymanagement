@@ -30,7 +30,7 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="0" pref="6" max="32767" attributes="0"/>
+              <EmptySpace min="0" pref="4" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -51,6 +51,8 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jLabel1" min="-2" pref="168" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
+                  <Component id="MainMenuButton" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -58,7 +60,10 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                  <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="MainMenuButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
@@ -125,8 +130,8 @@
                               <Component id="Product" alignment="0" min="-2" pref="88" max="-2" attributes="0"/>
                               <Component id="Customer" alignment="0" min="-2" pref="88" max="-2" attributes="0"/>
                               <Component id="Order" alignment="0" min="-2" pref="88" max="-2" attributes="0"/>
-                              <Component id="history" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="logout" alignment="0" min="-2" pref="84" max="-2" attributes="0"/>
+                              <Component id="ViewOrder" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="jButton7" alignment="0" min="-2" pref="84" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -145,9 +150,9 @@
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="Order" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="history" min="-2" max="-2" attributes="0"/>
+                          <Component id="ViewOrder" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="logout" min="-2" max="-2" attributes="0"/>
+                          <Component id="jButton7" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
                       </Group>
                   </Group>
@@ -166,43 +171,31 @@
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Category"/>
                   </Properties>
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CategoryActionPerformed"/>
-                  </Events>
                 </Component>
                 <Component class="javax.swing.JButton" name="Product">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Product"/>
                   </Properties>
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ProductActionPerformed"/>
-                  </Events>
                 </Component>
                 <Component class="javax.swing.JButton" name="Customer">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Customer"/>
                   </Properties>
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CustomerActionPerformed"/>
-                  </Events>
                 </Component>
                 <Component class="javax.swing.JButton" name="Order">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Order"/>
                   </Properties>
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="OrderActionPerformed"/>
-                  </Events>
                 </Component>
-                <Component class="javax.swing.JButton" name="history">
+                <Component class="javax.swing.JButton" name="ViewOrder">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="View Order"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="historyActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ViewOrderActionPerformed"/>
                   </Events>
                 </Component>
-                <Component class="javax.swing.JButton" name="logout">
+                <Component class="javax.swing.JButton" name="jButton7">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="33" green="0" red="ff" type="rgb"/>
@@ -210,7 +203,7 @@
                     <Property name="text" type="java.lang.String" value="Logout"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="logoutActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton7ActionPerformed"/>
                   </Events>
                 </Component>
               </SubComponents>
@@ -283,6 +276,14 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Choose customer"/>
           </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="MainMenuButton">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Go Back to Main Menu"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="MainMenuButtonActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
