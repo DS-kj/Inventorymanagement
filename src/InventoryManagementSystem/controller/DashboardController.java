@@ -5,6 +5,8 @@ import javax.swing.*;
 
 public class DashboardController {
 
+    
+
     public void handleNavigation(String action) {
         switch (action) {
 //            case "Category" -> new CategoryView().setVisible(true);
