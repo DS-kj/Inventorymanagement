@@ -14,6 +14,7 @@ import InventoryManagementSystem.view.MainPage;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
+import javax.swing.JPasswordField;
 
 public class LoginController {
     private final LoginPanel view;
@@ -22,6 +23,7 @@ public class LoginController {
         this.view = view;
         this.view.addLoginButtonListener(new LoginUser());
                 this.view.addAdminSwitch(new GoToAdmin());
+                this.view.showPasswordButtonListener(new ShowPasswordToggle());
 
     }
 
@@ -59,6 +61,20 @@ public class LoginController {
          mainPageOpener.open();
 
                 close();  
+            }
+        }
+    }
+    class ShowPasswordToggle implements ActionListener {
+        private boolean isPasswordVisible = false;
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            JPasswordField passwordField = view.getPasswordField();
+            if (isPasswordVisible) {
+                passwordField.setEchoChar('*');
+                isPasswordVisible = false;
+            } else {
+                passwordField.setEchoChar((char) 0);
+                isPasswordVisible = true;
             }
         }
     }
