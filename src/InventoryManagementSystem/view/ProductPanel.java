@@ -63,6 +63,7 @@ public class ProductPanel extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         MainMenuButton = new javax.swing.JToggleButton();
+        EditButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -196,6 +197,8 @@ public class ProductPanel extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        EditButton.setText("Edit");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -215,10 +218,12 @@ public class ProductPanel extends javax.swing.JFrame {
                     .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE)
                     .addComponent(jTextField4)
                     .addComponent(jTextField3)
+                    .addComponent(Categorychooser, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(39, 39, 39)
-                        .addComponent(jButton8))
-                    .addComponent(Categorychooser, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(36, 36, 36)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(EditButton)
+                            .addComponent(jButton8))))
                 .addGap(98, 98, 98))
         );
         jPanel1Layout.setVerticalGroup(
@@ -239,7 +244,10 @@ public class ProductPanel extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jButton8))
+                                .addComponent(jButton8)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(EditButton)
+                                .addGap(0, 0, Short.MAX_VALUE))
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 365, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButton2)
@@ -322,6 +330,7 @@ public class ProductPanel extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> Categorychooser;
     private javax.swing.JButton Customer;
     private javax.swing.JButton Dashboard;
+    private javax.swing.JButton EditButton;
     private javax.swing.JButton LogOut;
     private javax.swing.JToggleButton MainMenuButton;
     private javax.swing.JButton Order;
@@ -388,6 +397,9 @@ public void logOut(ActionListener listener) {
 }
 public void goBackMainMenu(ActionListener listener) {
     MainMenuButton.addActionListener(listener);
+}
+public void getEditButton(ActionListener listener) {
+    EditButton.addActionListener(listener);
 }
 private void setPlaceholders() {
     
