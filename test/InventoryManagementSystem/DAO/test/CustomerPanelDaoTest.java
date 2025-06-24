@@ -41,20 +41,20 @@ public class CustomerPanelDaoTest {
         boolean added = dao.addCustomer(customer);
         Assert.assertTrue("Customer should be added for deletion test", added);
 
-//        // Get the newly added customer's ID
-//        int deleteId = -1;
-//        List<CustomerPanelModel> customers = dao.getAllCustomers();
-//        for (CustomerPanelModel c : customers) {
-//            if (c.getName().equals("ToDelete") && c.getEmail().equals("delete@example.com")) {
-//                deleteId = c.getId();
-//                break;
-//            }
-//        }
-//
-//        Assert.assertTrue("Newly added test customer should be found", deleteId > 0);
-//
-//        // Now delete the customer
-//        boolean deleted = dao.deleteCustomer(deleteId);
-//        Assert.assertTrue("Customer should be deleted successfully", deleted);
-//    }
-//}
+        // Get the newly added customer's ID
+        int deleteId = -1;
+        List<CustomerPanelModel> customers = dao.getAllCustomers();
+        for (CustomerPanelModel c : customers) {
+            if (c.getName().equals("ToDelete") && c.getEmail().equals("delete@example.com")) {
+                deleteId = c.getId();
+                break;
+            }
+        }
+
+        Assert.assertTrue("Newly added test customer should be found", deleteId > 0);
+
+        // Now delete the customer
+        boolean deleted = dao.deleteCustomer(deleteId);
+        Assert.assertTrue("Customer should be deleted successfully", deleted);
+    }
+}
