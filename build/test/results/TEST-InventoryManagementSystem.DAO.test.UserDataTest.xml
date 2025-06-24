@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite errors="0" failures="1" hostname="192.168.1.6" name="InventoryManagementSystem.DAO.test.UserDaoTest" skipped="0" tests="1" time="1.105" timestamp="2025-06-24T15:55:16">
+<testsuite errors="0" failures="0" hostname="192.168.1.6" name="InventoryManagementSystem.DAO.test.UserDataTest" skipped="0" tests="1" time="0.155" timestamp="2025-06-24T16:00:05">
   <properties>
     <property name="" value="======" />
     <property name="javac.test.classpath" value="/Users/nitesskatuwal/Downloads/junit-4.13.2.jar:/Applications/Apache NetBeans.app/Contents/Resources/netbeans/java/modules/ext/AbsoluteLayout.jar:/Users/nitesskatuwal/Downloads/mysql-connector-j-9.2.0/mysql-connector-j-9.2.0.jar:build/classes:/Applications/Apache NetBeans.app/Contents/Resources/netbeans/platform/modules/ext/junit-4.13.2.jar:/Applications/Apache NetBeans.app/Contents/Resources/netbeans/platform/modules/ext/hamcrest-core-1.3.jar" />
@@ -17,7 +17,7 @@
     <property name="libs.eclipselink.javadoc" value="/Applications/Apache NetBeans.app/Contents/Resources/netbeans/java/modules/ext/docs/jakarta.persistence-2.2.3-doc.zip" />
     <property name="libs.JWSAntTasks.javadoc" value="" />
     <property name="sun.boot.library.path" value="/Library/Java/JavaVirtualMachines/jdk-24.jdk/Contents/Home/lib" />
-    <property name="sun.java.command" value="org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner InventoryManagementSystem.DAO.test.UserDaoTest methods=login_shouldReturnUserData_whenCredentialsAreCorrect skipNonTests=false filtertrace=true haltOnError=false haltOnFailure=false showoutput=true outputtoformatters=true logfailedtests=true threadid=0 logtestlistenerevents=true formatter=org.apache.tools.ant.taskdefs.optional.junit.BriefJUnitResultFormatter formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,/Users/nitesskatuwal/Desktop/Continues/Inventorymanagement/build/test/results/TEST-InventoryManagementSystem.DAO.test.UserDaoTest.xml crashfile=/Users/nitesskatuwal/Desktop/Continues/Inventorymanagement/build/junitvmwatcher2548893203116697383.properties propsfile=/Users/nitesskatuwal/Desktop/Continues/Inventorymanagement/build/junit9650409588317666892.properties" />
+    <property name="sun.java.command" value="org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner InventoryManagementSystem.DAO.test.UserDataTest methods=shouldCreateUserWithCorrectEmailAndPassword skipNonTests=false filtertrace=true haltOnError=false haltOnFailure=false showoutput=true outputtoformatters=true logfailedtests=true threadid=0 logtestlistenerevents=true formatter=org.apache.tools.ant.taskdefs.optional.junit.BriefJUnitResultFormatter formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,/Users/nitesskatuwal/Desktop/Continues/Inventorymanagement/build/test/results/TEST-InventoryManagementSystem.DAO.test.UserDataTest.xml crashfile=/Users/nitesskatuwal/Desktop/Continues/Inventorymanagement/build/junitvmwatcher2153088523787394038.properties propsfile=/Users/nitesskatuwal/Desktop/Continues/Inventorymanagement/build/junit4234549322991449735.properties" />
     <property name="jdk.debug" value="release" />
     <property name="javadoc.use" value="true" />
     <property name="javadoc.notree" value="false" />
@@ -212,7 +212,7 @@
     <property name="libs.jsp-compilation.classpath" value="/Applications/Apache NetBeans.app/Contents/Resources/netbeans/extide/ant/lib/ant.jar:/Applications/Apache NetBeans.app/Contents/Resources/netbeans/enterprise/modules/ext/servlet4.0-jsp2.3-api.jar:/Applications/Apache NetBeans.app/Contents/Resources/netbeans/enterprise/modules/ext/glassfish-jspparser-5.1.0.jar:/Applications/Apache NetBeans.app/Contents/Resources/netbeans/enterprise/modules/ext/jsf-2_2/javax.faces.jar:/Applications/Apache NetBeans.app/Contents/Resources/netbeans/enterprise/modules/ext/jstl-api.jar:/Applications/Apache NetBeans.app/Contents/Resources/netbeans/extide/ant/lib/ant-launcher.jar" />
     <property name="org.apache.commons.logging.Log" value="org.apache.commons.logging.impl.Jdk14Logger" />
     <property name="libs.javaee-api-6.0.classpath" value="/Applications/Apache NetBeans.app/Contents/Resources/netbeans/enterprise/modules/ext/javaee-api-6.0.jar" />
-    <property name="javac.includesfile.binary" value="/Users/nitesskatuwal/Desktop/Continues/Inventorymanagement/null361807471" />
+    <property name="javac.includesfile.binary" value="/Users/nitesskatuwal/Desktop/Continues/Inventorymanagement/null1953769926" />
     <property name="libs.javaee-api-7.0.classpath" value="/Applications/Apache NetBeans.app/Contents/Resources/netbeans/enterprise/modules/ext/javaee-api-7.0.jar" />
     <property name="libs.restapi.maven-pom" value="" />
     <property name="javadoc.preview" value="true" />
@@ -333,13 +333,13 @@
     <property name="empty.dir" value="/Users/nitesskatuwal/Desktop/Continues/Inventorymanagement/build/empty" />
     <property name="libs.jakartaee-api-10.0.classpath" value="/Applications/Apache NetBeans.app/Contents/Resources/netbeans/enterprise/modules/ext/jakarta.jakartaee-api-10.0.0.jar" />
     <property name="netbeans.user" value="/Users/nitesskatuwal/Library/Application Support/NetBeans/25" />
-    <property name="javac.includes.binary" value="/Users/nitesskatuwal/Desktop/Continues/Inventorymanagement/build/test/classes/InventoryManagementSystem/DAO/test/UserDaoTest.class" />
+    <property name="javac.includes.binary" value="/Users/nitesskatuwal/Desktop/Continues/Inventorymanagement/build/test/classes/InventoryManagementSystem/DAO/test/UserDataTest.class" />
     <property name="file.separator" value="/" />
     <property name="line.separator" value="&#xa;" />
     <property name="javadoc.additionalparam" value="" />
     <property name="jnlp.signed" value="false" />
     <property name="libs.spring-webmvc5.0.classpath" value="/Applications/Apache NetBeans.app/Contents/Resources/netbeans/java/modules/ext/spring-5/spring-webmvc-5.3.31.jar" />
-    <property name="test.method" value="login_shouldReturnUserData_whenCredentialsAreCorrect" />
+    <property name="test.method" value="shouldCreateUserWithCorrectEmailAndPassword" />
     <property name="org.apache.commons.logging.LogFactory" value="org.apache.commons.logging.impl.LogFactoryImpl" />
     <property name="javac.debug" value="false" />
     <property name="libs.restlib.maven-pom" value="" />
@@ -374,7 +374,7 @@
     <property name="libs.spring-framework500.src" value="" />
     <property name="user.properties.file" value="/Users/nitesskatuwal/Library/Application Support/NetBeans/25/build.properties" />
     <property name="libs.javaee-api-6.0.src" value="" />
-    <property name="javac.includes" value="InventoryManagementSystem/DAO/test/UserDaoTest.java" />
+    <property name="javac.includes" value="InventoryManagementSystem/DAO/test/UserDataTest.java" />
     <property name="netbeans.autoupdate.country" value="NP" />
     <property name="java.class.path" value="/Users/nitesskatuwal/Downloads/junit-4.13.2.jar:/Applications/Apache NetBeans.app/Contents/Resources/netbeans/java/modules/ext/AbsoluteLayout.jar:/Users/nitesskatuwal/Downloads/mysql-connector-j-9.2.0/mysql-connector-j-9.2.0.jar:/Users/nitesskatuwal/Desktop/Continues/Inventorymanagement/build/classes:/Applications/Apache NetBeans.app/Contents/Resources/netbeans/platform/modules/ext/junit-4.13.2.jar:/Applications/Apache NetBeans.app/Contents/Resources/netbeans/platform/modules/ext/hamcrest-core-1.3.jar:/Users/nitesskatuwal/Desktop/Continues/Inventorymanagement/build/test/classes:/Applications/Apache NetBeans.app/Contents/Resources/netbeans/extide/ant/lib/ant-launcher.jar:/Applications/Apache NetBeans.app/Contents/Resources/netbeans/extide/ant/lib/ant.jar:/Applications/Apache NetBeans.app/Contents/Resources/netbeans/extide/ant/lib/ant-junit.jar:/Applications/Apache NetBeans.app/Contents/Resources/netbeans/extide/ant/lib/ant-junit4.jar" />
     <property name="libs.javaee-web-api-6.0.maven-pom" value="" />
@@ -437,7 +437,7 @@
     <property name="libs.metro.javadoc" value="/Applications/Apache NetBeans.app/Contents/Resources/netbeans/enterprise/docs/webservices-api-javadoc.jar:/Applications/Apache NetBeans.app/Contents/Resources/netbeans/enterprise/docs/webservices-extra-javadoc.jar:/Applications/Apache NetBeans.app/Contents/Resources/netbeans/enterprise/docs/webservices-extra-api-javadoc.jar:/Applications/Apache NetBeans.app/Contents/Resources/netbeans/enterprise/docs/webservices-rt-javadoc.jar:/Applications/Apache NetBeans.app/Contents/Resources/netbeans/enterprise/docs/webservices-tools-javadoc.jar" />
     <property name="libs.jakartaee-web-api-9.0.src" value="" />
     <property name="libs.jakartaee-web-api-10.0.classpath" value="/Applications/Apache NetBeans.app/Contents/Resources/netbeans/enterprise/modules/ext/jakarta.jakartaee-web-api-10.0.0.jar" />
-    <property name="test.class" value="InventoryManagementSystem.DAO.test.UserDaoTest" />
+    <property name="test.class" value="InventoryManagementSystem.DAO.test.UserDataTest" />
     <property name="sun.awt.datatransfer.timeout" value="1000" />
     <property name="libs.javaee-web-api-7.0.src" value="" />
     <property name="libs.jakartaee-api-8.0.src" value="" />
@@ -446,41 +446,7 @@
     <property name="libs.jsp-compiler.classpath" value="/Applications/Apache NetBeans.app/Contents/Resources/netbeans/enterprise/ant/extra/jspcompile.jar" />
     <property name="libs.javaee-endorsed-api-6.0.classpath" value="/Applications/Apache NetBeans.app/Contents/Resources/netbeans/enterprise/modules/ext/javaee6-endorsed/javax.annotation.jar:/Applications/Apache NetBeans.app/Contents/Resources/netbeans/enterprise/modules/ext/javaee6-endorsed/jaxb-api-osgi.jar:/Applications/Apache NetBeans.app/Contents/Resources/netbeans/enterprise/modules/ext/javaee6-endorsed/webservices-api-osgi.jar" />
   </properties>
-  <testcase classname="InventoryManagementSystem.DAO.test.UserDaoTest" name="login_shouldReturnUserData_whenCredentialsAreCorrect" time="0.956">
-    <failure message="Login should return user data for valid credentials" type="junit.framework.AssertionFailedError">junit.framework.AssertionFailedError: Login should return user data for valid credentials
-	at InventoryManagementSystem.DAO.test.UserDaoTest.login_shouldReturnUserData_whenCredentialsAreCorrect(UserDaoTest.java:17)
-	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
-</failure>
-  </testcase>
+  <testcase classname="InventoryManagementSystem.DAO.test.UserDataTest" name="shouldCreateUserWithCorrectEmailAndPassword" time="0.007" />
   <system-out><![CDATA[]]></system-out>
-  <system-err><![CDATA[java.sql.SQLSyntaxErrorException: Unknown column 'username' in 'field list'
-	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:112)
-	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:114)
-	at com.mysql.cj.jdbc.ClientPreparedStatement.executeInternal(ClientPreparedStatement.java:990)
-	at com.mysql.cj.jdbc.ClientPreparedStatement.executeQuery(ClientPreparedStatement.java:1058)
-	at InventoryManagementSystem.DAO.UserDao.login(Unknown Source)
-	at InventoryManagementSystem.DAO.test.UserDaoTest.login_shouldReturnUserData_whenCredentialsAreCorrect(UserDaoTest.java:15)
-	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
-	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:59)
-	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
-	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:56)
-	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
-	at org.junit.runners.ParentRunner$3.evaluate(ParentRunner.java:306)
-	at org.junit.runners.BlockJUnit4ClassRunner$1.evaluate(BlockJUnit4ClassRunner.java:100)
-	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:366)
-	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:103)
-	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:63)
-	at org.junit.runners.ParentRunner$4.run(ParentRunner.java:331)
-	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:79)
-	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:329)
-	at org.junit.runners.ParentRunner.access$100(ParentRunner.java:66)
-	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:293)
-	at org.junit.runners.ParentRunner$3.evaluate(ParentRunner.java:306)
-	at org.junit.runners.ParentRunner.run(ParentRunner.java:413)
-	at org.apache.tools.ant.taskdefs.optional.junit.JUnit4TestMethodAdapter.run(JUnit4TestMethodAdapter.java:109)
-	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.run(JUnitTestRunner.java:535)
-	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.launch(JUnitTestRunner.java:1197)
-	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.main(JUnitTestRunner.java:1042)
-]]></system-err>
+  <system-err><![CDATA[]]></system-err>
 </testsuite>
