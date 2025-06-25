@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite errors="0" failures="0" hostname="192.168.1.7" name="InventoryManagementSystem.DAO.test.ProductDaoTest" skipped="0" tests="1" time="1.0" timestamp="2025-06-24T13:02:57">
+<testsuite errors="0" failures="0" hostname="192.168.1.6" name="InventoryManagementSystem.DAO.test.ProductDaoTest" skipped="0" tests="1" time="0.832" timestamp="2025-06-24T16:14:45">
   <properties>
     <property name="" value="======" />
     <property name="javac.test.classpath" value="/Users/nitesskatuwal/Downloads/junit-4.13.2.jar:/Applications/Apache NetBeans.app/Contents/Resources/netbeans/java/modules/ext/AbsoluteLayout.jar:/Users/nitesskatuwal/Downloads/mysql-connector-j-9.2.0/mysql-connector-j-9.2.0.jar:build/classes:/Applications/Apache NetBeans.app/Contents/Resources/netbeans/platform/modules/ext/junit-4.13.2.jar:/Applications/Apache NetBeans.app/Contents/Resources/netbeans/platform/modules/ext/hamcrest-core-1.3.jar" />
@@ -17,7 +17,7 @@
     <property name="libs.eclipselink.javadoc" value="/Applications/Apache NetBeans.app/Contents/Resources/netbeans/java/modules/ext/docs/jakarta.persistence-2.2.3-doc.zip" />
     <property name="libs.JWSAntTasks.javadoc" value="" />
     <property name="sun.boot.library.path" value="/Library/Java/JavaVirtualMachines/jdk-24.jdk/Contents/Home/lib" />
-    <property name="sun.java.command" value="org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner InventoryManagementSystem.DAO.test.ProductDaoTest methods=testSearchProducts skipNonTests=false filtertrace=true haltOnError=false haltOnFailure=false showoutput=true outputtoformatters=true logfailedtests=true threadid=0 logtestlistenerevents=true formatter=org.apache.tools.ant.taskdefs.optional.junit.BriefJUnitResultFormatter formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,/Users/nitesskatuwal/Desktop/Continues/Inventorymanagement/build/test/results/TEST-InventoryManagementSystem.DAO.test.ProductDaoTest.xml crashfile=/Users/nitesskatuwal/Desktop/Continues/Inventorymanagement/build/junitvmwatcher10878377041610855747.properties propsfile=/Users/nitesskatuwal/Desktop/Continues/Inventorymanagement/build/junit645230862507250948.properties" />
+    <property name="sun.java.command" value="org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner InventoryManagementSystem.DAO.test.ProductDaoTest methods=testGetAllProducts skipNonTests=false filtertrace=true haltOnError=false haltOnFailure=false showoutput=true outputtoformatters=true logfailedtests=true threadid=0 logtestlistenerevents=true formatter=org.apache.tools.ant.taskdefs.optional.junit.BriefJUnitResultFormatter formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,/Users/nitesskatuwal/Desktop/Continues/Inventorymanagement/build/test/results/TEST-InventoryManagementSystem.DAO.test.ProductDaoTest.xml crashfile=/Users/nitesskatuwal/Desktop/Continues/Inventorymanagement/build/junitvmwatcher18277424265241491431.properties propsfile=/Users/nitesskatuwal/Desktop/Continues/Inventorymanagement/build/junit10385160200370716260.properties" />
     <property name="jdk.debug" value="release" />
     <property name="javadoc.use" value="true" />
     <property name="javadoc.notree" value="false" />
@@ -212,7 +212,7 @@
     <property name="libs.jsp-compilation.classpath" value="/Applications/Apache NetBeans.app/Contents/Resources/netbeans/extide/ant/lib/ant.jar:/Applications/Apache NetBeans.app/Contents/Resources/netbeans/enterprise/modules/ext/servlet4.0-jsp2.3-api.jar:/Applications/Apache NetBeans.app/Contents/Resources/netbeans/enterprise/modules/ext/glassfish-jspparser-5.1.0.jar:/Applications/Apache NetBeans.app/Contents/Resources/netbeans/enterprise/modules/ext/jsf-2_2/javax.faces.jar:/Applications/Apache NetBeans.app/Contents/Resources/netbeans/enterprise/modules/ext/jstl-api.jar:/Applications/Apache NetBeans.app/Contents/Resources/netbeans/extide/ant/lib/ant-launcher.jar" />
     <property name="org.apache.commons.logging.Log" value="org.apache.commons.logging.impl.Jdk14Logger" />
     <property name="libs.javaee-api-6.0.classpath" value="/Applications/Apache NetBeans.app/Contents/Resources/netbeans/enterprise/modules/ext/javaee-api-6.0.jar" />
-    <property name="javac.includesfile.binary" value="/Users/nitesskatuwal/Desktop/Continues/Inventorymanagement/null2012221940" />
+    <property name="javac.includesfile.binary" value="/Users/nitesskatuwal/Desktop/Continues/Inventorymanagement/null326018541" />
     <property name="libs.javaee-api-7.0.classpath" value="/Applications/Apache NetBeans.app/Contents/Resources/netbeans/enterprise/modules/ext/javaee-api-7.0.jar" />
     <property name="libs.restapi.maven-pom" value="" />
     <property name="javadoc.preview" value="true" />
@@ -249,7 +249,7 @@
     <property name="libs.javaee-web-api-7.0.classpath" value="/Applications/Apache NetBeans.app/Contents/Resources/netbeans/enterprise/modules/ext/javaee-web-api-7.0.jar" />
     <property name="file.encoding" value="UTF-8" />
     <property name="java.util.logging.config.class" value="org.netbeans.core.startup.TopLogging" />
-    <property name="https.nonProxyHosts" value="localhost|127.0.0.1|192.168.1.7" />
+    <property name="https.nonProxyHosts" value="localhost|127.0.0.1|192.168.1.6" />
     <property name="libs.restlib.javadoc" value="" />
     <property name="libs.absolutelayout.classpath" value="/Users/nitesskatuwal/Downloads/junit-4.13.2.jar:/Applications/Apache NetBeans.app/Contents/Resources/netbeans/java/modules/ext/AbsoluteLayout.jar:/Users/nitesskatuwal/Downloads/mysql-connector-j-9.2.0/mysql-connector-j-9.2.0.jar" />
     <property name="do.archive" value="true" />
@@ -339,7 +339,7 @@
     <property name="javadoc.additionalparam" value="" />
     <property name="jnlp.signed" value="false" />
     <property name="libs.spring-webmvc5.0.classpath" value="/Applications/Apache NetBeans.app/Contents/Resources/netbeans/java/modules/ext/spring-5/spring-webmvc-5.3.31.jar" />
-    <property name="test.method" value="testSearchProducts" />
+    <property name="test.method" value="testGetAllProducts" />
     <property name="org.apache.commons.logging.LogFactory" value="org.apache.commons.logging.impl.LogFactoryImpl" />
     <property name="javac.debug" value="false" />
     <property name="libs.restlib.maven-pom" value="" />
@@ -446,9 +446,9 @@
     <property name="libs.jsp-compiler.classpath" value="/Applications/Apache NetBeans.app/Contents/Resources/netbeans/enterprise/ant/extra/jspcompile.jar" />
     <property name="libs.javaee-endorsed-api-6.0.classpath" value="/Applications/Apache NetBeans.app/Contents/Resources/netbeans/enterprise/modules/ext/javaee6-endorsed/javax.annotation.jar:/Applications/Apache NetBeans.app/Contents/Resources/netbeans/enterprise/modules/ext/javaee6-endorsed/jaxb-api-osgi.jar:/Applications/Apache NetBeans.app/Contents/Resources/netbeans/enterprise/modules/ext/javaee6-endorsed/webservices-api-osgi.jar" />
   </properties>
-  <testcase classname="InventoryManagementSystem.DAO.test.ProductDaoTest" name="testSearchProducts" time="0.875" />
-  <system-out><![CDATA[Number of products found with keyword 'someKeyword': 0
+  <testcase classname="InventoryManagementSystem.DAO.test.ProductDaoTest" name="testGetAllProducts" time="0.701" />
+  <system-out><![CDATA[Connected to database in ProductDao.
+Number of products fetched: 0
 ]]></system-out>
-  <system-err><![CDATA[Error while searching products: Table 'projectss.products' doesn't exist
-]]></system-err>
+  <system-err><![CDATA[]]></system-err>
 </testsuite>
