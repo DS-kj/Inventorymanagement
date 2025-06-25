@@ -68,8 +68,8 @@ public class CustomerPanelDao {
                 customers.add(new CustomerPanelModel(
                     rs.getInt("id"),
                     rs.getString("name"),
-                    rs.getString("mobile"),
-                    rs.getString("email")
+                    rs.getString("email"),
+                    rs.getString("mobile")
                 ));
             }
 

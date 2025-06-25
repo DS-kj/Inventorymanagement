@@ -84,6 +84,8 @@ public class ViewOrders extends javax.swing.JFrame {
                 .addGap(14, 14, 14))
         );
 
+        Dashboard.setBackground(new java.awt.Color(36, 160, 237));
+        Dashboard.setForeground(new java.awt.Color(255, 255, 255));
         Dashboard.setText("Dashboard");
         Dashboard.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -91,17 +93,28 @@ public class ViewOrders extends javax.swing.JFrame {
             }
         });
 
+        Category.setBackground(new java.awt.Color(36, 160, 237));
+        Category.setForeground(new java.awt.Color(255, 255, 255));
         Category.setText("Category");
 
+        Product.setBackground(new java.awt.Color(36, 160, 237));
+        Product.setForeground(new java.awt.Color(255, 255, 255));
         Product.setText("Product");
 
+        Customer.setBackground(new java.awt.Color(36, 160, 237));
+        Customer.setForeground(new java.awt.Color(255, 255, 255));
         Customer.setText("Customer");
 
+        Order.setBackground(new java.awt.Color(36, 160, 237));
+        Order.setForeground(new java.awt.Color(255, 255, 255));
         Order.setText("Order");
 
+        Vieworder.setBackground(new java.awt.Color(36, 160, 237));
+        Vieworder.setForeground(new java.awt.Color(255, 255, 255));
         Vieworder.setText("View Order");
 
         Logout.setBackground(new java.awt.Color(255, 0, 0));
+        Logout.setForeground(new java.awt.Color(255, 255, 255));
         Logout.setText("Log Out");
 
         Customertable.setModel(new javax.swing.table.DefaultTableModel(

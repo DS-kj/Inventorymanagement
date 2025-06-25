@@ -38,7 +38,14 @@ public class Customerchooser extends javax.swing.JFrame {
             new java.awt.Color(32, 95, 178), // end color
             true
         );
-        jPanel3 = new javax.swing.JPanel();
+        jPanel3 = new GradientBackgroundPanel(
+            //    new java.awt.Color(50, 120, 165),  // Brighter Left Side
+            //    new java.awt.Color(9, 47, 70),     // Darker Right Side
+            //    true
+            new java.awt.Color(9, 47, 70),  // start color
+            new java.awt.Color(32, 95, 178), // end color
+            true
+        );
         Dashboard = new javax.swing.JButton();
         Category = new javax.swing.JButton();
         Product = new javax.swing.JButton();
@@ -57,6 +64,8 @@ public class Customerchooser extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(29, 86, 121));
 
+        Dashboard.setBackground(new java.awt.Color(36, 160, 237));
+        Dashboard.setForeground(new java.awt.Color(255, 255, 255));
         Dashboard.setText("Dashboard");
         Dashboard.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -64,8 +73,12 @@ public class Customerchooser extends javax.swing.JFrame {
             }
         });
 
+        Category.setBackground(new java.awt.Color(36, 160, 237));
+        Category.setForeground(new java.awt.Color(255, 255, 255));
         Category.setText("Category");
 
+        Product.setBackground(new java.awt.Color(36, 160, 237));
+        Product.setForeground(new java.awt.Color(255, 255, 255));
         Product.setText("Product");
         Product.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -73,10 +86,16 @@ public class Customerchooser extends javax.swing.JFrame {
             }
         });
 
+        Customer.setBackground(new java.awt.Color(36, 160, 237));
+        Customer.setForeground(new java.awt.Color(255, 255, 255));
         Customer.setText("Customer");
 
+        Order.setBackground(new java.awt.Color(36, 160, 237));
+        Order.setForeground(new java.awt.Color(255, 255, 255));
         Order.setText("Order");
 
+        ViewOrder.setBackground(new java.awt.Color(36, 160, 237));
+        ViewOrder.setForeground(new java.awt.Color(255, 255, 255));
         ViewOrder.setText("View Order");
         ViewOrder.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -85,6 +104,7 @@ public class Customerchooser extends javax.swing.JFrame {
         });
 
         LogOutButton.setBackground(new java.awt.Color(255, 0, 51));
+        LogOutButton.setForeground(new java.awt.Color(255, 255, 255));
         LogOutButton.setText("Logout");
         LogOutButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
