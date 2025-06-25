@@ -25,6 +25,8 @@ private final String username = "root";
            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/"+ database, username,password);
        return conn;}
        catch (Exception e){
+           System.err.println("Connection failed:");
+          e.printStackTrace(); 
            return null;    }
     }
 

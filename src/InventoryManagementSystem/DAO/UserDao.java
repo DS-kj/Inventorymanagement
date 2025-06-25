@@ -11,7 +11,7 @@ public class UserDao {
     MySqlConnection mySql = new MySqlConnection();
 
     public UserData login(LoginRequest loginRequest) {
-        String sql = "SELECT name, password FROM users WHERE name = ? AND password = ?";
+        String sql = "SELECT name, password FROM users WHERE username = ? AND password = ?";
 
         try (Connection conn = mySql.openConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {

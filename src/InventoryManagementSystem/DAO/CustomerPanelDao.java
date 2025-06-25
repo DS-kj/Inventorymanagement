@@ -16,11 +16,11 @@ public class CustomerPanelDao {
         if (customer.getName() == null || customer.getName().trim().isEmpty() ||
             customer.getMobileNumber() == null || customer.getMobileNumber().trim().isEmpty() ||
             customer.getEmail() == null || customer.getEmail().trim().isEmpty()) {
-            System.err.println("Customer name, mobile number, or email cannot be empty.");
+            System.err.println("Customer name, MobileNumber, or email cannot be empty.");
             return false;
         }
 
-        String sql = "INSERT INTO customers (name, mobile, email) VALUES (?, ?, ?)";
+        String sql = "INSERT INTO customers (name, MobileNumber, email) VALUES (?, ?, ?)";
         try (Connection conn = connection.openConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
