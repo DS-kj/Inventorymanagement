@@ -14,6 +14,8 @@ import InventoryManagementSystem.controller.MainPageController;
 import InventoryManagementSystem.controller.ProductAndCartController;
 import InventoryManagementSystem.controller.ProductPanelController;
 import InventoryManagementSystem.controller.ViewOrdersController;
+import InventoryManagementSystem.dao.DatabaseSetupDao;
+import InventoryManagementSystem.database.MySqlConnection;
 import InventoryManagementSystem.view.AdminPanel;
 //import InventoryManagementSystem.view.AdminPanel;
 import InventoryManagementSystem.view.Category;
@@ -37,12 +39,19 @@ public class InventoryManagementMain {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+          MySqlConnection dbConnection = new MySqlConnection();
+
+        // Create database if it doesn't exist before opening tables etc.
+        dbConnection.createDatabaseIfNotExists();
+        
+        DatabaseSetupDao setupDao = new DatabaseSetupDao();
+    setupDao.createAllTablesIfNotExist();
 //        AdminPanel view = new AdminPanel();
 //        AdminPanelController controller= new AdminPanelController(view);
 //        controller.open();
-//                LoginPanel view=new LoginPanel();
-//                LoginController LoginOpener= new LoginController(view);
-//                 LoginOpener.open();
+                LoginPanel view=new LoginPanel();
+                LoginController LoginOpener= new LoginController(view);
+                 LoginOpener.open();
 //                 CustomerPanel view=new CustomerPanel();
 //                 CustomerPanelController customerP=new CustomerPanelController(view);
 //                 
@@ -51,9 +60,9 @@ public class InventoryManagementMain {
 //         CustomerchooserController controller= new CustomerchooserController(view);
 //         controller.open();
 
-         MainPage view=new MainPage();
-         MainPageController mainPageOpener= new MainPageController(view);
-         mainPageOpener.open();
+//         MainPage view=new MainPage();
+//         MainPageController mainPageOpener= new MainPageController(view);
+//         mainPageOpener.open();
 
 // ProductPanel view = new ProductPanel();
 //        ProductPanelController controller = new ProductPanelController(view);

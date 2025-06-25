@@ -68,8 +68,8 @@ public class CustomerPanelDao {
                 customers.add(new CustomerPanelModel(
                     rs.getInt("id"),
                     rs.getString("name"),
-                    rs.getString("MobileNumber"),
-                    rs.getString("email")
+                    rs.getString("email"),
+                    rs.getString("mobile")
                 ));
             }
 
@@ -80,4 +80,32 @@ public class CustomerPanelDao {
 
         return customers;
     }
+    public boolean updateCustomer(CustomerPanelModel customer) {
+    if (customer.getId() <= 0 ||
+        customer.getName() == null || customer.getName().trim().isEmpty() ||
+        customer.getMobileNumber() == null || customer.getMobileNumber().trim().isEmpty() ||
+        customer.getEmail() == null || customer.getEmail().trim().isEmpty()) {
+        System.err.println("Invalid customer data.");
+        return false;
+    }
+
+    String sql = "UPDATE customers SET name = ?, mobile = ?, email = ? WHERE id = ?";
+    try (Connection conn = connection.openConnection();
+         PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+        stmt.setString(1, customer.getName().trim());
+        stmt.setString(2, customer.getMobileNumber().trim());
+        stmt.setString(3, customer.getEmail().trim());
+        stmt.setInt(4, customer.getId());
+
+        int rows = stmt.executeUpdate();
+        System.out.println("Customer updated. Rows affected: " + rows);
+        return rows > 0;
+
+    } catch (SQLException e) {
+        System.err.println("Error updating customer: " + e.getMessage());
+        e.printStackTrace();
+        return false;
+    }
+}
 }

@@ -4,6 +4,7 @@ import InventoryManagementSystem.view.Category;
 import InventoryManagementSystem.view.CustomerPanel;
 import InventoryManagementSystem.view.Customerchooser;
 import InventoryManagementSystem.view.Dashboard;
+import InventoryManagementSystem.view.LoginPanel;
 import InventoryManagementSystem.view.MainPage;
 import InventoryManagementSystem.view.ProductPanel;
 import InventoryManagementSystem.view.ViewOrders;
@@ -24,16 +25,18 @@ public class MainPageController {
             public void mouseClicked(MouseEvent e) {
                 new Dashboard().setVisible(true);
                 System.out.println("Dashboard clicked!");
+                view.dispose();
                 
             }
         });
         this.view.addProductListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                 ProductPanel view = new ProductPanel();
-        ProductPanelController controller = new ProductPanelController(view);
+                 ProductPanel prodView = new ProductPanel();
+        ProductPanelController controller = new ProductPanelController(prodView);
         controller.show();
                 System.out.println("Product clicked!");
+                view.dispose();
             }
         });
 
@@ -45,6 +48,7 @@ public class MainPageController {
 CategoryController controllerCategory = new CategoryController(viewCategory);
 controllerCategory.open();
                 System.out.println("Category clicked!");
+                view.dispose();
             }
         });
 
@@ -58,6 +62,7 @@ controllerCategory.open();
                  
                  customerP.open();
                 System.out.println("Customer clicked!");
+                view.dispose();
             }
         });
 
@@ -69,6 +74,8 @@ controllerCategory.open();
          CustomerchooserController controllerCustomer= new CustomerchooserController(viewCustomer);
          controllerCustomer.open();
                 System.out.println("Order clicked!");
+                                view.dispose();
+
             }
         });
 
@@ -80,6 +87,7 @@ controllerCategory.open();
          ViewOrdersController controllerOrder= new ViewOrdersController(viewOrder);
          controllerOrder.open();
                 System.out.println("History clicked!");
+                view.dispose();
             }
         });
           this.view.addLogoutListener(new MouseAdapter() {
@@ -95,6 +103,9 @@ controllerCategory.open();
 
         if (response == javax.swing.JOptionPane.YES_OPTION) {
             view.dispose();
+            LoginPanel viewLogin=new LoginPanel();
+                LoginController LoginOpener= new LoginController(viewLogin);
+                 LoginOpener.open();
             System.out.println("User logged out.");
         } else {
             System.out.println("Logout cancelled.");

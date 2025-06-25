@@ -1,20 +1,19 @@
 package InventoryManagementSystem.view;
 
-import InventoryManagementSystem.DAO.ProductDao;
 import InventoryManagementSystem.controller.DashboardController;
-import InventoryManagementSystem.model.Product;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
-import java.util.List;
 
 public class Dashboard extends JFrame {
 
     private final JTable table;
     private final DefaultTableModel tableModel;
-    private final JPanel menuPanel;  // changed from local to field
-    private final DashboardController controller;  // added controller field
+    private final JPanel menuPanel;
+    private final DashboardController controller;
+
+    private final JTextField searchField;
 
     public Dashboard() {
         setTitle("Dashboard");
@@ -23,8 +22,9 @@ public class Dashboard extends JFrame {
         setLocationRelativeTo(null);
         setLayout(new BorderLayout());
 
-        controller = new DashboardController();  // initialize controller
+        controller = new DashboardController(this);
 
+        // Top panel with search
         JPanel topPanel = new JPanel(new BorderLayout());
         topPanel.setBackground(new Color(10, 50, 80));
         topPanel.setPreferredSize(new Dimension(800, 40));
@@ -36,96 +36,63 @@ public class Dashboard extends JFrame {
 
         JPanel searchPanel = new JPanel(new BorderLayout());
         searchPanel.setPreferredSize(new Dimension(150, 25));
-
-        JTextField searchField = new JTextField();
+        searchField = new JTextField();
         searchPanel.add(searchField, BorderLayout.CENTER);
-
         topPanel.add(searchPanel, BorderLayout.EAST);
 
         add(topPanel, BorderLayout.NORTH);
 
+        // Menu panel
         menuPanel = new JPanel();
         menuPanel.setBackground(new Color(0, 45, 70));
         menuPanel.setLayout(new GridLayout(7, 1, 5, 5));
         menuPanel.setPreferredSize(new Dimension(150, 0));
 
-        String[] buttons = {
-            "Dashboard", "Category", "Product",
-            "Customer", "Order", "View Order", "Log Out"
-        };
+        String[] buttons = {"Dashboard", "Category", "Product", "Customer", "Order", "View Order", "Log Out"};
 
         for (String btn : buttons) {
             JButton button = new JButton(btn);
-            // Add action listener calling controller
             button.addActionListener(e -> controller.handleNavigation(button.getText()));
             menuPanel.add(button);
         }
 
         add(menuPanel, BorderLayout.WEST);
 
-        String[] columnNames = {"ID", "Product Name", "Category", "Quantity", "Price (per)", "Rate"};
+        // Table setup
+       String[] columnNames = {"ID", "Product Name", "Category", "Quantity", "Price (per)"};
         tableModel = new DefaultTableModel(columnNames, 0) {
-            @Override
-            public boolean isCellEditable(int row, int column) {
-                return false;
-            }
+            @Override public boolean isCellEditable(int row, int col) { return false; }
         };
-
         table = new JTable(tableModel);
-        JScrollPane tableScroll = new JScrollPane(table);
-        add(tableScroll, BorderLayout.CENTER);
+        add(new JScrollPane(table), BorderLayout.CENTER);
 
-        loadProducts();
+        // Load products initially
+        controller.loadProducts();
 
-        // Search as you type functionality remains
-        searchField.addKeyListener(new java.awt.event.KeyAdapter() {
-            @Override
-            public void keyReleased(java.awt.event.KeyEvent e) {
+        // Search-as-you-type
+        searchField.getDocument().addDocumentListener(new javax.swing.event.DocumentListener() {
+            @Override public void insertUpdate(javax.swing.event.DocumentEvent e) { search(); }
+            @Override public void removeUpdate(javax.swing.event.DocumentEvent e) { search(); }
+            @Override public void changedUpdate(javax.swing.event.DocumentEvent e) { search(); }
+
+            private void search() {
                 String keyword = searchField.getText().trim();
                 if (keyword.isEmpty()) {
-                    loadProducts();
+                    controller.loadProducts();
                 } else {
-                    loadProducts(keyword);
+                    controller.loadProducts(keyword);
                 }
             }
         });
     }
 
-    private void loadProducts() {
-        ProductDao productDao = new ProductDao();
-        List<Product> products = productDao.getAllProducts();
+    // Methods to update table from controller
 
+    public void clearTable() {
         tableModel.setRowCount(0);
-
-        for (Product p : products) {
-            Object[] row = {
-                p.getId(),
-                p.getName(),
-                p.getCategory(),
-                p.getQuantity(),
-                p.getPrice(),
-                p.getRate()
-            };
-            tableModel.addRow(row);
-        }
     }
 
-    private void loadProducts(String keyword) {
-        ProductDao productDao = new ProductDao();
-        List<Product> products = productDao.searchProducts(keyword);
-
-        tableModel.setRowCount(0);
-
-        for (Product p : products) {
-            Object[] row = {
-                p.getId(),
-                p.getName(),
-                p.getCategory(),
-                p.getQuantity(),
-                p.getPrice(),
-                p.getRate()
-            };
-            tableModel.addRow(row);
-        }
+    public void addRowToTable(Object[] row) {
+        tableModel.addRow(row);
     }
 }

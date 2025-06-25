@@ -81,4 +81,37 @@ public class ProductPanelDao {
 
         return productList;
     }
+    public boolean deleteProduct(int id) {
+        String sql = "DELETE FROM products WHERE id = ?";
+
+        try (Connection conn = connection.openConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+
+            ps.setInt(1, id);
+            return ps.executeUpdate() > 0;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+    public boolean updateProduct(ProductModel product) {
+    String sql = "UPDATE products SET name = ?, quantity = ?, price = ? WHERE id = ?";
+
+    try (Connection conn = connection.openConnection();
+         PreparedStatement ps = conn.prepareStatement(sql)) {
+
+        ps.setString(1, product.getName());
+        ps.setInt(2, product.getQuantity());
+        ps.setDouble(3, product.getPrice());
+        ps.setInt(4, product.getId());
+
+        return ps.executeUpdate() > 0;
+
+    } catch (SQLException e) {
+        e.printStackTrace();
+        return false;
+    }
+}
+
 }

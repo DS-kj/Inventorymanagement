@@ -71,7 +71,14 @@ public class AdminPanel extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
+        jPanel2 = new GradientBackgroundPanel(
+            //    new java.awt.Color(50, 120, 165),  // Brighter Left Side
+            //    new java.awt.Color(9, 47, 70),     // Darker Right Side
+            //    true
+            new java.awt.Color(9, 47, 70),  // start color
+            new java.awt.Color(32, 95, 178), // end color
+            true
+        );
         jPanel3 = new InventoryManagementSystem.view.GradientBackgroundPanel(
             new Color(9, 47, 70),  // start color
             new Color(32, 95, 178), // end color
@@ -86,11 +93,7 @@ public class AdminPanel extends javax.swing.JFrame {
         EditButton = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jPanel1 = new GradientBackgroundPanel(
-            new Color(9, 47, 70),  // start color
-            new Color(12, 67, 178), // end color
-            true  // diagonal gradient, use false for vertical
-        );
+        jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
 
         jLabel1.setText("jLabel1");

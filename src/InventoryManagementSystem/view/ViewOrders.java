@@ -38,6 +38,7 @@ public class ViewOrders extends javax.swing.JFrame {
         );
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
+        MainMenuButton = new javax.swing.JButton();
         Dashboard = new javax.swing.JButton();
         Category = new javax.swing.JButton();
         Product = new javax.swing.JButton();
@@ -60,6 +61,8 @@ public class ViewOrders extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("View Order");
 
+        MainMenuButton.setText("Back To Main Menu");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -67,16 +70,22 @@ public class ViewOrders extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(MainMenuButton)
+                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE)
+                    .addComponent(MainMenuButton))
                 .addGap(14, 14, 14))
         );
 
+        Dashboard.setBackground(new java.awt.Color(36, 160, 237));
+        Dashboard.setForeground(new java.awt.Color(255, 255, 255));
         Dashboard.setText("Dashboard");
         Dashboard.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -84,17 +93,28 @@ public class ViewOrders extends javax.swing.JFrame {
             }
         });
 
+        Category.setBackground(new java.awt.Color(36, 160, 237));
+        Category.setForeground(new java.awt.Color(255, 255, 255));
         Category.setText("Category");
 
+        Product.setBackground(new java.awt.Color(36, 160, 237));
+        Product.setForeground(new java.awt.Color(255, 255, 255));
         Product.setText("Product");
 
+        Customer.setBackground(new java.awt.Color(36, 160, 237));
+        Customer.setForeground(new java.awt.Color(255, 255, 255));
         Customer.setText("Customer");
 
+        Order.setBackground(new java.awt.Color(36, 160, 237));
+        Order.setForeground(new java.awt.Color(255, 255, 255));
         Order.setText("Order");
 
+        Vieworder.setBackground(new java.awt.Color(36, 160, 237));
+        Vieworder.setForeground(new java.awt.Color(255, 255, 255));
         Vieworder.setText("View Order");
 
         Logout.setBackground(new java.awt.Color(255, 0, 0));
+        Logout.setForeground(new java.awt.Color(255, 255, 255));
         Logout.setText("Log Out");
 
         Customertable.setModel(new javax.swing.table.DefaultTableModel(
@@ -237,6 +257,7 @@ public class ViewOrders extends javax.swing.JFrame {
     private javax.swing.JTable Customertable;
     private javax.swing.JButton Dashboard;
     private javax.swing.JButton Logout;
+    private javax.swing.JButton MainMenuButton;
     private javax.swing.JButton Order;
     private javax.swing.JButton Product;
     private javax.swing.JButton Select;
@@ -256,10 +277,30 @@ public javax.swing.JButton getSelectButton() {
 public void addSelectCustomerListener(ActionListener listener) {
     Select.addActionListener(listener);
 }
-public void addCategoryButtonListener(ActionListener listener) {
-    Category.addActionListener(listener);
+public void dashboard(ActionListener listener) {
+    Dashboard.addActionListener(listener);
 }
-public void addProductButtonListener(ActionListener listener) {
+public void category(ActionListener listener){
+Category.addActionListener(listener);
+ 
+}
+public void customer(ActionListener listener) {
+    Customer.addActionListener(listener);
+}
+public void order(ActionListener listener){
+Order.addActionListener(listener);
+ 
+}
+public void viewOrder(ActionListener listener) {
+    Vieworder.addActionListener(listener);
+}
+public void product(ActionListener listener) {
     Product.addActionListener(listener);
+}
+public void goBackMainMenu(ActionListener listener) {
+    MainMenuButton.addActionListener(listener);
+}
+public void LogOut(ActionListener listener) {
+    Logout.addActionListener(listener);
 }
 }

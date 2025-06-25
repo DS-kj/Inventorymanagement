@@ -3,18 +3,38 @@ package InventoryManagementSystem.controller;
 
 import InventoryManagementSystem.dao.CustomerPanelDao;
 import InventoryManagementSystem.model.CustomerPanelModel;
+import InventoryManagementSystem.view.Category;
 import InventoryManagementSystem.view.CustomerPanel;
+import InventoryManagementSystem.view.Customerchooser;
+import InventoryManagementSystem.view.Dashboard;
+import InventoryManagementSystem.view.EditCustomerDialog;
+import InventoryManagementSystem.view.LoginPanel;
+import InventoryManagementSystem.view.MainPage;
+import InventoryManagementSystem.view.ProductPanel;
+import InventoryManagementSystem.view.ViewOrders;
 import java.awt.event.*;
 import java.util.List;
 import javax.swing.*;
 
 public class CustomerPanelController {
     private CustomerPanel view;
+    private CustomerPanelDao dao;
 
     public CustomerPanelController(CustomerPanel view) {
         this.view = view;
         this.view.addCustomerListener(new AddCustomerListener());
         this.view.addDeleteListener(new DeleteCustomerListener());
+        view.dashboard(new DashboardListener());
+        view.category(new CategoryListener());
+        view.customer(new CustomerListener());
+        view.order(new OrderListener());
+        view.viewOrder(new ViewOrderListener());
+        view.product(new ProductListener());
+        view.goBackMainMenu(new MainMenuListener());
+        view.logOut(new LogOutListener());
+        view.getBtnEditCustomer(new EditCustomerListener());
+        this.dao = new CustomerPanelDao();
+        
     }
 
     public void open() {
@@ -73,4 +93,149 @@ public class CustomerPanelController {
             }
         }
     }
+        private class DashboardListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+           new Dashboard().setVisible(true);
+                System.out.println("Dashboard clicked!");
+                view.dispose();
+        }
+    }
+
+    private class CategoryListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            Category viewCategory = new Category();
+CategoryController controllerCategory = new CategoryController(viewCategory);
+controllerCategory.open();
+                System.out.println("Category clicked!");
+                view.dispose();
+        }
+    }
+
+    private class CustomerListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            CustomerPanel viewCustomerP=new CustomerPanel();
+                 CustomerPanelController customerP=new CustomerPanelController(viewCustomerP);
+                 
+                 customerP.open();
+                System.out.println("Customer clicked!");
+                view.dispose();
+        }
+    }
+
+    private class OrderListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            Customerchooser chooser = new Customerchooser();
+            CustomerchooserController chooserCustomer=new CustomerchooserController(chooser);
+                    chooserCustomer.open();
+            view.dispose();
+        }
+    }
+
+    private class ViewOrderListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+           ViewOrders viewOrder = new ViewOrders();
+         ViewOrdersController controllerOrder= new ViewOrdersController(viewOrder);
+         controllerOrder.open();
+                System.out.println("History clicked!");
+                view.dispose();
+        }
+    }
+    private class ProductListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            ProductPanel prodView = new ProductPanel();
+        ProductPanelController controller = new ProductPanelController(prodView);
+        controller.show();
+                System.out.println("Product clicked!");
+                view.dispose();
+        }
+    }
+    private class MainMenuListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            MainPage mainView=new MainPage();
+         MainPageController mainPageOpener= new MainPageController(mainView);
+         mainPageOpener.open();
+                System.out.println("Main Menu clicked!");
+                view.dispose();
+        }
+    }
+    private class LogOutListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            int response = javax.swing.JOptionPane.showConfirmDialog(
+            view,
+            "Are you sure you want to log out?",
+            "Confirm Logout",
+            javax.swing.JOptionPane.YES_NO_OPTION,
+            javax.swing.JOptionPane.QUESTION_MESSAGE
+        );
+
+        if (response == javax.swing.JOptionPane.YES_OPTION) {
+            view.dispose();
+            LoginPanel viewLogin=new LoginPanel();
+                LoginController LoginOpener= new LoginController(viewLogin);
+                 LoginOpener.open();
+            System.out.println("User logged out.");
+        } else {
+            System.out.println("Logout cancelled.");
+        }
+    
+            }
+        }
+    class EditCustomerListener implements ActionListener {
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        int selectedRow = view.getCustomerTable().getSelectedRow();
+
+        if (selectedRow != -1) {
+            int id = (int) view.getCustomerTable().getValueAt(selectedRow, 0);
+            String name = (String) view.getCustomerTable().getValueAt(selectedRow, 1);
+            String mobile = (String) view.getCustomerTable().getValueAt(selectedRow, 2);
+            String email = (String) view.getCustomerTable().getValueAt(selectedRow, 3);
+
+            EditCustomerDialog editDialog = new EditCustomerDialog(view);
+            editDialog.getTxtName().setText(name);
+            editDialog.getTxtMobile().setText(mobile);
+            editDialog.getTxtEmail().setText(email);
+
+            editDialog.getBtnSave().addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent ev) {
+                    String updatedName = editDialog.getTxtName().getText().trim();
+                    String updatedMobile = editDialog.getTxtMobile().getText().trim();
+                    String updatedEmail = editDialog.getTxtEmail().getText().trim();
+
+                    if (updatedName.isEmpty() || updatedMobile.isEmpty() || updatedEmail.isEmpty()) {
+                        JOptionPane.showMessageDialog(editDialog, "All fields must be filled.", "Validation Error", JOptionPane.WARNING_MESSAGE);
+                        return;
+                    }
+
+                    CustomerPanelModel updatedCustomer = new CustomerPanelModel(id, updatedName, updatedMobile, updatedEmail);
+                    boolean success = dao.updateCustomer(updatedCustomer);
+
+                    if (success) {
+                        JOptionPane.showMessageDialog(editDialog, "Customer updated successfully.");
+                        editDialog.dispose();
+                        refreshTable();
+                    } else {
+                        JOptionPane.showMessageDialog(editDialog, "Update failed.", "Error", JOptionPane.ERROR_MESSAGE);
+                    }
+                }
+            });
+
+            editDialog.setVisible(true);
+
+        } else {
+            JOptionPane.showMessageDialog(view, "Please select a customer to edit.");
+        }
+    }
 }
+
+}
+
