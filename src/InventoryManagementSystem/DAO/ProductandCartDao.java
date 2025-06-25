@@ -55,7 +55,7 @@ public class ProductAndCartDao {
     //     }
     // }
 public int getLatestOrderId() {
-    int orderId = 0;
+    int orderId = 1;
     String query = "SELECT MAX(id) AS max_order_id FROM orders";
     try (Connection conn = connection.openConnection();
          Statement stmt = conn.createStatement();

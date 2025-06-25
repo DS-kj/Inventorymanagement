@@ -14,6 +14,8 @@ import InventoryManagementSystem.controller.MainPageController;
 import InventoryManagementSystem.controller.ProductAndCartController;
 import InventoryManagementSystem.controller.ProductPanelController;
 import InventoryManagementSystem.controller.ViewOrdersController;
+import InventoryManagementSystem.dao.DatabaseSetupDao;
+import InventoryManagementSystem.database.MySqlConnection;
 import InventoryManagementSystem.view.AdminPanel;
 //import InventoryManagementSystem.view.AdminPanel;
 import InventoryManagementSystem.view.Category;
@@ -37,6 +39,13 @@ public class InventoryManagementMain {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+          MySqlConnection dbConnection = new MySqlConnection();
+
+        // Create database if it doesn't exist before opening tables etc.
+        dbConnection.createDatabaseIfNotExists();
+        
+        DatabaseSetupDao setupDao = new DatabaseSetupDao();
+    setupDao.createAllTablesIfNotExist();
 //        AdminPanel view = new AdminPanel();
 //        AdminPanelController controller= new AdminPanelController(view);
 //        controller.open();

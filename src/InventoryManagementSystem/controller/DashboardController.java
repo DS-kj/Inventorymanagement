@@ -46,56 +46,48 @@ public class DashboardController {
             view.addRowToTable(row);
         }
     }
-    public void handleNavigation(String action) {
-    switch (action) {
-        case "Dashboard" -> {
-            loadProducts();
-            System.out.println("Dashboard refreshed!");
-        }
-        case "Category" -> {
-            view.dispose(); 
-            Category categoryView = new Category();
-            CategoryController categoryOpener = new CategoryController(categoryView);
-            categoryOpener.open();
-        }
-        case "Product" -> {
-            view.dispose(); 
-            ProductPanel productView = new ProductPanel();
-            ProductPanelController controller = new ProductPanelController(productView);
-            controller.show();
-            System.out.println("Product clicked!");
+public void handleNavigation(String action) {
+        switch (action) {
+         
+   case "Category" ->{Category viewCategory=new Category();
+                CategoryController CategoryOpener= new CategoryController(viewCategory);
+                 CategoryOpener.open();
+                view.dispose();}
+ case "Product" -> {
+            ProductPanel viewProduct = new ProductPanel();
+        ProductPanelController controller = new ProductPanelController(viewProduct);
+        controller.show();
+        view.dispose();
+                System.out.println("Product clicked!");
         }
         case "Customer" -> {
-            view.dispose();
-            CustomerPanel customerView = new CustomerPanel();
-            CustomerPanelController controller = new CustomerPanelController(customerView);
+            CustomerPanel viewCustomer = new CustomerPanel();
+            CustomerPanelController controller = new CustomerPanelController(viewCustomer);
             controller.open();
+            view.dispose();
         }
         case "Order" -> {
-            view.dispose(); 
             Customerchooser viewCustomer = new Customerchooser();
-            CustomerchooserController controllerCustomer = new CustomerchooserController(viewCustomer);
-            controllerCustomer.open();
-            System.out.println("Order clicked!");
+         CustomerchooserController controllerCustomer= new CustomerchooserController(viewCustomer);
+         controllerCustomer.open();
+                System.out.println("Order clicked!");
         }
         case "View Order" -> {
-            view.dispose();
-            ViewOrders viewOrders = new ViewOrders();
-            ViewOrdersController controller = new ViewOrdersController(viewOrders);
+            ViewOrders viewOrder = new ViewOrders();
+            ViewOrdersController controller = new ViewOrdersController(viewOrder);
             controller.open();
+            view.dispose();
         }
-        case "Log Out" -> {
-            int option = JOptionPane.showConfirmDialog(null, "Are you sure you want to logout?", "Confirm", JOptionPane.YES_NO_OPTION);
-            if (option == JOptionPane.YES_OPTION) {
-                System.exit(0);
+            case "Log Out" -> {
+                int option = JOptionPane.showConfirmDialog(null, "Are you sure you want to logout?", "Confirm", JOptionPane.YES_NO_OPTION);
+                if (option == JOptionPane.YES_OPTION) {
+                    System.exit(0);
+                }
             }
+            default -> JOptionPane.showMessageDialog(null,
+                    "Already in Dashboard '" + action + "' found.",
+                    "Information",
+                    JOptionPane.INFORMATION_MESSAGE);
         }
-        default -> JOptionPane.showMessageDialog(null,
-                "No table named '" + action + "' found.",
-                "Information",
-                JOptionPane.INFORMATION_MESSAGE);
     }
-    
-}
-
 }
